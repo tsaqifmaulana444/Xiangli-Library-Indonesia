@@ -1,12 +1,14 @@
 import { Link, Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
 
-export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<{ laravelVersion: string, phpVersion: string }>) {
-  const appName = "Apalah"
+export default function Index() {
+  const appName = "Home"
   return (
     <>
       <Head>
         <title>{appName}</title>
+        <Link href="/ukk12-fe/output.css" rel="stylesheet" />
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
       </Head>
       <header className="fixed w-full">
         <nav className="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
@@ -24,10 +26,10 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
             <div className="flex items-center lg:order-2">
               {/* <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in</a> */}
               <a
-                href="https://themesberg.com/product/tailwind-css/landing-page"
+                href="/sign-in"
                 className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800"
               >
-                Sign Up
+                Sign In
               </a>
               <button
                 data-collapse-toggle="mobile-menu-2"
@@ -373,136 +375,6 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
       {/* End block */}
       {/* Start block */}
       <section className="bg-white dark:bg-gray-900">
-        <div className="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-24 lg:px-6 ">
-          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-center text-gray-900 lg:mb-8 lg:text-3xl dark:text-white">
-            Frequently asked questions
-          </h2>
-          <div className="max-w-screen-md mx-auto">
-            <div
-              id="accordion-flush"
-              data-accordion="collapse"
-              data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
-              data-inactive-classes="text-gray-500 dark:text-gray-400"
-            >
-              <h3 id="accordion-flush-heading-1">
-                <button
-                  type="button"
-                  className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-900 bg-white border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
-                  data-accordion-target="#accordion-flush-body-1"
-                  aria-expanded="true"
-                  aria-controls="accordion-flush-body-1"
-                >
-                  <span>What country is Xiangli company based in?</span>
-                  <svg
-                    data-accordion-icon=""
-                    className="w-6 h-6 rotate-180 shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </h3>
-              <div
-                id="accordion-flush-body-1"
-                className=""
-                aria-labelledby="accordion-flush-heading-1"
-              >
-                <div className="py-5 border-b border-gray-200 dark:border-gray-700">
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    We are based in Indonesia, especially in Kepulauan Riau, we
-                    collaborate with China to create the technology and provide
-                    books.
-                  </p>
-                </div>
-              </div>
-              <h3 id="accordion-flush-heading-2">
-                <button
-                  type="button"
-                  className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
-                  data-accordion-target="#accordion-flush-body-2"
-                  aria-expanded="false"
-                  aria-controls="accordion-flush-body-2"
-                >
-                  <span>Is user data guaranteed to be secure?</span>
-                  <svg
-                    data-accordion-icon=""
-                    className="w-6 h-6 shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </h3>
-              <div
-                id="accordion-flush-body-2"
-                className="hidden"
-                aria-labelledby="accordion-flush-heading-2"
-              >
-                <div className="py-5 border-b border-gray-200 dark:border-gray-700">
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    Yes, we 100% will not sell or use user data, data leaks are the
-                    company's full responsibility.
-                  </p>
-                </div>
-              </div>
-              <h3 id="accordion-flush-heading-3">
-                <button
-                  type="button"
-                  className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
-                  data-accordion-target="#accordion-flush-body-3"
-                  aria-expanded="false"
-                  aria-controls="accordion-flush-body-3"
-                >
-                  <span>
-                    What are the differences between Xiangli and other books
-                    company?
-                  </span>
-                  <svg
-                    data-accordion-icon=""
-                    className="w-6 h-6 shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </h3>
-              <div
-                id="accordion-flush-body-3"
-                className="hidden"
-                aria-labelledby="accordion-flush-heading-3"
-              >
-                <div className="py-5 border-b border-gray-200 dark:border-gray-700">
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    We provide a very large number of books and varied genres, we
-                    have very fast service and friendly workers
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* End block */}
-      {/* Start block */}
-      <section className="bg-gray-50 dark:bg-gray-800">
         <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
           <div className="max-w-screen-sm mx-auto text-center">
             <h2 className="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">

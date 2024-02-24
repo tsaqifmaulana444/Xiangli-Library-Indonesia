@@ -8,9 +8,13 @@ use Inertia\Response;
 
 class AuthController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(): Response
     {
         return Inertia::render('Index');
     }
 
+    public function sign_in(): Response
+    {
+        return Inertia::render('SignIn');
+    }
 }
