@@ -11,4 +11,9 @@ class UsersController extends Controller
     {
         return Inertia::render('Users/User');
     }
+
+    public function list_book(): Response
+    {
+        return Inertia::render('Users/ListBook');
+    }
 }
