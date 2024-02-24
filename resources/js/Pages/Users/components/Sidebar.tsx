@@ -13,8 +13,8 @@ export default function Sidebar() {
                 <div className="flex flex-col w-[70%] mx-auto mt-4">
                     <Link href="/dashboard" className={component === 'Users/User' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Dashboard</Link>
                     <Link href="/list-book" className={component === 'Users/ListBook' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>List Book</Link>
-                    <Link href="/#" className={component === 'history-list' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>History List</Link>
-                    <Link href="/#" className={component === 'categories' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Categories</Link>
+                    <Link href="/history" className={component === 'Users/History' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>History List</Link>
+                    <Link href="/categories" className={component === 'Users/Categories' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Categories</Link>
                 </div>
             </aside>
         </>

@@ -16,4 +16,14 @@ class UsersController extends Controller
     {
         return Inertia::render('Users/ListBook');
     }
+
+    public function history(): Response
+    {
+        return Inertia::render('Users/History');
+    }
+
+    public function categories(): Response
+    {
+        return Inertia::render('Users/Categories');
+    }
 }

@@ -11,7 +11,8 @@ Route::prefix('')->group(function(){
     Route::get('/sign-in', [AuthController::class, 'sign_in'])->name('auth.sign_in');
     Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/list-book', [UsersController::class, 'list_book'])->name('user.list_book');
-
+    Route::get('/history', [UsersController::class, 'history'])->name('user.history');
+    Route::get('/categories', [UsersController::class, 'categories'])->name('user.categories');
 });
 
 Route::prefix('/admin')->group(function(){
