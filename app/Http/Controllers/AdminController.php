@@ -26,7 +26,10 @@ class AdminController extends Controller
 
     public function books_panel(): Response
     {
-        return Inertia::render('Admin/BooksPanel');
+        $categories = Category::latest()->get();
+        return Inertia::render('Admin/BooksPanel', [
+            'categories' => $categories,
+        ]);
     }
 
     public function categories(): Response

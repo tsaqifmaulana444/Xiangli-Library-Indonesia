@@ -5,17 +5,21 @@ import Navbar from './components/Navbar'
 import CreateBookModal from './modals/CreateBookModal'
 import { useState } from 'react'
 
-export default function BooksPanel() {
+interface Category {
+  id?: string
+  name: string
+}
+
+export default function BooksPanel({ categories }: PageProps<{ categories: Category[] }>) {
   const appName = "Books Panel"
   const [isBookModalOpen, setIsBookModalOpen] = useState(false)
   let [currentCount, setCurrentCount] = useState(1)
-
   const switchBookModal = () => {
     setIsBookModalOpen(!isBookModalOpen)
   }
   return (
     <>
-      {isBookModalOpen && <CreateBookModal closeModal={switchBookModal}/>}
+      {isBookModalOpen && <CreateBookModal closeModal={switchBookModal} categories={categories}/>}
       <Head>
         <title>{appName}</title>
       </Head>

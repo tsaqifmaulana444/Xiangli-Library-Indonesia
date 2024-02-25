@@ -2,7 +2,6 @@ import { Link, usePage } from '@inertiajs/react'
 
 export default function Sidebar() {
     const { component } = usePage()
-    console.log({"tes": component })
     return (
         <>
             <aside className='bg-[#17171B] w-[17%] h-[100vh] sticky top-0'>

@@ -1,21 +1,28 @@
+// BookModal.tsx
 import { Link, Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
 import React, { useState } from 'react'
 import { Inertia } from '@inertiajs/inertia'
 import { FormEvent } from 'react'
 
-interface modalProps {
-    closeModal: () => void
+interface Category {
+    id?: string
+    name: string
 }
 
-export default function BookModal({ closeModal }: modalProps) {
+interface modalProps {
+    closeModal: () => void
+    categories: Category[]
+}
+
+export default function BookModal({ closeModal, categories }: modalProps) {
     const [name, setName] = useState('')
     const [year, setYear] = useState('')
     const [author, setAuthor] = useState('')
     const [stock, setStock] = useState('')
     const [description, setDescription] = useState('')
     const [category, setCategory] = useState('')
-
+    console.log(categories)
     const storeBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
@@ -50,14 +57,21 @@ export default function BookModal({ closeModal }: modalProps) {
                             <div className="mb-5">
                                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Description</label>
                                 <textarea id="message" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 h-28 focus:ring-black focus:border-black" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe the book in the best way..."></textarea>
-
                             </div>
                             <div className="mb-5">
                                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Category</label>
-                                <div className="flex items-center mb-4 mx-1">
-                                    <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
-                                    <label htmlFor="default-checkbox" className="ms-2 text-sm font-medium text-gray-900">Default checkbox</label>
-                                </div>
+                                {categories.map((category) => (
+                                    <div key={category.id} className="flex items-center mb-4 mx-1">
+                                        <input
+                                            id={category.id}
+                                            type="checkbox"
+                                            value={category.id}
+                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                            // onChange={(e) => handleCategoryCheckboxChange(e, category.id)}
+                                        />
+                                        <label htmlFor={category.id} className="ms-2 text-sm font-medium text-gray-900">{category.name}</label>
+                                    </div>
+                                ))}
                             </div>
                             <div className="flex">
                                 <button type="button" className="text-gray-900 bg-white border border-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" onClick={closeModal}>Close</button>
