@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
@@ -16,6 +17,11 @@ Route::prefix('')->group(function(){
 });
 
 Route::prefix('/admin')->group(function(){
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/borrowers', [AdminController::class, 'borrowers'])->name('admin.borrowers');
+    Route::get('/members', [AdminController::class, 'members'])->name('admin.members');
+    Route::get('/books-panel', [AdminController::class, 'books_panel'])->name('admin.books_panel');
+    Route::get('/categories', [AdminController::class, 'categories'])->name('admin.categories');
 });
 
 Route::middleware('auth')->group(function () {
