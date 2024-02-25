@@ -31,7 +31,11 @@ class AdminController extends Controller
 
     public function categories(): Response
     {
-        return Inertia::render('Admin/Categories');
+        $categories = Category::latest()->get();
+
+        return Inertia::render('Admin/Categories', [
+            'categories' => $categories,
+        ]);
     }
 
     public function store_categories(Request $request)

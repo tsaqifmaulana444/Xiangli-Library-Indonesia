@@ -5,12 +5,20 @@ import Navbar from './components/Navbar'
 import CategoryModal from './modals/CategoryModal'
 import { useState } from 'react'
 
-export default function Categories() {
+interface Category {
+  id?: string
+  name: string
+}
+
+export default function Categories({ categories }: PageProps<{ categories: Category[] }>) {
   const appName = "Categories"
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false)
+  let [currentCount, setCurrentCount] = useState(1)
+  
   const switchCategoryModal = () => {
     setIsCategoryModalOpen(!isCategoryModalOpen)
   }
+
   return (
     <>
       {isCategoryModalOpen && <CategoryModal closeModal={switchCategoryModal}/>}
@@ -40,30 +48,16 @@ export default function Categories() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="bg-white">
-                      <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        1
-                      </td>
-                      <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        企业管理书籍
-                      </td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        2
-                      </td>
-                      <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        企业管理书籍
-                      </td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        3
-                      </td>
-                      <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        企业管理书籍
-                      </td>
-                    </tr>
+                    {categories.map((category) => (
+                      <tr className="bg-white" key={category.id}>
+                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                          {currentCount++}
+                        </td>
+                        <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                          {category.name}
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
