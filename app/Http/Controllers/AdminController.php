@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Category;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -30,6 +31,29 @@ class AdminController extends Controller
         return Inertia::render('Admin/BooksPanel', [
             'categories' => $categories,
         ]);
+    }
+
+    public function store_book(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'date' => 'required',
+            'author' => 'required',
+            'stock' => 'required',
+            'description' => 'required',
+            'categories' => 'required',
+        ]);
+
+        Book::create([
+            'name' => $request->name,
+            'year' => $request->year,
+            'author' => $request->author,
+            'stock' => $request->stock,
+            'description' => $request->description,
+            'categories' => $request->categories,
+        ]);
+
+        return redirect()->route('admin.books')->with('success', 'Data Successfully Added!');
     }
 
     public function categories(): Response

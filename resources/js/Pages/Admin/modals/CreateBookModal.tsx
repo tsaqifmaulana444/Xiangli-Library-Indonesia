@@ -1,4 +1,3 @@
-// BookModal.tsx
 import { Link, Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
 import React, { useState } from 'react'
@@ -17,17 +16,22 @@ interface modalProps {
 
 export default function BookModal({ closeModal, categories }: modalProps) {
     const [name, setName] = useState('')
-    const [year, setYear] = useState('')
+    const [date, setDate] = useState('')
     const [author, setAuthor] = useState('')
     const [stock, setStock] = useState('')
     const [description, setDescription] = useState('')
     const [category, setCategory] = useState('')
-    console.log(categories)
+
     const storeBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        Inertia.post('/admin/categories', {
-            name: name
+        Inertia.post('/admin/store-book', {
+            name: name,
+            date: date,
+            author: author,
+            stock: stock,
+            description: description,
+            // categories: categories
         })
     }
 
@@ -43,8 +47,8 @@ export default function BookModal({ closeModal, categories }: modalProps) {
                                 <input autoComplete='off' type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Book name" required />
                             </div>
                             <div className="mb-5">
-                                <label htmlFor="date" className="block mb-2 text-sm font-medium text-gray-900">Year Published</label>
-                                <input autoComplete='off' type="date" id="date" name="year" value={year} onChange={(e) => setYear(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Year published" required />
+                                <label htmlFor="date" className="block mb-2 text-sm font-medium text-gray-900">Date Published</label>
+                                <input autoComplete='off' type="date" id="date" name="date" value={date} onChange={(e) => setDate(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Year published" required />
                             </div>
                             <div className="mb-5">
                                 <label htmlFor="author" className="block mb-2 text-sm font-medium text-gray-900">Author</label>

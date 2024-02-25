@@ -21,6 +21,7 @@ Route::prefix('/admin')->group(function(){
     Route::get('/borrowers', [AdminController::class, 'borrowers'])->name('admin.borrowers');
     Route::get('/members', [AdminController::class, 'members'])->name('admin.members');
     Route::get('/books-panel', [AdminController::class, 'books_panel'])->name('admin.books_panel');
+    Route::post('/books-panel', [AdminController::class, 'store_book'])->name('admin.store_book');
 
     Route::get('/categories', [AdminController::class, 'categories'])->name('admin.categories');
     Route::post('/categories', [AdminController::class, 'store_categories'])->name('admin.store_categories');
