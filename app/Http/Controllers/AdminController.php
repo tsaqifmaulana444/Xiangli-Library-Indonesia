@@ -28,8 +28,10 @@ class AdminController extends Controller
     public function books_panel(): Response
     {
         $categories = Category::latest()->get();
+        $books = Book::latest()->get();
         return Inertia::render('Admin/BooksPanel', [
             'categories' => $categories,
+            'books' => $books
         ]);
     }
 
@@ -54,6 +56,18 @@ class AdminController extends Controller
         ]);
 
         return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Added!');
+    }
+
+    public function delete_book($id)
+    {
+        $book = Book::find($id);
+
+        if ($book) {
+            $book->delete();
+            return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Deleted!');
+        } else {
+            return redirect()->route('admin.books_panel')->with('error', 'Data not found!');
+        }
     }
 
     public function categories(): Response

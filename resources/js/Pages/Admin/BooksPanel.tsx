@@ -4,22 +4,39 @@ import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import CreateBookModal from './modals/CreateBookModal'
 import { useState } from 'react'
+import { Inertia } from '@inertiajs/inertia'
 
 interface Category {
   id?: string
   name: string
 }
 
-export default function BooksPanel({ categories }: PageProps<{ categories: Category[] }>) {
+interface Book {
+  id?: string
+  name: string
+  date: string
+  author: string
+  stock: string
+  description: string
+  categories: string[]
+}
+
+export default function BooksPanel({ categories, books }: PageProps<{ categories: Category[], books: Book[] }>) {
   const appName = "Books Panel"
   const [isBookModalOpen, setIsBookModalOpen] = useState(false)
   let [currentCount, setCurrentCount] = useState(1)
+
   const switchBookModal = () => {
     setIsBookModalOpen(!isBookModalOpen)
   }
+
+  const deleteBook = async (id: string | undefined) => {
+    Inertia.delete(`/admin/books-panel/${id}`);
+  }
+
   return (
     <>
-      {isBookModalOpen && <CreateBookModal closeModal={switchBookModal} categories={categories}/>}
+      {isBookModalOpen && <CreateBookModal closeModal={switchBookModal} categories={categories} />}
       <Head>
         <title>{appName}</title>
       </Head>
@@ -29,7 +46,7 @@ export default function BooksPanel({ categories }: PageProps<{ categories: Categ
           <div className="w-[92%] mx-auto">
             <Navbar />
             <section className="">
-            <div className="flex justify-between">
+              <div className="flex justify-between">
                 <h1 className='mt-4 mb-8 font-bold text-[22px]'>Book Panel</h1>
                 <button type="button" onClick={switchBookModal} className="h-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 mt-4 mb-8">Add Book</button>
               </div>
@@ -44,16 +61,19 @@ export default function BooksPanel({ categories }: PageProps<{ categories: Categ
                         Book Name
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Quantity
+                        Date Published
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Borrow Date
+                        Author
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Return Date
+                        Stock
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Status
+                        Description
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-center">
+                        Categories
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
                         Action
@@ -61,80 +81,23 @@ export default function BooksPanel({ categories }: PageProps<{ categories: Categ
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="bg-white">
-                      <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        1
-                      </td>
-                      <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
-                        企业管理书籍
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        4
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        2024-01-01
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        -
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        Waiting
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Reject</button>
-                        <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Accept</button>
-
-                      </td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        2
-                      </td>
-                      <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
-                        企业管理书籍
-                      </th>
-                      <td className="px-6 py-4 text-center">
-                        4
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        2024-01-01
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        -
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        Waiting
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Reject</button>
-                        <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Accept</button>
-
-                      </td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        3
-                      </td>
-                      <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">
-                        企业管理书籍
-                      </th>
-                      <td className="px-6 py-4 text-center">
-                        4
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        2024-01-01
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        -
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        Waiting
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Reject</button>
-                        <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Accept</button>
-                      </td>
-                    </tr>
+                    {books.map((book, index) => (
+                      <tr key={book.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{index + 1}</td>
+                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{book.name}</td>
+                        <td className="px-6 py-4 text-center">{book.date}</td>
+                        <td className="px-6 py-4 text-center">{book.author}</td>
+                        <td className="px-6 py-4 text-center">{book.stock}</td>
+                        <td className="px-6 py-4 text-center">{book.description}</td>
+                        <td className="px-6 py-4 text-center">
+                          {book.categories}
+                        </td>
+                        <td className="px-6 py-4 text-center">
+                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBook(book.id)}>Delete</button>
+                          <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Edit</button>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
