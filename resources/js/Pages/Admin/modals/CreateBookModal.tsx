@@ -20,21 +20,33 @@ export default function BookModal({ closeModal, categories }: modalProps) {
     const [author, setAuthor] = useState('')
     const [stock, setStock] = useState('')
     const [description, setDescription] = useState('')
-    const [category, setCategory] = useState('')
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+
+    const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryId: string) => {
+        const isChecked = e.target.checked
+    
+        if (isChecked) {
+            setSelectedCategories([...selectedCategories, categoryId])
+        } else {
+            setSelectedCategories(selectedCategories.filter((id) => id !== categoryId))
+        }
+    }    
 
     const storeBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
-        Inertia.post('/admin/store-book', {
+    
+        const categoriesJSON = JSON.stringify(selectedCategories)
+    
+        Inertia.post('/admin/books-panel', {
             name: name,
             date: date,
             author: author,
             stock: stock,
             description: description,
-            // categories: categories
+            categories: categoriesJSON
         })
     }
-
+    
     return (
         <>
             <div className='fixed w-[100%] h-[100vh] bg-[#1414147c] z-[99] flex justify-center items-center'>
@@ -56,7 +68,7 @@ export default function BookModal({ closeModal, categories }: modalProps) {
                             </div>
                             <div className="mb-5">
                                 <label htmlFor="stock" className="block mb-2 text-sm font-medium text-gray-900">Stock</label>
-                                <input autoComplete='off' type="text" id="stock" name="name" value={stock} onChange={(e) => setStock(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Author Name" required />
+                                <input autoComplete='off' type="number" id="stock" name="name" value={stock} onChange={(e) => setStock(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Stock" required />
                             </div>
                             <div className="mb-5">
                                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Description</label>
@@ -69,9 +81,9 @@ export default function BookModal({ closeModal, categories }: modalProps) {
                                         <input
                                             id={category.id}
                                             type="checkbox"
-                                            value={category.id}
+                                            value={category.name}
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                                            // onChange={(e) => handleCategoryCheckboxChange(e, category.id)}
+                                            onChange={(e) => handleCategoryCheckboxChange(e, category.name || '')}
                                         />
                                         <label htmlFor={category.id} className="ms-2 text-sm font-medium text-gray-900">{category.name}</label>
                                     </div>

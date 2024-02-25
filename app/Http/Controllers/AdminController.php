@@ -46,14 +46,14 @@ class AdminController extends Controller
 
         Book::create([
             'name' => $request->name,
-            'year' => $request->year,
+            'date' => $request->date,
             'author' => $request->author,
             'stock' => $request->stock,
             'description' => $request->description,
             'categories' => $request->categories,
         ]);
 
-        return redirect()->route('admin.books')->with('success', 'Data Successfully Added!');
+        return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Added!');
     }
 
     public function categories(): Response
