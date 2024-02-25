@@ -2,11 +2,18 @@ import { Link, Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
+import CategoryModal from './modals/CategoryModal'
+import { useState } from 'react'
 
 export default function Categories() {
   const appName = "Categories"
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false)
+  const switchCategoryModal = () => {
+    setIsCategoryModalOpen(!isCategoryModalOpen)
+  }
   return (
     <>
+      {isCategoryModalOpen && <CategoryModal closeModal={switchCategoryModal}/>}
       <Head>
         <title>{appName}</title>
       </Head>
@@ -16,9 +23,12 @@ export default function Categories() {
           <div className="w-[92%] mx-auto">
             <Navbar />
             <section className="">
-              <h1 className='mt-4 mb-8 font-bold text-[22px]'>Categories</h1>
+              <div className="flex justify-between">
+                <h1 className='mt-4 mb-8 font-bold text-[22px]'>Categories</h1>
+                <button type="button" onClick={switchCategoryModal} className="h-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 mt-4 mb-8">Add Category</button>
+              </div>
               <div className="relative overflow-x-auto">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
                       <th scope="col" className="px-6 py-3">
