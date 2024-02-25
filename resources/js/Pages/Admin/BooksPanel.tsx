@@ -2,11 +2,20 @@ import { Link, Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
+import CreateBookModal from './modals/CreateBookModal'
+import { useState } from 'react'
 
 export default function BooksPanel() {
   const appName = "Books Panel"
+  const [isBookModalOpen, setIsBookModalOpen] = useState(false)
+  let [currentCount, setCurrentCount] = useState(1)
+
+  const switchBookModal = () => {
+    setIsBookModalOpen(!isBookModalOpen)
+  }
   return (
     <>
+      {isBookModalOpen && <CreateBookModal closeModal={switchBookModal}/>}
       <Head>
         <title>{appName}</title>
       </Head>
@@ -16,7 +25,10 @@ export default function BooksPanel() {
           <div className="w-[92%] mx-auto">
             <Navbar />
             <section className="">
-              <h1 className='mt-4 mb-8 font-bold text-[22px]'>Books Panel</h1>
+            <div className="flex justify-between">
+                <h1 className='mt-4 mb-8 font-bold text-[22px]'>Book Panel</h1>
+                <button type="button" onClick={switchBookModal} className="h-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 mt-4 mb-8">Add Book</button>
+              </div>
               <div className="relative overflow-x-auto">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50">
