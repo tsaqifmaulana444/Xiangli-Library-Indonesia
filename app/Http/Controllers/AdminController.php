@@ -71,15 +71,13 @@ class AdminController extends Controller
 
         $book = Book::findOrFail($id);
 
-        $categories = json_encode($request->categories);
-
         $book->update([
             'name' => $request->name,
             'date' => $request->date,
             'author' => $request->author,
             'stock' => $request->stock,
             'description' => $request->description,
-            'categories' => $categories,
+            'categories' => $request->categories,
         ]);
 
         return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Updated!');
