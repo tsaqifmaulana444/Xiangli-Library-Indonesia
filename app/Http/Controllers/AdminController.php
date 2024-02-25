@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Category;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
@@ -30,5 +32,18 @@ class AdminController extends Controller
     public function categories(): Response
     {
         return Inertia::render('Admin/Categories');
+    }
+
+    public function store_categories(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        Category::create([
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('admin.categories')->with('success', 'Data Successfully Added!');
     }
 }
