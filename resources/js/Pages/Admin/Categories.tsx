@@ -4,6 +4,8 @@ import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import CategoryModal from './modals/CategoryModal'
 import { useState } from 'react'
+import { Inertia } from '@inertiajs/inertia'
+import { FormEvent } from 'react'
 
 interface Category {
   id?: string
@@ -14,9 +16,13 @@ export default function Categories({ categories }: PageProps<{ categories: Categ
   const appName = "Categories"
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false)
   let [currentCount, setCurrentCount] = useState(1)
-  
+
   const switchCategoryModal = () => {
     setIsCategoryModalOpen(!isCategoryModalOpen)
+  }
+
+  const deleteCategory = async (id: string | undefined) => {
+    Inertia.delete(`/admin/categories/${id}`);
   }
 
   return (
@@ -45,6 +51,9 @@ export default function Categories({ categories }: PageProps<{ categories: Categ
                       <th scope="col" className="px-6 py-3">
                         Category Name
                       </th>
+                      <th scope="col" className="px-6 py-3">
+                        Action
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -55,6 +64,9 @@ export default function Categories({ categories }: PageProps<{ categories: Categ
                         </td>
                         <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                           {category.name}
+                        </td>
+                        <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"  onClick={() => deleteCategory(category.id)}>Delete</button>
                         </td>
                       </tr>
                     ))}

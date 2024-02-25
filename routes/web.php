@@ -24,6 +24,7 @@ Route::prefix('/admin')->group(function(){
 
     Route::get('/categories', [AdminController::class, 'categories'])->name('admin.categories');
     Route::post('/categories', [AdminController::class, 'store_categories'])->name('admin.store_categories');
+    Route::delete('/categories/{id}', [AdminController::class, 'delete_categories'])->name('admin.delete_categories');
 });
 
 Route::middleware('auth')->group(function () {

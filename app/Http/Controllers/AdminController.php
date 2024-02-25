@@ -50,4 +50,16 @@ class AdminController extends Controller
 
         return redirect()->route('admin.categories')->with('success', 'Data Successfully Added!');
     }
+
+    public function delete_categories($id)
+    {
+        $category = Category::find($id);
+
+        if ($category) {
+            $category->delete();
+            return redirect()->route('admin.categories')->with('success', 'Data Successfully Deleted!');
+        } else {
+            return redirect()->route('admin.categories')->with('error', 'Data not found!');
+        }
+    }
 }
