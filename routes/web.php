@@ -22,6 +22,7 @@ Route::prefix('/admin')->group(function(){
     Route::get('/members', [AdminController::class, 'members'])->name('admin.members');
     Route::get('/books-panel', [AdminController::class, 'books_panel'])->name('admin.books_panel');
     Route::post('/books-panel', [AdminController::class, 'store_book'])->name('admin.store_book');
+    Route::put('/books-panel/{id}', [AdminController::class, 'update_book'])->name('admin.update_book');
     Route::delete('/books-panel/{id}', [AdminController::class, 'delete_book'])->name('admin.delete_book');
 
     Route::get('/categories', [AdminController::class, 'categories'])->name('admin.categories');

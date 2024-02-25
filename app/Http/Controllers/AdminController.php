@@ -58,6 +58,33 @@ class AdminController extends Controller
         return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Added!');
     }
 
+    public function update_book(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'date' => 'required',
+            'author' => 'required',
+            'stock' => 'required',
+            'description' => 'required',
+            'categories' => 'required',
+        ]);
+
+        $book = Book::findOrFail($id);
+
+        $categories = json_encode($request->categories);
+
+        $book->update([
+            'name' => $request->name,
+            'date' => $request->date,
+            'author' => $request->author,
+            'stock' => $request->stock,
+            'description' => $request->description,
+            'categories' => $categories,
+        ]);
+
+        return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Updated!');
+    }
+
     public function delete_book($id)
     {
         $book = Book::find($id);

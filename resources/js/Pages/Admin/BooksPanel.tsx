@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import CreateBookModal from './modals/CreateBookModal'
 import { useState } from 'react'
 import { Inertia } from '@inertiajs/inertia'
+import EditBookModal from './modals/EditBookModal'
 
 interface Category {
   id?: string
@@ -24,10 +25,22 @@ interface Book {
 export default function BooksPanel({ categories, books }: PageProps<{ categories: Category[], books: Book[] }>) {
   const appName = "Books Panel"
   const [isBookModalOpen, setIsBookModalOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null)
   let [currentCount, setCurrentCount] = useState(1)
 
   const switchBookModal = () => {
     setIsBookModalOpen(!isBookModalOpen)
+  }
+
+  const openEditModal = (book: Book) => {
+    setSelectedBook(book)
+    setIsEditModalOpen(true)
+  }
+
+  const closeEditModal = () => {
+    setSelectedBook(null)
+    setIsEditModalOpen(false)
   }
 
   const deleteBook = async (id: string | undefined) => {
@@ -37,6 +50,7 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
   return (
     <>
       {isBookModalOpen && <CreateBookModal closeModal={switchBookModal} categories={categories} />}
+      {isEditModalOpen && selectedBook && <EditBookModal closeModal={closeEditModal} categories={categories} book={selectedBook} />}
       <Head>
         <title>{appName}</title>
       </Head>
@@ -94,7 +108,7 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
                         </td>
                         <td className="px-6 py-4 text-center">
                           <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBook(book.id)}>Delete</button>
-                          <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Edit</button>
+                          <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 " onClick={() => openEditModal(book)}>Edit</button>
                         </td>
                       </tr>
                     ))}
