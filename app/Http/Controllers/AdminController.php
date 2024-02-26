@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
@@ -22,7 +23,10 @@ class AdminController extends Controller
 
     public function members(): Response
     {
-        return Inertia::render('Admin/Members');
+        $members = User::latest()->get();
+        return Inertia::render('Admin/Members', [
+            'members' => $members
+        ]);
     }
 
     public function books_panel(): Response
