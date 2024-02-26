@@ -18,8 +18,12 @@ Route::prefix('')->group(function(){
 
 Route::prefix('/admin')->group(function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
     Route::get('/borrowers', [AdminController::class, 'borrowers'])->name('admin.borrowers');
+
     Route::get('/members', [AdminController::class, 'members'])->name('admin.members');
+    Route::delete('/member/{id}', [AdminController::class, 'delete_members'])->name('admin.delete_member');
+
     Route::get('/books-panel', [AdminController::class, 'books_panel'])->name('admin.books_panel');
     Route::post('/books-panel', [AdminController::class, 'store_book'])->name('admin.store_book');
     Route::put('/books-panel/{id}', [AdminController::class, 'update_book'])->name('admin.update_book');

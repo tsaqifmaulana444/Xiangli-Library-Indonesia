@@ -29,6 +29,18 @@ class AdminController extends Controller
         ]);
     }
 
+    public function delete_members($id)
+    {
+        $member = User::find($id);
+
+        if ($member) {
+            $member->delete();
+            return redirect()->route('admin.members')->with('success', 'Data Successfully Deleted!');
+        } else {
+            return redirect()->route('admin.members')->with('error', 'Data not found!');
+        }
+    }
+
     public function books_panel(): Response
     {
         $categories = Category::latest()->get();

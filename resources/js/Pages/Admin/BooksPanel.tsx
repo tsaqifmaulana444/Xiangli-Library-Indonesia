@@ -44,7 +44,7 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
   }
 
   const deleteBook = async (id: string | undefined) => {
-    Inertia.delete(`/admin/books-panel/${id}`);
+    Inertia.delete(`/admin/books-panel/${id}`)
   }
 
   return (

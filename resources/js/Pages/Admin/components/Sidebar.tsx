@@ -18,7 +18,6 @@ export default function Sidebar() {
                     <Link href="/admin/members" className={component === 'Admin/Members' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Members</Link>
                     <Link href="/admin/books-panel" className={component === 'Admin/BooksPanel' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Books Panel</Link>
                     <Link href="/admin/categories" className={component === 'Admin/Categories' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Categories</Link>
-                    <Link href="/categories" className={component === 'Users/Categories' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Feedback</Link>
                 </div>
             </aside>
         </>
