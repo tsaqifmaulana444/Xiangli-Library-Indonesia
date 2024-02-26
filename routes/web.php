@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,18 @@ Route::prefix('/admin')->group(function(){
     Route::get('/categories', [AdminController::class, 'categories'])->name('admin.categories');
     Route::post('/categories', [AdminController::class, 'store_categories'])->name('admin.store_categories');
     Route::delete('/categories/{id}', [AdminController::class, 'delete_categories'])->name('admin.delete_categories');
+});
+
+Route::prefix('/super-admin')->group(function(){
+    Route::get('/dashboard', [SuperAdminController::class, 'dashboard'])->name('super-admin.dashboard');
+
+    Route::get('/books-panel', [SuperAdminController::class, 'books_panel'])->name('super-admin.books_panel');
+    Route::post('/books-panel', [SuperAdminController::class, 'store_book'])->name('super-admin.store_book');
+    Route::put('/books-panel/{id}', [SuperAdminController::class, 'update_book'])->name('super-admin.update_book');
+    Route::delete('/books-panel/{id}', [SuperAdminController::class, 'delete_book'])->name('super-admin.delete_book');
+
+    Route::get('/admins', [SuperAdminController::class, 'admins'])->name('super-admin.admins');
+    
 });
 
 Route::middleware('auth')->group(function () {
