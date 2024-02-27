@@ -107,7 +107,9 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
                         <td className="px-6 py-4 text-center">{book.author}</td>
                         <td className="px-6 py-4 text-center">{book.stock}</td>
                         <td className="px-6 py-4 text-center">{book.description}</td>
-                        <td className="px-6 py-4 text-center">{book.image}</td>
+                        <td className="px-6 py-4 text-center">
+                            <img src={`/storage/book/${book.image.substring(book.image.lastIndexOf('/'))}`} alt="image" className='w-[70px]'/>
+                        </td>
                         <td className="px-6 py-4 text-center">
                           {book.categories}
                         </td>

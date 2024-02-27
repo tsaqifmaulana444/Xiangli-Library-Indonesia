@@ -63,7 +63,7 @@ class AdminController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $imageName = $request->file('image')->store('images/book');
+        $imageName = $request->file('image')->store('public/book');
 
         Book::create([
             'name' => $request->name,
@@ -90,6 +90,8 @@ class AdminController extends Controller
             'image' => 'required',
         ]);
 
+        $imageName = $request->file('image')->store('public/book');
+
         $book = Book::findOrFail($id);
 
         $book->update([
@@ -99,7 +101,7 @@ class AdminController extends Controller
             'stock' => $request->stock,
             'description' => $request->description,
             'categories' => $request->categories,
-            'image' => $request->image,
+            'image' => $imageName
         ]);
 
         return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Updated!');
