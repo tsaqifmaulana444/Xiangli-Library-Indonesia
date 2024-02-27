@@ -5,7 +5,6 @@ import Navbar from './components/Navbar'
 import CategoryModal from './modals/CategoryModal'
 import { useState } from 'react'
 import { Inertia } from '@inertiajs/inertia'
-import { FormEvent } from 'react'
 
 interface Category {
   id?: string
