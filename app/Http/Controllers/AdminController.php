@@ -60,7 +60,10 @@ class AdminController extends Controller
             'stock' => 'required',
             'description' => 'required',
             'categories' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $imageName = $request->file('image')->store('images/book');
 
         Book::create([
             'name' => $request->name,
@@ -69,6 +72,7 @@ class AdminController extends Controller
             'stock' => $request->stock,
             'description' => $request->description,
             'categories' => $request->categories,
+            'image' => $imageName
         ]);
 
         return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Added!');
@@ -83,6 +87,7 @@ class AdminController extends Controller
             'stock' => 'required',
             'description' => 'required',
             'categories' => 'required',
+            'image' => 'required',
         ]);
 
         $book = Book::findOrFail($id);
@@ -94,6 +99,7 @@ class AdminController extends Controller
             'stock' => $request->stock,
             'description' => $request->description,
             'categories' => $request->categories,
+            'image' => $request->image,
         ]);
 
         return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Updated!');

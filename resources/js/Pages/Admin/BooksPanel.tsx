@@ -19,6 +19,7 @@ interface Book {
   author: string
   stock: string
   description: string
+  image: string
   categories: string[]
 }
 
@@ -90,6 +91,9 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
                         Categories
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
+                        Image
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-center">
                         Action
                       </th>
                     </tr>
@@ -103,6 +107,7 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
                         <td className="px-6 py-4 text-center">{book.author}</td>
                         <td className="px-6 py-4 text-center">{book.stock}</td>
                         <td className="px-6 py-4 text-center">{book.description}</td>
+                        <td className="px-6 py-4 text-center">{book.image}</td>
                         <td className="px-6 py-4 text-center">
                           {book.categories}
                         </td>

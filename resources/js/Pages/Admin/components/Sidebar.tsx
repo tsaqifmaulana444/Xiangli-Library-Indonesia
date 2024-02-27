@@ -9,7 +9,7 @@ export default function Sidebar() {
                     <img src="/ukk12-fe/images/logo.svg" alt="Xiangli Logo" className='w-[23%]' />
                     <div>
                         <p className="text-white ml-4 text-[20px]">Xiangli</p>
-                        <p className="text-white ml-4 text-[11px] -mt-1">Worker Panel</p>
+                        <p className="text-white ml-4 text-[11px] -mt-1">Employee Panel</p>
                     </div>
                 </div>
                 <div className="flex flex-col w-[70%] mx-auto mt-4">

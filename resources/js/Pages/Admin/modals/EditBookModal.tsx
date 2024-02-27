@@ -29,7 +29,14 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
     const [author, setAuthor] = useState(book.author || '')
     const [stock, setStock] = useState(book.stock || '')
     const [description, setDescription] = useState(book.description || '')
+    const [image, setImage] = useState<File | null>(null)
     const [selectedCategories, setSelectedCategories] = useState<string[]>(book.categories || [])
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+          setImage(e.target.files[0])
+        }
+    }
 
     const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryName: string) => {
         setSelectedCategories([categoryName])
@@ -76,6 +83,10 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
                             <div className='mb-4'>
                                 <label htmlFor='description' className='block text-sm font-medium text-gray-700'>Description</label>
                                 <textarea id='description' value={description} onChange={(e) => setDescription(e.target.value)} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 h-28 focus:ring-black focus:border-black" required />
+                            </div>
+                            <div className='mb-4'>
+                                <label htmlFor='image' className='block text-sm font-medium text-gray-700'>Image</label>
+                                <input type='file' id='image' onChange={handleImageChange} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' />
                             </div>
                             <div className='mb-4'>
                                 <label className='block text-sm font-medium text-gray-700'>Categories</label>

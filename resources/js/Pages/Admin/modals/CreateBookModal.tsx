@@ -20,7 +20,14 @@ export default function BookModal({ closeModal, categories }: modalProps) {
     const [author, setAuthor] = useState('')
     const [stock, setStock] = useState('')
     const [description, setDescription] = useState('')
+    const [image, setImage] = useState<File | null>(null)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+          setImage(e.target.files[0])
+        }
+    }
 
     const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryId: string) => {
         const isChecked = e.target.checked
@@ -43,7 +50,8 @@ export default function BookModal({ closeModal, categories }: modalProps) {
             author: author,
             stock: stock,
             description: description,
-            categories: categoriesJSON
+            categories: categoriesJSON,
+            image: image,
         })
     }
     
@@ -73,6 +81,10 @@ export default function BookModal({ closeModal, categories }: modalProps) {
                             <div className="mb-5">
                                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Description</label>
                                 <textarea id="message" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 h-28 focus:ring-black focus:border-black" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe the book in the best way..."></textarea>
+                            </div>
+                            <div className="mb-5">
+                                <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-900">Image</label>
+                                <input type="file" id="image" name="image" onChange={handleImageChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
                             </div>
                             <div className="mb-5">
                                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Category</label>
