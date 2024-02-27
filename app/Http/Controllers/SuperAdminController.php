@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Book;
 use App\Models\Category;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
 {
@@ -14,7 +16,7 @@ class SuperAdminController extends Controller
     {
         return Inertia::render('SuperAdmin/Dashboard');
     }
-
+    
     public function books_panel(): Response
     {
         $categories = Category::latest()->get();
@@ -83,5 +85,34 @@ class SuperAdminController extends Controller
         } else {
             return redirect()->route('super-admin.books_panel')->with('error', 'Data not found!');
         }
+    }
+
+    public function admins(): Response
+    {
+        $admins = Admin::latest()->get();
+        return Inertia::render('SuperAdmin/Admins', [
+            'admins' => $admins
+        ]);
+    }
+
+    public function store_admin(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone_number' => 'required',
+            'password' => 'required',
+        ]);
+
+        $hashedPassword = Hash::make($request->password);
+
+        Admin::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'password' => $hashedPassword
+        ]);
+
+        return redirect()->route('super-admin.admins')->with('success', 'Data Successfully Added!');
     }
 }

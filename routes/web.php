@@ -44,7 +44,8 @@ Route::prefix('/super-admin')->group(function(){
     Route::delete('/books-panel/{id}', [SuperAdminController::class, 'delete_book'])->name('super-admin.delete_book');
 
     Route::get('/admins', [SuperAdminController::class, 'admins'])->name('super-admin.admins');
-    
+    Route::post('/admins', [SuperAdminController::class, 'store_admin'])->name('super-admin.store_admin');
+
 });
 
 Route::middleware('auth')->group(function () {

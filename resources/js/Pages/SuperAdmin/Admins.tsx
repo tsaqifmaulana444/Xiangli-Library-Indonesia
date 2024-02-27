@@ -3,25 +3,31 @@ import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import { Inertia } from '@inertiajs/inertia'
+import { useState } from 'react'
+import CreateAdminModal from './modals/CreateAdminModal'
 
-interface Member {
+interface Admins {
   id?: string
   name: string
   email: string
-  address: string
   phone_number: string
-  birth_date: string
 }
 
-export default function Members({ members }: PageProps<{ members: Member[] }>) {
-  const appName = "Members"
+export default function Admins({ admins }: PageProps<{ admins: Admins[] }>) {
+  const appName = "Admins"
+  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false)
+
+  const switchAdminModal = () => {
+    setIsAdminModalOpen(!isAdminModalOpen)
+  }
 
   const deleteMember = async (id: string | undefined) => {
-    Inertia.delete(`/admin/member/${id}`)
+    Inertia.delete(`/super-admin/admins/${id}`)
   }
 
   return (
     <>
+      {isAdminModalOpen && <CreateAdminModal closeModal={switchAdminModal} />}
       <Head>
         <title>{appName}</title>
       </Head>
@@ -31,7 +37,10 @@ export default function Members({ members }: PageProps<{ members: Member[] }>) {
           <div className="w-[92%] mx-auto">
             <Navbar />
             <section className="">
-              <h1 className='mt-4 mb-8 font-bold text-[22px]'>Members</h1>
+              <div className="flex justify-between">
+                <h1 className='mt-4 mb-8 font-bold text-[22px]'>Book Panel</h1>
+                <button type="button" onClick={switchAdminModal} className="h-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 mt-4 mb-8">Add Admin</button>
+              </div>
               <div className="relative overflow-x-auto">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50">
@@ -46,13 +55,7 @@ export default function Members({ members }: PageProps<{ members: Member[] }>) {
                         Email
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Address
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-center">
                         Phone Number
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-center">
-                        Birth Date
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
                         Action
@@ -60,16 +63,14 @@ export default function Members({ members }: PageProps<{ members: Member[] }>) {
                     </tr>
                   </thead>
                   <tbody>
-                  {members.map((member, index) => (
-                      <tr key={member.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  {admins.map((admin, index) => (
+                      <tr key={admin.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                         <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{index + 1}</td>
-                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{member.name}</td>
-                        <td className="px-6 py-4 text-center">{member.email}</td>
-                        <td className="px-6 py-4 text-center">{member.address}</td>
-                        <td className="px-6 py-4 text-center">{member.phone_number}</td>
-                        <td className="px-6 py-4 text-center">{member.birth_date}</td>
+                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{admin.name}</td>
+                        <td className="px-6 py-4 text-center">{admin.email}</td>
+                        <td className="px-6 py-4 text-center">{admin.phone_number}</td>
                         <td className="px-6 py-4 text-center">
-                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteMember(member.id)}>Delete</button>
+                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteMember(admin.id)}>Delete</button>
                         </td>
                       </tr>
                     ))}
