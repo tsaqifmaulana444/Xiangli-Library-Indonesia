@@ -19,14 +19,22 @@ interface Book {
 export default function Dashboard({ books }: PageProps<{ books: Book[] }>) {
   const appName = "List Book"
   const [isBorrowModalOpen, setIsBorrowModalOpen] = useState(false)
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null)
 
-  const switchBorrowModal = () => {
-    setIsBorrowModalOpen(!isBorrowModalOpen)
+
+  const openBorrowModal = (book: Book) => {
+    setSelectedBook(book)
+    setIsBorrowModalOpen(true)
+  }
+
+  const closeBorrowModal = () => {
+    setSelectedBook(null)
+    setIsBorrowModalOpen(false)
   }
 
   return (
     <>
-      {isBorrowModalOpen && <BorrowBookModal closeModal={switchBorrowModal} />}
+       {isBorrowModalOpen && selectedBook && <BorrowBookModal closeModal={closeBorrowModal} book={selectedBook} />}
       <Head>
         <title>{appName}</title>
       </Head>
@@ -39,7 +47,7 @@ export default function Dashboard({ books }: PageProps<{ books: Book[] }>) {
               <h1 className='mt-4 mb-8 font-bold text-[22px]'>List Of Our Available Book</h1>
               <div className="grid grid-cols-3 gap-4">
                 {books.map((book) => (
-                  <a href='' onClick={switchBorrowModal}>
+                  <div onClick={() => openBorrowModal(book)}>
                     <div className="shadow-md rounded-md w-[95%] p-5" key={book.id}>
                       <a href=""></a>
                       <img src={`/storage/book/${book.image.substring(book.image.lastIndexOf('/'))}`} alt="" className='w-full h-[160px] rounded-sm' />
@@ -47,7 +55,7 @@ export default function Dashboard({ books }: PageProps<{ books: Book[] }>) {
                       <p className='text-[11px] my-1'>{book.date}</p>
                       <p className='text-[13px]'>{book.description}</p>
                     </div>
-                  </a>
+                  </div>
                 ))}
               </div>
             </section>
