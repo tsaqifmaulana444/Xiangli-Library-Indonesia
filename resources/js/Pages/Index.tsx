@@ -17,7 +17,7 @@ export default function Index() {
               <img
                 src="/ukk12-fe/images/logo.svg"
                 className="h-6 mr-3 sm:h-9"
-                alt="Landwind Logo"
+                alt="Logo"
               />
               <span className="self-center text-xl font-semibold whitespace-nowrap ">
                 Xiangli
@@ -25,11 +25,11 @@ export default function Index() {
             </a>
             <div className="flex items-center lg:order-2">
               <Link href="/sign-in" className="text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2  focus:outline-none">Sign In</Link>
-              <a
+              <Link href=""
                 className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 focus:outline-none"
               >
                 Sign Up
-              </a>
+              </Link>
               <button
                 data-collapse-toggle="mobile-menu-2"
                 type="button"
@@ -148,7 +148,7 @@ export default function Index() {
             </div>
           </div>
           <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-            <img src="/ukk12-fe/images/hero.png" alt="hero image" />
+            <img src="/images/hero.png" alt="hero image" />
           </div>
         </div>
       </section>

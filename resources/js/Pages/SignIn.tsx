@@ -10,20 +10,22 @@ export default function SignIn() {
       </Head>
       <div className="min-h-screen flex items-center justify-center bg-gray-200">
         <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
-          <div className="flex justify-center mb-8">
-            <img
-              src="https://www.emprenderconactitud.com/img/POC%20WCS%20(1).png"
-              alt="Logo"
-              className="w-30 h-20"
-            />
-          </div>
+          <Link href="/">
+            <div className="flex justify-center mb-8">
+              <img
+                src="/images/logo.png"
+                alt="Logo"
+                className="w-25 h-15"
+              />
+            </div>
+          </Link>
           <h1 className="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">
-            Iniciar sesión
+            登录会话
           </h1>
           <form>
             <div className="mb-6">
               <label htmlFor="email" className="block mb-2 text-sm text-gray-600">
-                Correo electrónico
+                名字
               </label>
               <input
                 type="email"
@@ -38,7 +40,7 @@ export default function SignIn() {
                 htmlFor="password"
                 className="block mb-2 text-sm text-gray-600"
               >
-                Contraseña
+                密码
               </label>
               <input
                 type="password"
@@ -47,26 +49,26 @@ export default function SignIn() {
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
-              <a href="#" className="block text-right text-xs text-cyan-600 mt-2">
-                ¿Olvidaste tu contraseña?
-              </a>
+              {/* <a href="#" className="block text-right text-xs text-cyan-600 mt-2">
+                忘记密码?
+              </a> */}
             </div>
             <button
               type="submit"
-              className="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mt-4 mb-6"
+              className="w-32 bg-gradient-to-r from-[#4E00D3] to-[#7A36F0] text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mt-4 mb-6"
             >
-              Acceso
+              登录
             </button>
           </form>
           <div className="text-center">
             <p className="text-sm">
-              ¿No tienes una cuenta?{" "}
+              没有账号?{" "}
               <a href="#" className="text-cyan-600">
-                Regístrate ahora
+                在这里注册
               </a>
             </p>
           </div>
-          <p className="text-xs text-gray-600 text-center mt-10">© 2023 WCS LAT</p>
+          <p className="text-xs text-gray-600 text-center mt-10">© 2024 Xiangli</p>
         </div>
       </div>
 
