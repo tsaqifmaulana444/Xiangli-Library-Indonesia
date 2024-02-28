@@ -3,7 +3,18 @@ import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 
-export default function Dashboard() {
+interface Book {
+  id?: string
+  name: string
+  date: string
+  author: string
+  stock: string
+  description: string
+  image: string
+  categories: string[]
+}
+
+export default function Dashboard({ books }: PageProps<{ books: Book[] }>) {
   const appName = "List Book"
   return (
     <>
@@ -18,42 +29,17 @@ export default function Dashboard() {
             <section className="">
               <h1 className='mt-4 mb-8 font-bold text-[22px]'>List Of Our Available Book</h1>
               <div className="grid grid-cols-3 gap-4">
-                <div className="shadow-md rounded-md w-[95%] p-5">
-                  <img src="/images/book.png" alt="" className='w-full h-[150px] rounded-sm' />
-                  <h3 className='text-[18px] font-bold mt-2'>企业管理书籍</h3>
-                  <p className='text-[11px] my-1'>2018</p>
-                  <p className='text-[13px]'>这本书是一本关于如何管理你的财务和让你的钱增值的书, 这本书的作者是著名的印度尼西亚亿万富翁张建伟, 他花了15年的时间研究科技在他的国家是如何发展的</p>
-                </div>
-                <div className="shadow-md rounded-md w-[95%] p-5">
-                  <img src="/images/book.png" alt="" className='w-full h-[150px] rounded-sm' />
-                  <h3 className='text-[18px] font-bold mt-2'>企业管理书籍</h3>
-                  <p className='text-[11px] my-1'>2018</p>
-                  <p className='text-[13px]'>这本书是一本关于如何管理你的财务和让你的钱增值的书, 这本书的作者是著名的印度尼西亚亿万富翁张建伟, 他花了15年的时间研究科技在他的国家是如何发展的</p>
-                </div>
-                <div className="shadow-md rounded-md w-[95%] p-5">
-                  <img src="/images/book.png" alt="" className='w-full h-[150px] rounded-sm' />
-                  <h3 className='text-[18px] font-bold mt-2'>企业管理书籍</h3>
-                  <p className='text-[11px] my-1'>2018</p>
-                  <p className='text-[13px]'>这本书是一本关于如何管理你的财务和让你的钱增值的书, 这本书的作者是著名的印度尼西亚亿万富翁张建伟, 他花了15年的时间研究科技在他的国家是如何发展的</p>
-                </div>
-                <div className="shadow-md rounded-md w-[95%] p-5">
-                  <img src="/images/book.png" alt="" className='w-full h-[150px] rounded-sm' />
-                  <h3 className='text-[18px] font-bold mt-2'>企业管理书籍</h3>
-                  <p className='text-[11px] my-1'>2018</p>
-                  <p className='text-[13px]'>这本书是一本关于如何管理你的财务和让你的钱增值的书, 这本书的作者是著名的印度尼西亚亿万富翁张建伟, 他花了15年的时间研究科技在他的国家是如何发展的</p>
-                </div>
-                <div className="shadow-md rounded-md w-[95%] p-5">
-                  <img src="/images/book.png" alt="" className='w-full h-[150px] rounded-sm' />
-                  <h3 className='text-[18px] font-bold mt-2'>企业管理书籍</h3>
-                  <p className='text-[11px] my-1'>2018</p>
-                  <p className='text-[13px]'>这本书是一本关于如何管理你的财务和让你的钱增值的书, 这本书的作者是著名的印度尼西亚亿万富翁张建伟, 他花了15年的时间研究科技在他的国家是如何发展的</p>
-                </div>
-                <div className="shadow-md rounded-md w-[95%] p-5">
-                  <img src="/images/book.png" alt="" className='w-full h-[150px] rounded-sm' />
-                  <h3 className='text-[18px] font-bold mt-2'>企业管理书籍</h3>
-                  <p className='text-[11px] my-1'>2018</p>
-                  <p className='text-[13px]'>这本书是一本关于如何管理你的财务和让你的钱增值的书, 这本书的作者是著名的印度尼西亚亿万富翁张建伟, 他花了15年的时间研究科技在他的国家是如何发展的</p>
-                </div>
+                {books.map((book) => (
+                  <Link href=''>
+                    <div className="shadow-md rounded-md w-[95%] p-5" key={book.id}>
+                      <a href=""></a>
+                      <img src="/images/book.png" alt="" className='w-full h-[150px] rounded-sm' />
+                      <h3 className='text-[18px] font-bold mt-2'>{book.name}</h3>
+                      <p className='text-[11px] my-1'>{book.date}</p>
+                      <p className='text-[13px]'>{book.description}</p>
+                    </div>
+                  </Link>
+                ))}
               </div>
             </section>
           </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Category;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -16,7 +17,10 @@ class UsersController extends Controller
 
     public function list_book(): Response
     {
-        return Inertia::render('Users/ListBook');
+        $books = Book::latest()->get();
+        return Inertia::render('Users/ListBook', [
+            'books' => $books
+        ]);
     }
 
     public function history(): Response
