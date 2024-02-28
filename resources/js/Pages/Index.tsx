@@ -11,7 +11,7 @@ export default function Index() {
         <script async defer src="https://buttons.github.io/buttons.js"></script>
       </Head>
       <header className="fixed w-full">
-        <nav className="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
+        <nav className="bg-white border-gray-200 py-2.5 ">
           <div className="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
             <a href="#" className="flex items-center">
               <img
@@ -19,22 +19,21 @@ export default function Index() {
                 className="h-6 mr-3 sm:h-9"
                 alt="Landwind Logo"
               />
-              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+              <span className="self-center text-xl font-semibold whitespace-nowrap ">
                 Xiangli
               </span>
             </a>
             <div className="flex items-center lg:order-2">
-              {/* <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in</a> */}
+              <Link href="/sign-in" className="text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2  focus:outline-none">Sign In</Link>
               <a
-                href="/sign-in"
-                className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800"
+                className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 focus:outline-none"
               >
-                Sign In
+                Sign Up
               </a>
               <button
                 data-collapse-toggle="mobile-menu-2"
                 type="button"
-                className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                 aria-controls="mobile-menu-2"
                 aria-expanded="false"
               >
@@ -73,7 +72,7 @@ export default function Index() {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-purple-700 lg:p-0 dark:text-white"
+                    className="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-purple-700 lg:p-0 "
                     aria-current="page"
                   >
                     Home
@@ -82,7 +81,7 @@ export default function Index() {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
                     Company
                   </a>
@@ -90,7 +89,7 @@ export default function Index() {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
                     Marketplace
                   </a>
@@ -98,7 +97,7 @@ export default function Index() {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
                     Features
                   </a>
@@ -106,7 +105,7 @@ export default function Index() {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
                     Team
                   </a>
@@ -114,7 +113,7 @@ export default function Index() {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
                     Contact
                   </a>
@@ -125,24 +124,24 @@ export default function Index() {
         </nav>
       </header>
       {/* Start block */}
-      <section className="bg-white dark:bg-gray-900 h-[100vh]">
+      <section className="bg-white  h-[100vh]">
         <div className="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
           <div className="mr-auto place-self-center lg:col-span-7">
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
+            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl ">
               Number 1 <br />
               Literacy Solution
               <br />
-              In Indonesia
+              For You
             </h1>
-            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+            <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
               Introducing to our website Xiangli, biggest literacy web solution in
               Indonesia. Our site provides many free and paid book with various
               genre, borrow book at our site for better literacy ability!
             </p>
             <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
               <a
-                href="https://github.com/themesberg/landwind"
-                className="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center text-gray-900 border border-gray-200 rounded-lg sm:w-auto hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                href=""
+                className="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center text-gray-900 border border-gray-200 rounded-lg sm:w-auto hover:bg-gray-100 focus:ring-4 focus:ring-gray-100  "
               >
                 Join our membersip
               </a>
@@ -154,12 +153,12 @@ export default function Index() {
         </div>
       </section>
       {/* Start block */}
-      <section className="bg-gray-50 dark:bg-gray-800">
+      <section className="bg-gray-50">
         <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
           {/* Row */}
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-            <div className="text-gray-500 sm:text-lg dark:text-gray-400">
-              <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+            <div className="text-gray-500 sm:text-lg">
+              <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">
                 Why Xiangli Book Website?
               </h2>
               <p className="mb-8 font-light lg:text-xl">
@@ -170,12 +169,12 @@ export default function Index() {
               {/* List */}
               <ul
                 role="list"
-                className="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700"
+                className="pt-8 space-y-5 border-t border-gray-200 my-7"
               >
                 <li className="flex space-x-3">
                   {/* Icon */}
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400"
+                    className="flex-shrink-0 w-5 h-5 text-purple-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -186,14 +185,14 @@ export default function Index() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-gray-900 ">
                     More than 10000+ unique books
                   </span>
                 </li>
                 <li className="flex space-x-3">
                   {/* Icon */}
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400"
+                    className="flex-shrink-0 w-5 h-5 text-purple-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -204,14 +203,14 @@ export default function Index() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-gray-900 ">
                     Easy procedure
                   </span>
                 </li>
                 <li className="flex space-x-3">
                   {/* Icon */}
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-purple-500 dark:text-purple-400"
+                    className="flex-shrink-0 w-5 h-5 text-purple-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -222,7 +221,7 @@ export default function Index() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-gray-900 ">
                     Affordable price
                   </span>
                 </li>
@@ -239,16 +238,16 @@ export default function Index() {
       </section>
       {/* End block */}
       {/* Start block */}
-      <section className="bg-white dark:bg-gray-900">
+      <section className="bg-white ">
         <div className="items-center max-w-screen-xl px-4 py-8 mx-auto lg:grid lg:grid-cols-4 lg:gap-16 xl:gap-24 lg:py-24 lg:px-6">
           <div className="col-span-2 mb-8">
-            <p className="text-lg font-medium text-purple-600 dark:text-purple-500">
+            <p className="text-lg font-medium text-purple-600 ">
               Trusted Widely
             </p>
-            <h2 className="mt-3 mb-4 text-3xl font-extrabold tracking-tight text-gray-900 md:text-3xl dark:text-white">
+            <h2 className="mt-3 mb-4 text-3xl font-extrabold tracking-tight text-gray-900 md:text-3xl ">
               Trusted by over 10 million users and 100 schools
             </h2>
-            <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">
+            <p className="font-light text-gray-500 sm:text-xl">
               Our strict procedure and availability standards are at the heart of
               all we do. We work tirelessly to protect customers.
             </p>
@@ -256,7 +255,7 @@ export default function Index() {
           <div className="col-span-2 space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0">
             <div>
               <svg
-                className="w-10 h-10 mb-2 text-purple-600 md:w-12 md:h-12 dark:text-purple-500"
+                className="w-10 h-10 mb-2 text-purple-600 md:w-12 md:h-12 "
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -267,32 +266,32 @@ export default function Index() {
                   clipRule="evenodd"
                 />
               </svg>
-              <h3 className="mb-2 text-2xl font-bold dark:text-white">
+              <h3 className="mb-2 text-2xl font-bold ">
                 99.99% uptime
               </h3>
-              <p className="font-light text-gray-500 dark:text-gray-400">
+              <p className="font-light text-gray-500">
                 For Xiangli, with zero maintenance downtime
               </p>
             </div>
             <div>
               <svg
-                className="w-10 h-10 mb-2 text-purple-600 md:w-12 md:h-12 dark:text-purple-500"
+                className="w-10 h-10 mb-2 text-purple-600 md:w-12 md:h-12 "
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
               </svg>
-              <h3 className="mb-2 text-2xl font-bold dark:text-white">
+              <h3 className="mb-2 text-2xl font-bold ">
                 10M+ Users
               </h3>
-              <p className="font-light text-gray-500 dark:text-gray-400">
+              <p className="font-light text-gray-500">
                 Trusted by over 10 milion users around the world
               </p>
             </div>
             <div>
               <svg
-                className="w-10 h-10 mb-2 text-purple-600 md:w-12 md:h-12 dark:text-purple-500"
+                className="w-10 h-10 mb-2 text-purple-600 md:w-12 md:h-12 "
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -303,26 +302,26 @@ export default function Index() {
                   clipRule="evenodd"
                 />
               </svg>
-              <h3 className="mb-2 text-2xl font-bold dark:text-white">
+              <h3 className="mb-2 text-2xl font-bold ">
                 4+ countries
               </h3>
-              <p className="font-light text-gray-500 dark:text-gray-400">
+              <p className="font-light text-gray-500">
                 Xiangli book outlet accross the globe.
               </p>
             </div>
             <div>
               <svg
-                className="w-10 h-10 mb-2 text-purple-600 md:w-12 md:h-12 dark:text-purple-500"
+                className="w-10 h-10 mb-2 text-purple-600 md:w-12 md:h-12 "
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
               </svg>
-              <h3 className="mb-2 text-2xl font-bold dark:text-white">
+              <h3 className="mb-2 text-2xl font-bold ">
                 500+ Hundred
               </h3>
-              <p className="font-light text-gray-500 dark:text-gray-400">
+              <p className="font-light text-gray-500">
                 Transactions per day
               </p>
             </div>
@@ -331,11 +330,11 @@ export default function Index() {
       </section>
       {/* End block */}
       {/* Start block */}
-      <section className="bg-gray-50 dark:bg-gray-800">
+      <section className="bg-gray-50">
         <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6">
           <figure className="max-w-screen-md mx-auto">
             <svg
-              className="h-12 mx-auto mb-3 text-gray-400 dark:text-gray-600"
+              className="h-12 mx-auto mb-3 text-gray-400"
               viewBox="0 0 24 27"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -346,7 +345,7 @@ export default function Index() {
               />
             </svg>
             <blockquote>
-              <p className="text-xl font-medium text-gray-900 md:text-2xl dark:text-white">
+              <p className="text-xl font-medium text-gray-900 md:text-2xl ">
                 "Our library web application is a testament to innovation and
                 user-centric design. This project exemplifies our commitment to
                 excellence and reinforces our position as a leader in the industry.
@@ -360,11 +359,11 @@ export default function Index() {
                 src="/images/people.png"
                 alt="profile picture"
               />
-              <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
-                <div className="pr-3 font-medium text-gray-900 dark:text-white">
+              <div className="flex items-center divide-x-2 divide-gray-500 ">
+                <div className="pr-3 font-medium text-gray-900 ">
                   Zhang Jianwei
                 </div>
-                <div className="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">
+                <div className="pl-3 text-sm font-light text-gray-500">
                   CEO at Xiangli
                 </div>
               </div>
@@ -374,18 +373,18 @@ export default function Index() {
       </section>
       {/* End block */}
       {/* Start block */}
-      <section className="bg-white dark:bg-gray-900">
+      <section className="bg-white ">
         <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
           <div className="max-w-screen-sm mx-auto text-center">
-            <h2 className="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">
+            <h2 className="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-gray-900 ">
               Join us to explore numerous amazing books.
             </h2>
-            <p className="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">
+            <p className="mb-6 font-light text-gray-500 md:text-lg">
               Try Xiangli Web now, it's worth it.
             </p>
             <a
               href="#"
-              className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800"
+              className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
             >
               Join our membersip
             </a>
@@ -393,14 +392,14 @@ export default function Index() {
         </div>
       </section>
       {/* End block */}
-      <footer className="bg-white dark:bg-gray-800">
+      <footer className="bg-white">
         <div className="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
             <div>
-              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
                 Company
               </h3>
-              <ul className="text-gray-500 dark:text-gray-400">
+              <ul className="text-gray-500">
                 <li className="mb-4">
                   <a href="#" className=" hover:underline">
                     About
@@ -424,10 +423,10 @@ export default function Index() {
               </ul>
             </div>
             <div>
-              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
                 Help center
               </h3>
-              <ul className="text-gray-500 dark:text-gray-400">
+              <ul className="text-gray-500">
                 <li className="mb-4">
                   <a href="#" className="hover:underline">
                     Discord Server
@@ -453,10 +452,10 @@ export default function Index() {
               </ul>
             </div>
             <div>
-              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
                 Legal
               </h3>
-              <ul className="text-gray-500 dark:text-gray-400">
+              <ul className="text-gray-500">
                 <li className="mb-4">
                   <a href="#" className="hover:underline">
                     Privacy Policy
@@ -475,10 +474,10 @@ export default function Index() {
               </ul>
             </div>
             <div>
-              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
                 Company
               </h3>
-              <ul className="text-gray-500 dark:text-gray-400">
+              <ul className="text-gray-500">
                 <li className="mb-4">
                   <a href="#" className=" hover:underline">
                     About
@@ -502,10 +501,10 @@ export default function Index() {
               </ul>
             </div>
             <div>
-              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
                 Download
               </h3>
-              <ul className="text-gray-500 dark:text-gray-400">
+              <ul className="text-gray-500">
                 <li className="mb-4">
                   <a href="#" className="hover:underline">
                     iOS
@@ -529,11 +528,11 @@ export default function Index() {
               </ul>
             </div>
           </div>
-          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
           <div className="text-center">
             <a
               href="#"
-              className="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white"
+              className="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 "
             >
               <img
                 src="/ukk12-fe/images/logo.svg"
@@ -542,18 +541,18 @@ export default function Index() {
               />
               Xiangli
             </a>
-            <span className="block text-sm text-center text-gray-500 dark:text-gray-400">
+            <span className="block text-sm text-center text-gray-500">
               © 2024 Xiangli™. All Rights Reserved. Built with{" "}
               <a
                 href="https://flowbite.com"
-                className="text-purple-600 hover:underline dark:text-purple-500"
+                className="text-purple-600 hover:underline "
               >
                 Flowbite
               </a>{" "}
               and{" "}
               <a
                 href="https://tailwindcss.com"
-                className="text-purple-600 hover:underline dark:text-purple-500"
+                className="text-purple-600 hover:underline "
               >
                 Tailwind CSS
               </a>
@@ -563,7 +562,7 @@ export default function Index() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                  className="text-gray-500 hover:text-gray-900"
                 >
                   <svg
                     className="w-5 h-5"
@@ -582,7 +581,7 @@ export default function Index() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                  className="text-gray-500 hover:text-gray-900"
                 >
                   <svg
                     className="w-5 h-5"
@@ -601,7 +600,7 @@ export default function Index() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                  className="text-gray-500 hover:text-gray-900"
                 >
                   <svg
                     className="w-5 h-5"
@@ -616,7 +615,7 @@ export default function Index() {
               <li>
                 <a
                   href="#"
-                  className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                  className="text-gray-500 hover:text-gray-900"
                 >
                   <svg
                     className="w-5 h-5"
