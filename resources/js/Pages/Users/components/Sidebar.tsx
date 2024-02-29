@@ -19,7 +19,7 @@ export default function Sidebar() {
                         <Link href="/categories" className={component === 'Users/Categories' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Categories</Link>
                     </div>
                     <div className="">
-                        <button className='cursor-pointer text-gray-400 text-[16px] font-semibold mt-6'>Sign Out</button>
+                        <Link href='/sign-out' className='cursor-pointer text-gray-400 text-[16px] font-semibold mt-6' method="POST">Sign Out</Link>
                     </div>
                 </div>
             </aside>
