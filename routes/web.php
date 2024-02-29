@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('')->group(function(){
     Route::get('/', [AuthController::class, 'index'])->name('auth.index');
     Route::get('/sign-in', [AuthController::class, 'sign_in'])->name('auth.sign_in');
+    Route::get('/sign-up', [AuthController::class, 'sign_up'])->name('auth.sign_up');
+    Route::post('/sign-up', [AuthController::class, 'store_user'])->name('auth.store_user');
+
     Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/list-book', [UsersController::class, 'list_book'])->name('user.list_book');
     Route::get('/history', [UsersController::class, 'history'])->name('user.history');
