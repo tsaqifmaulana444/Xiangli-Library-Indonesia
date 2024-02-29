@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -19,6 +20,18 @@ class AuthController extends Controller
     {
         return Inertia::render('SignIn');
     }
+
+    public function auth_data(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('/dashboard');
+        }
+
+        return back()->withErrors(['email' => 'Email atau password salah.']);
+    }
+
 
     public function sign_up(): Response
     {
@@ -48,5 +61,12 @@ class AuthController extends Controller
         ]);
 
         return redirect()->route('auth.sign_in')->with('success', 'Welcome!');
+    }
+
+    public function sign_out()
+    {
+        Auth::logout();
+
+        return redirect('/');
     }
 }

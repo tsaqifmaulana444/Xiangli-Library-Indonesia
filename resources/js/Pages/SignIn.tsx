@@ -1,8 +1,22 @@
 import { Link, Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
+import { Inertia } from '@inertiajs/inertia'
+import { FormEvent, useState } from 'react'
 
 export default function SignIn() {
   const appName = "Sign In"
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const storeAuth = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    Inertia.post('/sign-in', {
+        email: email,
+        password: password,
+    })
+  }
+
   return (
     <>
       <Head>
@@ -22,7 +36,7 @@ export default function SignIn() {
           <h1 className="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">
             登录会话
           </h1>
-          <form>
+          <form onSubmit={storeAuth}>
             <div className="mb-6">
               <label htmlFor="email" className="block mb-2 text-sm text-gray-600">
                 名字
@@ -31,6 +45,8 @@ export default function SignIn() {
                 type="email"
                 id="email"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
@@ -46,6 +62,8 @@ export default function SignIn() {
                 type="password"
                 id="password"
                 name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 required
               />
