@@ -26,12 +26,18 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/dashboard');
+            $role = User::select('role')->where('email', '=', $request->email)->first();
+            if($role->role === "1"){
+                return redirect()->intended('/dashboard');
+            } else if($role->role === "2"){
+                return redirect()->intended('/admin/dashboard');
+            } else if($role->role === "3"){
+                return redirect()->intended('/super-admin/dashboard');
+            }
         }
 
-        return back()->withErrors(['email' => 'Email atau password salah.']);
+        return back()->withErrors(['email' => "Email or password isn't correct."]);
     }
-
 
     public function sign_up(): Response
     {

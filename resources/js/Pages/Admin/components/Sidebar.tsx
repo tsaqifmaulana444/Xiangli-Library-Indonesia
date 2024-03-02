@@ -12,12 +12,17 @@ export default function Sidebar() {
                         <p className="text-white ml-4 text-[11px] -mt-1">Employee Panel</p>
                     </div>
                 </div>
-                <div className="flex flex-col w-[70%] mx-auto mt-4">
-                    <Link href="/admin/dashboard" className={component === 'Admin/Dashboard' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Dashboard</Link>
-                    <Link href="/admin/borrowers" className={component === 'Admin/Borrowers' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>List Of Borrowers</Link>
-                    <Link href="/admin/members" className={component === 'Admin/Members' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Members</Link>
-                    <Link href="/admin/books-panel" className={component === 'Admin/BooksPanel' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Books Panel</Link>
-                    <Link href="/admin/categories" className={component === 'Admin/Categories' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Categories</Link>
+                <div className="flex flex-col w-[70%] mx-auto mt-4 h-[80%] justify-between">
+                    <div className="flex flex-col">
+                        <Link href="/admin/dashboard" className={component === 'Admin/Dashboard' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Dashboard</Link>
+                        <Link href="/admin/borrowers" className={component === 'Admin/Borrowers' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>List Of Borrowers</Link>
+                        <Link href="/admin/members" className={component === 'Admin/Members' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Members</Link>
+                        <Link href="/admin/books-panel" className={component === 'Admin/BooksPanel' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Books Panel</Link>
+                        <Link href="/admin/categories" className={component === 'Admin/Categories' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Categories</Link>
+                    </div>
+                    <div className="">
+                        <Link href='/sign-out' as='button' className='cursor-pointer text-gray-400 text-[16px] font-semibold mt-6' method="post">Sign Out</Link>
+                    </div>
                 </div>
             </aside>
         </>
