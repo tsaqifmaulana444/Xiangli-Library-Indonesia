@@ -42,18 +42,20 @@ export default function BookModal({ closeModal, categories }: modalProps) {
     const storeBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
     
-        const categoriesJSON = JSON.stringify(selectedCategories)
+        const formData = new FormData()
+        formData.append('name', name)
+        formData.append('date', date)
+        formData.append('author', author)
+        formData.append('stock', stock)
+        formData.append('description', description)
+        formData.append('image', image as Blob)
     
-        Inertia.post('/admin/books-panel', {
-            name: name,
-            date: date,
-            author: author,
-            stock: stock,
-            description: description,
-            categories: categoriesJSON,
-            image: image,
+        selectedCategories.forEach(categoryId => {
+            formData.append('categories[]', categoryId)
         })
-    }
+    
+        Inertia.post('/admin/books-panel', formData)
+    }    
     
     return (
         <>
@@ -95,7 +97,7 @@ export default function BookModal({ closeModal, categories }: modalProps) {
                                             type="checkbox"
                                             value={category.name}
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                                            onChange={(e) => handleCategoryCheckboxChange(e, category.name || '')}
+                                            onChange={(e) => handleCategoryCheckboxChange(e, category.id || '')}
                                         />
                                         <label htmlFor={category.id} className="ms-2 text-sm font-medium text-gray-900">{category.name}</label>
                                     </div>

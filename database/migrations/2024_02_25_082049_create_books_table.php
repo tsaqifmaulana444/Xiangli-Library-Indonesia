@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('author');
             $table->integer('stock');
             $table->text('description');
-            $table->string('categories');
             $table->text('image');
             $table->timestamps();
         });

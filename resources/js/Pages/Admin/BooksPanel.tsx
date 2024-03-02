@@ -108,10 +108,12 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
                         <td className="px-6 py-4 text-center">{book.stock}</td>
                         <td className="px-6 py-4 text-center">{book.description}</td>
                         <td className="px-6 py-4 text-center">
-                            <img src={`/storage/book/${book.image.substring(book.image.lastIndexOf('/'))}`} alt="image" className='w-[70px]'/>
+                          <img src={`/storage/book/${book.image.substring(book.image.lastIndexOf('/'))}`} alt="image" className='w-[70px]' />
                         </td>
                         <td className="px-6 py-4 text-center">
-                          {book.categories}
+                          {book.categories.map((category, index) => (
+                            <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{typeof category === 'string' ? category : category.name}</span>
+                          ))}
                         </td>
                         <td className="px-6 py-4 text-center">
                           <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBook(book.id)}>Delete</button>

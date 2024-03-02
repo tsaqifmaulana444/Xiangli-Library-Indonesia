@@ -44,7 +44,7 @@ class AdminController extends Controller
     public function books_panel(): Response
     {
         $categories = Category::latest()->get();
-        $books = Book::latest()->get();
+        $books = Book::with('categories')->latest()->get();
         return Inertia::render('Admin/BooksPanel', [
             'categories' => $categories,
             'books' => $books
@@ -59,21 +59,21 @@ class AdminController extends Controller
             'author' => 'required',
             'stock' => 'required',
             'description' => 'required',
-            'categories' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $imageName = $request->file('image')->store('public/book');
 
-        Book::create([
+        $book = Book::create([
             'name' => $request->name,
             'date' => $request->date,
             'author' => $request->author,
             'stock' => $request->stock,
             'description' => $request->description,
-            'categories' => $request->categories,
             'image' => $imageName
         ]);
+
+        $book->categories()->attach($request->categories);
 
         return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Added!');
     }
