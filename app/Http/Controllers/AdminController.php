@@ -23,7 +23,7 @@ class AdminController extends Controller
 
     public function members(): Response
     {
-        $members = User::latest()->get();
+        $members = User::where('role', '1')->latest()->get();
         return Inertia::render('Admin/Members', [
             'members' => $members
         ]);

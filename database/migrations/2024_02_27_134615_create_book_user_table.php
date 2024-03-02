@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id');
             $table->integer('amount');
             $table->string('status')->default('Pending');
+            $table->date('borrow_in');
+            $table->date('borrow_out');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
