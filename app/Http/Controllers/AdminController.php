@@ -80,17 +80,14 @@ class AdminController extends Controller
 
     public function update_book(Request $request, $id)
     {
+        dd($request->all());
         $request->validate([
             'name' => 'required',
             'date' => 'required',
             'author' => 'required',
             'stock' => 'required',
             'description' => 'required',
-            'categories' => 'required',
-            'image' => 'required',
         ]);
-
-        $imageName = $request->file('image')->store('public/book');
 
         $book = Book::findOrFail($id);
 
@@ -100,9 +97,16 @@ class AdminController extends Controller
             'author' => $request->author,
             'stock' => $request->stock,
             'description' => $request->description,
-            'categories' => $request->categories,
-            'image' => $imageName
         ]);
+
+        if ($request->hasFile('image')) {
+            $imageName = $request->file('image')->store('public/book');
+            $book->image = $imageName;
+        }
+
+        $book->categories()->sync($request->categories);
+
+        $book->save();
 
         return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Updated!');
     }

@@ -38,23 +38,40 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
         }
     }
 
-    const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryName: string) => {
-        setSelectedCategories([categoryName])
-    }
-
+    const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryId: string) => {
+        const isChecked = e.target.checked;
+    
+        if (isChecked) {
+            setSelectedCategories([...selectedCategories, categoryId]);
+        } else {
+            setSelectedCategories(selectedCategories.filter((cat) => cat !== categoryId));
+        }
+    }    
+    
     const updateBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const categoriesJSON = JSON.stringify(selectedCategories)
+        console.log("Name:", name);
+        console.log("Date:", date);
+        console.log("Author:", author);
+        console.log("Stock:", stock);
+        console.log("Description:", description);
+        console.log("Image:", image);
+        console.log("Selected Categories:", selectedCategories);
 
-        Inertia.put(`/admin/books-panel/${book.id}`, {
-            name: name,
-            date: date,
-            author: author,
-            stock: stock,
-            description: description,
-            categories: categoriesJSON
+        const formData = new FormData()
+        formData.append('name', name)
+        formData.append('date', date)
+        formData.append('author', author)
+        formData.append('stock', stock)
+        formData.append('description', description)
+        formData.append('image', image as Blob)
+
+        selectedCategories.forEach(categoryId => {
+            formData.append('categories[]', categoryId)
         })
+        
+        Inertia.put(`/admin/books-panel/${book.id}`, formData)
     }
 
     return (
@@ -97,7 +114,7 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
                                             type="checkbox"
                                             value={category.name}
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                                            onChange={(e) => handleCategoryCheckboxChange(e, category.name || '')}
+                                            onChange={(e) => handleCategoryCheckboxChange(e, category.id || '')}
                                         />
                                         <label htmlFor={category.id} className="ms-2 text-sm font-medium text-gray-900">{category.name}</label>
                                     </div>
