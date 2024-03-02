@@ -21,7 +21,7 @@ export default function Admins({ admins }: PageProps<{ admins: Admins[] }>) {
     setIsAdminModalOpen(!isAdminModalOpen)
   }
 
-  const deleteMember = async (id: string | undefined) => {
+  const deleteAdmin = async (id: string | undefined) => {
     Inertia.delete(`/super-admin/admins/${id}`)
   }
 
@@ -70,7 +70,7 @@ export default function Admins({ admins }: PageProps<{ admins: Admins[] }>) {
                         <td className="px-6 py-4 text-center">{admin.email}</td>
                         <td className="px-6 py-4 text-center">{admin.phone_number}</td>
                         <td className="px-6 py-4 text-center">
-                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteMember(admin.id)}>Delete</button>
+                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteAdmin(admin.id)}>Delete</button>
                         </td>
                       </tr>
                     ))}

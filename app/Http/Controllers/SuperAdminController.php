@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
@@ -89,7 +91,7 @@ class SuperAdminController extends Controller
 
     public function admins(): Response
     {
-        $admins = Admin::latest()->get();
+        $admins = User::where('role', 2)->latest()->get();
         return Inertia::render('SuperAdmin/Admins', [
             'admins' => $admins
         ]);
@@ -106,13 +108,26 @@ class SuperAdminController extends Controller
 
         $hashedPassword = Hash::make($request->password);
 
-        Admin::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
-            'password' => $hashedPassword
+            'password' => $hashedPassword,
+            'role' => "2"
         ]);
 
         return redirect()->route('super-admin.admins')->with('success', 'Data Successfully Added!');
+    }
+
+    public function delete_admin($id)
+    {
+        $admin = User::find($id);
+
+        if ($admin) {
+            $admin->delete();
+            return redirect()->route('super-admin.admins')->with('success', 'Data Successfully Deleted!');
+        } else {
+            return redirect()->route('super-admin.admins')->with('error', 'Data not found!');
+        }
     }
 }

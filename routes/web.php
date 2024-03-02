@@ -52,6 +52,7 @@ Route::prefix('/super-admin')->group(function(){
 
     Route::get('/admins', [SuperAdminController::class, 'admins'])->name('super-admin.admins');
     Route::post('/admins', [SuperAdminController::class, 'store_admin'])->name('super-admin.store_admin');
+    Route::delete('/admins/{id}', [SuperAdminController::class, 'delete_admin'])->name('super-admin.delete_admin');
 
 });
 
