@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\BookUser;
 use App\Models\Category;
 use App\Models\User;
 use Inertia\Inertia;
@@ -47,7 +48,12 @@ class UsersController extends Controller
 
     public function history(): Response
     {
-        return Inertia::render('Users/History');
+        $userId = Auth::id();
+        $borrows = BookUser::latest()->where('user_id', '=', $userId)->get();
+        // dd($borrows);
+        return Inertia::render('Users/History', [
+            'borrows' => $borrows,
+        ]);
     }
 
     public function categories(): Response
