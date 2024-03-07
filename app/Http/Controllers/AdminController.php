@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\BookUser;
 use App\Models\Category;
 use App\Models\User;
 use Inertia\Inertia;
@@ -18,7 +19,10 @@ class AdminController extends Controller
 
     public function borrowers(): Response
     {
-        return Inertia::render('Admin/Borrowers');
+        $borrows = BookUser::latest()->get();
+        return Inertia::render('Admin/Borrowers',[
+            'borrows' => $borrows,
+        ]);
     }
 
     public function members(): Response
