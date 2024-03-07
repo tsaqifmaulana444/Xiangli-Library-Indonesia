@@ -25,6 +25,18 @@ class AdminController extends Controller
         ]);
     }
 
+    public function delete_borrowers($id)
+    {
+        $borrower = BookUser::find($id);
+
+        if ($borrower) {
+            $borrower->delete();
+            return redirect()->route('admin.borrowers')->with('success', 'Data Successfully Deleted!');
+        } else {
+            return redirect()->route('admin.borrowers')->with('error', 'Data not found!');
+        }
+    }
+
     public function members(): Response
     {
         $members = User::where('role', '1')->latest()->get();
