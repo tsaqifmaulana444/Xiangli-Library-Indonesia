@@ -3,7 +3,17 @@ import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 
-export default function History({ borrows }: PageProps<{ borrows: any }>) {
+interface Borrow {
+  id?: string
+  user_id: string
+  book_id: string
+  amount: string
+  borrow_in: string
+  borrow_out: string
+  status: string
+}
+
+export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
   const appName = "History"
   return (
     <>
@@ -48,15 +58,15 @@ export default function History({ borrows }: PageProps<{ borrows: any }>) {
                   {borrows.map((borrow, index) => (
                       <tr key={borrow.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                         <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{index + 1}</td>
-                        {/* <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{borrow.users.name}</td> */}
+                        {/* <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{borrow.users}</td> */}
                         <td className="px-6 py-4 text-center">{borrow.book_id}</td>
                         <td className="px-6 py-4 text-center">{borrow.amount}</td>
                         <td className="px-6 py-4 text-center">{borrow.borrow_in}</td>
                         <td className="px-6 py-4 text-center">{borrow.borrow_out}</td>
                         <td className="px-6 py-4 text-center">{borrow.status}</td>
                         <td className="px-6 py-4 text-center">
-                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBook(book.id)}>Cancel</button>
-                          <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 " onClick={() => openEditModal(book)}>Amend</button>
+                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Cancel</button>
+                          <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Amend</button>
                         </td>
                       </tr>
                     ))}
