@@ -3,6 +3,8 @@ import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import { Inertia } from '@inertiajs/inertia'
+import { useState } from 'react'
+import AmendBookModal from './modals/AmendBookModal'
 
 interface Borrow {
   id?: string
@@ -21,8 +23,22 @@ export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
     Inertia.delete(`/borrow-book/${id}`)
   }
 
+  const [isAmendModalOpen, setIsAmendModalOpen] = useState(false)
+  const [selectedBorrow, setSelectedBorrow] = useState<Borrow | null>(null)
+
+  const openAmendModal = (borrow: Borrow) => {
+    setSelectedBorrow(borrow)
+    setIsAmendModalOpen(true)
+  }
+
+  const closeAmendModal = () => {
+    setSelectedBorrow(null)
+    setIsAmendModalOpen(false)
+  }
+
   return (
     <>
+      {isAmendModalOpen && selectedBorrow && <AmendBookModal closeModal={closeAmendModal} borrow={selectedBorrow} />}
       <Head>
         <title>{appName}</title>
       </Head>
@@ -72,7 +88,7 @@ export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
                         <td className="px-6 py-4 text-center">{borrow.status}</td>
                         <td className="px-6 py-4 text-center">
                           <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBorrower(borrow.id)}>Cancel</button>
-                          <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Amend</button>
+                          <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 " onClick={() => openAmendModal(borrow)}>Amend</button>
                         </td>
                       </tr>
                     ))}

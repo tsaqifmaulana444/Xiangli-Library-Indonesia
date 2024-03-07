@@ -1,0 +1,81 @@
+import { useState } from 'react'
+import { Inertia } from '@inertiajs/inertia'
+import { FormEvent } from 'react'
+
+interface Borrow {
+    id?: string
+    user_id: string
+    book_id: string
+    amount: string
+    borrow_in: string
+    borrow_out: string
+    status: string
+  }
+
+interface AmendBookModalProps {
+    closeModal: () => void
+    borrow: Borrow
+}
+
+export default function AmendBookModal({ closeModal, borrow }: AmendBookModalProps) {
+    const [userId, setUserId] = useState(borrow.user_id || '')
+    const [bookId, setBookId] = useState(borrow.book_id || '')
+    const [amount, setAmount] = useState(borrow.amount || '')
+    const [borrowIn, setBorrowIn] = useState(borrow.borrow_in || '')
+    const [borrowOut, setBorrowOut] = useState(borrow.borrow_out || '')
+    
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+    
+        if (!borrow.id) {
+            console.error('Book ID is undefined')
+            return
+        }
+    
+        Inertia.post('/borrow-book', {
+            user_id: 1,
+            book_id: borrow.id,
+            amount: amount,
+            borrow_in: borrowIn,
+            borrow_out: borrowOut,
+        })
+    }
+    
+    return (
+        <>
+            <div className='fixed w-[100%] h-[100vh] bg-[#1414147c] z-[99] flex justify-center items-center'>
+                <div className='bg-white w-[50%] rounded-lg z-[999] px-6 flex items-center'>
+                    <div className="w-full py-7 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 100px)' }}>
+                        <h1 className='font-bold text-xl mb-5'>Book Detail</h1>
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-4">
+                                <h3 className='font-bold text-[16px]'>Borrower Name</h3>
+                                <p className='text-[13px]'>{userId}</p>
+                            </div>
+                            <div className="mb-4">
+                                <h3 className='font-bold text-[16px]'>Book Name</h3>
+                                <p className='text-[13px]'>{bookId}</p>
+                            </div>
+                            <div className="mb-4">
+                                <h3 className='font-bold text-[16px] mb-2'>Borrow Quantity</h3>
+                                <input type='number' id='stock'  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Quantity" value={amount} required onChange={(e) => setAmount(e.target.value)}/>
+                            </div>
+                            <div className="mb-4">
+                                <h3 className='font-bold text-[16px] mb-2'>Borrow In</h3>
+                                <input type='date' id='stock'  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Borrow duration" value={borrowIn} required onChange={(e) => setBorrowIn(e.target.value)}/>
+                            </div>
+                            <div className="mb-4">
+                                <h3 className='font-bold text-[16px] mb-2'>Borrow Out</h3>
+                                <input type='date' id='stock'  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Borrow duration" value={borrowOut} required onChange={(e) => setBorrowOut(e.target.value)}/>
+                            </div>
+                            <div className='flex'>
+                                <button type='button' onClick={closeModal} className='text-gray-900 bg-white border border-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'>Cancel</button>
+                                <button type='submit' className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ml-3'>Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
