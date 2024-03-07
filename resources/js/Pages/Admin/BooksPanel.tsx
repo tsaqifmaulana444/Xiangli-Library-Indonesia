@@ -88,10 +88,10 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
                         Description
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Categories
+                        Image
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Image
+                        Categories
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
                         Action
