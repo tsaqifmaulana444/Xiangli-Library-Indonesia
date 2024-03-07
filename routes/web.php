@@ -21,6 +21,7 @@ Route::prefix('')->group(function(){
     Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/list-book', [UsersController::class, 'list_book'])->name('user.list_book');
     Route::post('/borrow-book', [UsersController::class, 'store_borrow'])->name('user.borrow');
+    Route::delete('/borrow-book/{id}', [UsersController::class, 'delete_borrow'])->name('user.delete_borrow');
 
     Route::get('/history', [UsersController::class, 'history'])->name('user.history');
     Route::get('/categories', [UsersController::class, 'categories'])->name('user.categories');

@@ -2,6 +2,7 @@ import { Link, Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
+import { Inertia } from '@inertiajs/inertia'
 
 interface Borrow {
   id?: string
@@ -15,6 +16,11 @@ interface Borrow {
 
 export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
   const appName = "History"
+
+  const deleteBorrower = async (id: string | undefined) => {
+    Inertia.delete(`/borrow-book/${id}`)
+  }
+
   return (
     <>
       <Head>
@@ -65,7 +71,7 @@ export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
                         <td className="px-6 py-4 text-center">{borrow.borrow_out}</td>
                         <td className="px-6 py-4 text-center">{borrow.status}</td>
                         <td className="px-6 py-4 text-center">
-                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Cancel</button>
+                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBorrower(borrow.id)}>Cancel</button>
                           <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Amend</button>
                         </td>
                       </tr>

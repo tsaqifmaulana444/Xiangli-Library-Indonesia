@@ -56,6 +56,18 @@ class UsersController extends Controller
         ]);
     }
 
+    public function delete_borrow($id)
+    {
+        $borrower = BookUser::find($id);
+
+        if ($borrower) {
+            $borrower->delete();
+            return redirect()->route('user.history')->with('success', 'Data Successfully Deleted!');
+        } else {
+            return redirect()->route('user.history')->with('error', 'Data not found!');
+        }
+    }
+
     public function categories(): Response
     {
         $categories = Category::latest()->get();
