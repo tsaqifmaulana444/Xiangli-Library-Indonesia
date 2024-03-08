@@ -68,6 +68,21 @@ class UsersController extends Controller
         }
     }
 
+    public function done_borrow($id)
+    {
+        $data = BookUser::find($id);
+
+        if (!$data) {
+            return redirect()->back()->with('error', 'Record not found!');
+        }
+
+        $data->update([
+            'status' => 'Done',
+        ]);
+
+        return redirect()->route('user.history')->with('success', 'Approved!');
+    }
+
     public function amend_borrow(Request $request, $id)
     {
         $request->validate([

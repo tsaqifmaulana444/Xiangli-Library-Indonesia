@@ -25,6 +25,7 @@ Route::prefix('')->group(function(){
     
     Route::get('/history', [UsersController::class, 'history'])->name('user.history');
     Route::put('/borrow-book/{id}', [UsersController::class, 'amend_borrow'])->name('user.amend_borrow');
+    Route::put('/done-borrow-book/{id}', [UsersController::class, 'done_borrow'])->name('user.done_borrow');
 
     Route::get('/categories', [UsersController::class, 'categories'])->name('user.categories');
 });
