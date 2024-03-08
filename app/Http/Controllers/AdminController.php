@@ -25,6 +25,21 @@ class AdminController extends Controller
         ]);
     }
 
+    public function approve_borrowers($id)
+    {
+        $data = BookUser::find($id);
+
+        if (!$data) {
+            return redirect()->back()->with('error', 'Record not found!');
+        }
+
+        $data->update([
+            'status' => 'On Read',
+        ]);
+
+        return redirect()->route('admin.borrowers')->with('success', 'Approved!');
+    }
+
     public function delete_borrowers($id)
     {
         $borrower = BookUser::find($id);

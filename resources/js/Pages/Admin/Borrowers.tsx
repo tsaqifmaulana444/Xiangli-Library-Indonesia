@@ -3,6 +3,7 @@ import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import { Inertia } from '@inertiajs/inertia'
+import { FormEvent } from 'react'
 
 interface Borrow {
   id?: string
@@ -16,6 +17,12 @@ interface Borrow {
 
 export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>) {
   const appName = "List Of Borrowers"
+
+  const approveBorrow = async (id: string | undefined) => {
+    Inertia.put(`/admin/borrowers/${id}`, {
+        status: "On Read",
+    });
+  }
 
   const deleteBorrower = async (id: string | undefined) => {
     Inertia.delete(`/admin/borrowers/${id}`)
@@ -76,7 +83,7 @@ export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>)
                         <td className="px-6 py-4 text-center">{borrow.status}</td>
                         <td className="px-6 py-4 text-center">
                           <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBorrower(borrow.id)}>Reject</button>
-                          <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Approve</button>
+                          <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => approveBorrow(borrow.id)}>Approve</button>
                         </td>
                       </tr>
                     ))}
