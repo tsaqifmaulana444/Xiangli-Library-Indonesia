@@ -20,7 +20,7 @@ export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>)
 
   const approveBorrow = async (id: string | undefined) => {
     Inertia.put(`/admin/borrowers/${id}`, {
-        status: "On Read",
+      status: "On Read",
     });
   }
 
@@ -71,10 +71,9 @@ export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>)
                     </tr>
                   </thead>
                   <tbody>
-                  {borrows.map((borrow, index) => (
+                    {borrows.map((borrow, index) => (
                       <tr key={borrow.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                         <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{index + 1}</td>
-                        {/* <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{borrow.users}</td> */}
                         <td className="px-6 py-4 text-center">{borrow.user_id}</td>
                         <td className="px-6 py-4 text-center">{borrow.book_id}</td>
                         <td className="px-6 py-4 text-center">{borrow.amount}</td>
@@ -82,8 +81,12 @@ export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>)
                         <td className="px-6 py-4 text-center">{borrow.borrow_out}</td>
                         <td className="px-6 py-4 text-center">{borrow.status}</td>
                         <td className="px-6 py-4 text-center">
-                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBorrower(borrow.id)}>Reject</button>
-                          <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => approveBorrow(borrow.id)}>Approve</button>
+                          {borrow.status === 'Waiting' ? (
+                            <>
+                              <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBorrower(borrow.id)}>Reject</button>
+                              <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => approveBorrow(borrow.id)}>Approve</button>
+                            </>
+                          ) : <p>-</p>}
                         </td>
                       </tr>
                     ))}
