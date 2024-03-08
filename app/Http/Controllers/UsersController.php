@@ -68,6 +68,29 @@ class UsersController extends Controller
         }
     }
 
+    public function amend_borrow(Request $request, $id)
+    {
+        $request->validate([
+            'amount'   => 'required',
+            'borrow_in' => 'required',
+            'borrow_out' => 'required',
+        ]);
+
+        $data = BookUser::find($id);
+
+        if (!$data) {
+            return redirect()->back()->with('error', 'Record not found!');
+        }
+
+        $data->update([
+            'amount'     => $request->amount,
+            'borrow_in'  => $request->borrow_in,
+            'borrow_out' => $request->borrow_out,
+        ]);
+
+        return redirect()->route('user.history')->with('success', 'Data Successfully Updated!');
+    }
+
     public function categories(): Response
     {
         $categories = Category::latest()->get();

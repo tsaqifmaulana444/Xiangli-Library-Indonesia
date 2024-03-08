@@ -18,27 +18,21 @@ interface AmendBookModalProps {
 }
 
 export default function AmendBookModal({ closeModal, borrow }: AmendBookModalProps) {
+    const [id, setId] = useState(borrow.id || '')
     const [userId, setUserId] = useState(borrow.user_id || '')
     const [bookId, setBookId] = useState(borrow.book_id || '')
     const [amount, setAmount] = useState(borrow.amount || '')
     const [borrowIn, setBorrowIn] = useState(borrow.borrow_in || '')
     const [borrowOut, setBorrowOut] = useState(borrow.borrow_out || '')
-    
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-    
-        if (!borrow.id) {
-            console.error('Book ID is undefined')
-            return
-        }
-    
-        Inertia.post('/borrow-book', {
-            user_id: 1,
-            book_id: borrow.id,
+
+    const updateBook = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        Inertia.put(`/borrow-book/${id}`, {
             amount: amount,
             borrow_in: borrowIn,
-            borrow_out: borrowOut,
-        })
+            borrow_out: borrowOut
+        });
     }
     
     return (
@@ -47,7 +41,7 @@ export default function AmendBookModal({ closeModal, borrow }: AmendBookModalPro
                 <div className='bg-white w-[50%] rounded-lg z-[999] px-6 flex items-center'>
                     <div className="w-full py-7 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 100px)' }}>
                         <h1 className='font-bold text-xl mb-5'>Book Detail</h1>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={updateBook}>
                             <div className="mb-4">
                                 <h3 className='font-bold text-[16px]'>Borrower Name</h3>
                                 <p className='text-[13px]'>{userId}</p>
