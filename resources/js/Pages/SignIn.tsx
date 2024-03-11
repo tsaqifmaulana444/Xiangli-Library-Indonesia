@@ -34,12 +34,12 @@ export default function SignIn() {
             </div>
           </Link>
           <h1 className="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">
-            登录会话
+            Login To Continue
           </h1>
           <form onSubmit={storeAuth}>
             <div className="mb-6">
               <label htmlFor="email" className="block mb-2 text-sm text-gray-600">
-                名字
+                Email
               </label>
               <input
                 type="email"
@@ -56,7 +56,7 @@ export default function SignIn() {
                 htmlFor="password"
                 className="block mb-2 text-sm text-gray-600"
               >
-                密码
+                Password
               </label>
               <input
                 type="password"
@@ -75,14 +75,14 @@ export default function SignIn() {
               type="submit"
               className="w-32 bg-gradient-to-r from-[#4E00D3] to-[#7A36F0] text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mt-4 mb-6"
             >
-              登录
+              Sign In
             </button>
           </form>
           <div className="text-center">
             <p className="text-sm">
-              没有账号?{" "}
-              <a href="#" className="text-cyan-600">
-                在这里注册
+              Don't have an account?{" "}
+              <a href="/sign-up" className="text-cyan-600">
+                Sign Up
               </a>
             </p>
           </div>

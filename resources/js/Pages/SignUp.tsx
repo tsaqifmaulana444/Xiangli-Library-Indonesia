@@ -43,7 +43,7 @@ export default function SignIn() {
             </div>
           </Link>
           <h1 className="text-2xl font-semibold text-center text-gray-500 mb-5">
-            登录会话
+            Register Page
           </h1>
           <form onSubmit={storeUser}>
             <div className="flex gap-2">
@@ -101,7 +101,7 @@ export default function SignIn() {
                   name="birthDate"
                   value={birthDate}
                   onChange={(e) => setBirthDate(e.target.value)}
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  className="w-full pl-4 pr-9 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
                 />
               </div>
@@ -146,14 +146,14 @@ export default function SignIn() {
               type="submit"
               className="w-32 bg-gradient-to-r from-[#4E00D3] to-[#7A36F0] text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mt-4 mb-6"
             >
-              登录
+              Sign Up
             </button>
           </form>
           <div className="text-center">
             <p className="text-sm">
-              没有账号?{" "}
-              <a href="#" className="text-cyan-600">
-                在这里注册
+              Already have account?{" "}
+              <a href="/sign-in" className="text-cyan-600">
+                Sign In
               </a>
             </p>
           </div>

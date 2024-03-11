@@ -83,7 +83,7 @@ export default function Index() {
                     href="#"
                     className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
-                    Company
+                    About Us
                   </a>
                 </li>
                 <li>
@@ -91,7 +91,7 @@ export default function Index() {
                     href="#"
                     className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
-                    Marketplace
+                    Privacy and Policy
                   </a>
                 </li>
                 <li>
@@ -99,15 +99,7 @@ export default function Index() {
                     href="#"
                     className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
-                  >
-                    Team
+                    FAQ
                   </a>
                 </li>
                 <li>
@@ -135,7 +127,7 @@ export default function Index() {
             </h1>
             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
               Introducing to our website Xiangli, biggest literacy web solution in
-              Indonesia. Our site provides many free and paid book with various
+              the school. Our site provides many free and paid book with various
               genre, borrow book at our site for better literacy ability!
             </p>
             <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
@@ -143,7 +135,7 @@ export default function Index() {
                 href=""
                 className="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center text-gray-900 border border-gray-200 rounded-lg sm:w-auto hover:bg-gray-100 focus:ring-4 focus:ring-gray-100  "
               >
-                Join our membersip
+                Join us
               </a>
             </div>
           </div>

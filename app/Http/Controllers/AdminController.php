@@ -121,7 +121,6 @@ class AdminController extends Controller
         ]);
 
         $book = Book::findOrFail($id);
-
         $book->update([
             'name' => $request->name,
             'date' => $request->date,
