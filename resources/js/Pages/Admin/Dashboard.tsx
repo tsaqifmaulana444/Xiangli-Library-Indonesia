@@ -3,7 +3,14 @@ import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 
-export default function Dashboard() {
+interface DashboardProps {
+  members: number
+  actives: number
+  books: number
+  categories: number
+}
+
+export default function Dashboard({ members, actives, books, categories, }: DashboardProps) {
   const appName = "Dashboard"
   return (
     <>
@@ -17,29 +24,29 @@ export default function Dashboard() {
             <Navbar />
             <section className="flex justify-between mt-12">
               <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Active Borrowed Books</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
+                <p className='text-[14px]'>Total Users</p>
+                <h3 className='mt-2 text-[25px] font-bold'>{members}</h3>
+              </div>
+              <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
+                <p className='text-[14px]'>Total Books</p>
+                <h3 className='mt-2 text-[25px] font-bold'>{books}</h3>
               </div>
               <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
                 <p className='text-[14px]'>Active Borrowed Books</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
+                <h3 className='mt-2 text-[25px] font-bold'>{actives}</h3>
               </div>
               <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Active Borrowed Books</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
-              </div>
-              <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Active Borrowed Books</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
+                <p className='text-[14px]'>Total Categories</p>
+                <h3 className='mt-2 text-[25px] font-bold'>{categories}</h3>
               </div>
             </section>
             <section className="flex justify-between mt-6">
               <div className="shadow-md rounded-md w-[48.6%] h-[200px] py-2 px-5">
-                <p className='text-[14px]'>Recommended Book</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
+                <p className='text-[14px]'>Statistic</p>
               </div>
               <div className="shadow-md rounded-md w-[48.6%] h-[200px] py-2 px-5">
-                <p className='text-[14px]'>Promosi</p>
+                <p className='text-[14px]'>Borrower Report In Xlsx</p>
+                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
               </div>
             </section>
             <section className="mt-4">

@@ -14,7 +14,17 @@ class AdminController extends Controller
 {
     public function dashboard(): Response
     {
-        return Inertia::render('Admin/Dashboard');
+        $members = User::where('role', '=', 1)->count();
+        $books = Book::count();
+        $actives = BookUser::where('status', '=', 'On Read')->count();
+        $categories = Book::count();
+
+        return Inertia::render('Admin/Dashboard', [
+            'members' => $members,
+            'books' => $books,
+            'actives' => $actives,
+            'categories' => $categories,
+        ]);
     }
 
     public function borrowers(): Response

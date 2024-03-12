@@ -37,6 +37,7 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
           setImage(e.target.files[0])
         }
     }
+    
     // console.log(image)
 
     const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryId: string) => {
