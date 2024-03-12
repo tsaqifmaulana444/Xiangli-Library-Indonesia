@@ -111,7 +111,7 @@ class AdminController extends Controller
 
     public function update_book(Request $request, $id)
     {
-        dd($request->all());
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'date' => 'required',
@@ -119,8 +119,10 @@ class AdminController extends Controller
             'stock' => 'required',
             'description' => 'required',
         ]);
+        
+        $book = Book::find($id);
 
-        $book = Book::findOrFail($id);
+
         $book->update([
             'name' => $request->name,
             'date' => $request->date,
@@ -129,14 +131,7 @@ class AdminController extends Controller
             'description' => $request->description,
         ]);
 
-        if ($request->hasFile('image')) {
-            $imageName = $request->file('image')->store('public/book');
-            $book->image = $imageName;
-        }
-
         $book->categories()->sync($request->categories);
-
-        $book->save();
 
         return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Updated!');
     }

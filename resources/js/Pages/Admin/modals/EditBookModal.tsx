@@ -37,36 +37,34 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
           setImage(e.target.files[0])
         }
     }
+    // console.log(image)
 
     const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryId: string) => {
-        const isChecked = e.target.checked;
+        const isChecked = e.target.checked
     
         if (isChecked) {
-            setSelectedCategories([...selectedCategories, categoryId]);
+            setSelectedCategories([...selectedCategories, categoryId])
         } else {
-            setSelectedCategories(selectedCategories.filter((cat) => cat !== categoryId));
+            setSelectedCategories(selectedCategories.filter((cat) => cat !== categoryId))
         }
     }    
-    
     const updateBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
-        // console.log("Selected Categories:", selectedCategories);
-
+        
         let cat: string[] = []
         selectedCategories.forEach(categoryId => {
             cat.push(categoryId)
-            console.log("cat : ", cat)
         })
         
+        console.log("cat", cat)
         Inertia.put(`/admin/books-panel/${book.id}`, {
             name: name,
             date: date,
             author: author,
             stock: stock,
             description: description,
-            // image: image,
-            categories: cat[0]
+            image: image as Blob,
+            categories: cat.slice(1)
         })
     }
 
@@ -108,7 +106,7 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
                                         <input
                                             id={category.id}
                                             type="checkbox"
-                                            value={category.name}
+                                            value={category.id}
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
                                             onChange={(e) => handleCategoryCheckboxChange(e, category.id || '')}
                                         />
