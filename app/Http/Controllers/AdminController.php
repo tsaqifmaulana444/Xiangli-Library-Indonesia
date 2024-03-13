@@ -30,7 +30,7 @@ class AdminController extends Controller
     public function borrowers(): Response
     {
         $borrows = BookUser::latest()->get();
-        return Inertia::render('Admin/Borrowers',[
+        return Inertia::render('Admin/Borrowers', [
             'borrows' => $borrows,
         ]);
     }
@@ -122,7 +122,7 @@ class AdminController extends Controller
 
     public function update_book(Request $request, $id)
     {
-        // dd($request->all());
+        dd($request->all());
         $request->validate([
             'name' => 'required',
             'date' => 'required',
@@ -130,12 +130,13 @@ class AdminController extends Controller
             'stock' => 'required',
             'description' => 'required',
         ]);
-        
+
         $book = Book::find($id);
 
         if ($request->hasFile('image')) {
-            $imageName = $request->file('image');
-            $request->image->move(public_path('book/'),$imageName);
+            $image = $request->file('image');
+            $imageName = $image->getClientOriginalName();
+            $image->storeAs('book', $imageName);
         }
 
         $book->update([
@@ -144,7 +145,7 @@ class AdminController extends Controller
             'author' => $request->author,
             'stock' => $request->stock,
             'description' => $request->description,
-            'image' => $imageName
+            'image' => $imageName ?? null,
         ]);
 
         $book->categories()->sync($request->categories);

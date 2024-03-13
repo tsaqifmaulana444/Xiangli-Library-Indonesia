@@ -34,39 +34,46 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-          setImage(e.target.files[0])
+            setImage(e.target.files[0])
         }
     }
-    
+
     // console.log(image)
 
     const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryId: string) => {
         const isChecked = e.target.checked
-    
+
         if (isChecked) {
             setSelectedCategories([...selectedCategories, categoryId])
         } else {
             setSelectedCategories(selectedCategories.filter((cat) => cat !== categoryId))
         }
-    }    
+    }
+
     const updateBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        
-        let cat: string[] = []
+    
+        const formData = new FormData()
+        formData.append('name', name)
+        formData.append('date', date)
+        formData.append('author', author)
+        formData.append('stock', stock)
+        formData.append('description', description)
+    
+        if (image !== null) {
+            const imageFile = new File([image], 'image.jpg')
+            formData.append('image', imageFile)
+        }
+    
         selectedCategories.forEach(categoryId => {
-            cat.push(categoryId)
+            formData.append('categories[]', categoryId)
         })
-        
-        console.log("cat", cat)
-        Inertia.put(`/admin/books-panel/${book.id}`, {
-            name: name,
-            date: date,
-            author: author,
-            stock: stock,
-            description: description,
-            image: image,
-            categories: cat.slice(1)
-        })
+    
+        const payload = Object.fromEntries(formData.entries())
+    
+        console.log(payload)
+    
+        Inertia.put(`/admin/books-panel/${book.id}`, payload)
     }
 
     return (
@@ -75,7 +82,7 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
                 <div className='bg-white w-[50%] rounded-lg z-[999] px-6 flex items-center'>
                     <div className="w-full py-7 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 100px)' }}>
                         <h1 className='font-bold text-xl mb-5'>Edit Book</h1>
-                        <form onSubmit={updateBook}>
+                        <form onSubmit={updateBook} encType="multipart/form-data">
                             <div className='mb-4'>
                                 <label htmlFor='name' className='block text-sm font-medium text-gray-700'>Name</label>
                                 <input type='text' id='name' value={name} onChange={(e) => setName(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Book name" required />
@@ -90,7 +97,7 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
                             </div>
                             <div className='mb-4'>
                                 <label htmlFor='stock' className='block text-sm font-medium text-gray-700'>Stock</label>
-                                <input type='number' id='stock' value={stock} onChange={(e) => setStock(e.target.value)}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Stock" required />
+                                <input type='number' id='stock' value={stock} onChange={(e) => setStock(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Stock" required />
                             </div>
                             <div className='mb-4'>
                                 <label htmlFor='description' className='block text-sm font-medium text-gray-700'>Description</label>
