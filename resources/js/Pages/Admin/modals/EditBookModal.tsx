@@ -64,7 +64,7 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
             author: author,
             stock: stock,
             description: description,
-            image: image as Blob,
+            image: image,
             categories: cat.slice(1)
         })
     }

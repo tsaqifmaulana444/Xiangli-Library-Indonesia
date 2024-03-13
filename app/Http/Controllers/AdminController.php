@@ -94,6 +94,7 @@ class AdminController extends Controller
 
     public function store_book(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'date' => 'required',
@@ -132,6 +133,10 @@ class AdminController extends Controller
         
         $book = Book::find($id);
 
+        if ($request->hasFile('image')) {
+            $imageName = $request->file('image');
+            $request->image->move(public_path('book/'),$imageName);
+        }
 
         $book->update([
             'name' => $request->name,
@@ -139,6 +144,7 @@ class AdminController extends Controller
             'author' => $request->author,
             'stock' => $request->stock,
             'description' => $request->description,
+            'image' => $imageName
         ]);
 
         $book->categories()->sync($request->categories);
