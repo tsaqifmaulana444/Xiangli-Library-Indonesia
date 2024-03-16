@@ -15,7 +15,14 @@ class UsersController extends Controller
 {
     public function dashboard(): Response
     {
-        return Inertia::render('Users/User');
+        $books = BookUser::where('user_id', '=', Auth::user()->id)->count();
+        $actives = BookUser::where('status', '=', 'On Read')->where('user_id', '=', Auth::user()->id)->count();
+        $categories = Category::count();
+        return Inertia::render('Users/User', [
+            'books' => $books,
+            'actives' => $actives,
+            'categories' => $categories,
+        ]);
     }
 
     public function list_book(): Response

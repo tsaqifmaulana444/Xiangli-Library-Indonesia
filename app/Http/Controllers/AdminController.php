@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BookExport;
 use App\Models\Book;
 use App\Models\BookUser;
 use App\Models\Category;
@@ -9,6 +10,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -17,7 +19,7 @@ class AdminController extends Controller
         $members = User::where('role', '=', 1)->count();
         $books = Book::count();
         $actives = BookUser::where('status', '=', 'On Read')->count();
-        $categories = Book::count();
+        $categories = Category::count();
 
         return Inertia::render('Admin/Dashboard', [
             'members' => $members,
@@ -25,6 +27,11 @@ class AdminController extends Controller
             'actives' => $actives,
             'categories' => $categories,
         ]);
+    }
+
+    public function book_export()
+    {
+        return Excel::download(new BookExport, 'report.xlsx');
     }
 
     public function borrowers(): Response
@@ -122,22 +129,11 @@ class AdminController extends Controller
 
     public function update_book(Request $request, $id)
     {
-        dd($request->all());
-        $request->validate([
-            'name' => 'required',
-            'date' => 'required',
-            'author' => 'required',
-            'stock' => 'required',
-            'description' => 'required',
-        ]);
-
+        // dd($request->all());
+        
         $book = Book::find($id);
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
-            $image->storeAs('book', $imageName);
-        }
+        // $imageName = $request->file('image')->store('public/book');
 
         $book->update([
             'name' => $request->name,
@@ -145,13 +141,16 @@ class AdminController extends Controller
             'author' => $request->author,
             'stock' => $request->stock,
             'description' => $request->description,
-            'image' => $imageName ?? null,
+            // 'image' => $imageName
         ]);
+
+        // dd($request->categories);
 
         $book->categories()->sync($request->categories);
 
         return redirect()->route('admin.books_panel')->with('success', 'Data Successfully Updated!');
     }
+
 
     public function delete_book($id)
     {

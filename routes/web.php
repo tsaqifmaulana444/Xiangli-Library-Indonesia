@@ -32,6 +32,7 @@ Route::prefix('')->group(function(){
 
 Route::prefix('/admin')->group(function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/book_export', [AdminController::class, 'book_export'])->name('admin.book_export');
 
     Route::get('/borrowers', [AdminController::class, 'borrowers'])->name('admin.borrowers');
     Route::delete('/borrowers/{id}', [AdminController::class, 'delete_borrowers'])->name('admin.delete_borrowers');

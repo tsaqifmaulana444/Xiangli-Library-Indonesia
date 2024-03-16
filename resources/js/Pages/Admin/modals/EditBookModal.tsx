@@ -52,29 +52,22 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
 
     const updateBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-    
-        const formData = new FormData()
-        formData.append('name', name)
-        formData.append('date', date)
-        formData.append('author', author)
-        formData.append('stock', stock)
-        formData.append('description', description)
-    
-        if (image !== null) {
-            const imageFile = new File([image], 'image.jpg')
-            formData.append('image', imageFile)
-        }
-    
+        
+        let cat: string[] = []
         selectedCategories.forEach(categoryId => {
-            formData.append('categories[]', categoryId)
+            cat.push(categoryId)
         })
-    
-        const payload = Object.fromEntries(formData.entries())
-    
-        console.log(payload)
-    
-        Inertia.put(`/admin/books-panel/${book.id}`, payload)
-    }
+        
+        Inertia.put(`/admin/books-panel/${book.id}`, {
+            name: name,
+            date: date,
+            author: author,
+            stock: stock,
+            description: description,
+            // image: image as Blob,
+            categories: cat.slice(1)
+        })
+   }
 
     return (
         <>

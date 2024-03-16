@@ -45,12 +45,19 @@ export default function Dashboard({ members, actives, books, categories, }: Dash
                 <p className='text-[14px]'>Statistic</p>
               </div>
               <div className="shadow-md rounded-md w-[48.6%] h-[200px] py-2 px-5">
-                <p className='text-[14px]'>Borrower Report In Xlsx</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
+                <p className='text-[14px]'>Report In Xlsx</p>
+                <div className="flex justify-between mt-8">
+                  <p className="font-bold">Book Report</p>
+                  <a href="/admin/book_export" className='hover:underline'>Download</a>
+                </div>
+                <div className="flex justify-between mt-5">
+                  <p className="font-bold">Borrowing Report</p>
+                  <a href="/admin/book_export" className='hover:underline'>Download</a>
+                </div>
               </div>
             </section>
             <section className="mt-4">
-              <h1 className='font-bold text-[20px]'>Anything lah</h1>
+              <h1 className='font-bold text-[20px]'>Books Stock</h1>
             </section>
           </div>
         </main>
