@@ -27,7 +27,7 @@ class UsersController extends Controller
 
     public function list_book(): Response
     {
-        $books = Book::latest()->get();
+        $books = Book::with('categories')->latest()->get();
         return Inertia::render('Users/ListBook', [
             'books' => $books
         ]);

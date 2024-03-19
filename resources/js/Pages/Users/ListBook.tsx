@@ -53,7 +53,12 @@ export default function Dashboard({ books }: PageProps<{ books: Book[] }>) {
                       <img src={`/storage/book/${book.image.substring(book.image.lastIndexOf('/'))}`} alt="" className='w-full h-[160px] rounded-sm' />
                       <h3 className='text-[18px] font-bold mt-2'>{book.name}</h3>
                       <p className='text-[11px] my-1'>{book.date}</p>
-                      <p className='text-[13px]'>{book.description}</p>
+                      <p className='text-[13px] mb-2'>{book.description}</p>
+                      <>
+                        {book.categories.map((category, index) => (
+                          <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{typeof category === 'string' ? category : category.name}</span>
+                        ))}
+                      </>
                     </div>
                   </div>
                 ))}
