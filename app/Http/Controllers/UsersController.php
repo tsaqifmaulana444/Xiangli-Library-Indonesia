@@ -113,12 +113,4 @@ class UsersController extends Controller
         return redirect()->route('user.history')->with('success', 'Data Successfully Updated!');
     }
 
-    public function categories(): Response
-    {
-        $categories = Category::latest()->get();
-
-        return Inertia::render('Users/Categories', [
-            'categories' => $categories,
-        ]);
-    }
 }
