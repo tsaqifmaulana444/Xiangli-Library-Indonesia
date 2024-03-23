@@ -2,7 +2,7 @@ export default function Navbar() {
   return (
     <>
       <nav className='flex justify-between mt-6 items-center'>
-        <p className='font-bold text-[25px]'>欢迎, 希望你早日致富!</p>
+        <p className='font-bold text-[25px]'>Welcome, How Are You?</p>
         <div className="flex">
           <div className="w-[40px] h-[40px] rounded-sm bg-[#F6F6F6] flex items-center my-auto">
             {/* <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--> */}
@@ -11,7 +11,7 @@ export default function Navbar() {
           <img src="/images/pp.png" alt="" className='rounded-full w-[50px] ml-4' />
           <div className="ml-3">
             <p className="font-bold text-[16px]">张建伟</p>
-            <p className="text-[16px]">zhangjianwei@gmail.com</p>
+            <p className="text-[16px]">zhangjianwei@test</p>
           </div>
         </div>
       </nav>

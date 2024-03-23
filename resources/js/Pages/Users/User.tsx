@@ -7,9 +7,22 @@ interface DashboardProps {
   actives: number
   books: number
   categories: number
+  recommended: Book[]
+  recommended2: Book[]
 }
 
-export default function Dashboard({ actives, books, categories, }: DashboardProps) {
+interface Book {
+  id?: string
+  name: string
+  date: string
+  author: string
+  stock: string
+  description: string
+  image: string
+  categories: string[]
+}
+
+export default function Dashboard({ actives, books, categories, recommended, recommended2 }: DashboardProps) {
   const appName = "Dashboard"
   return (
     <>
@@ -38,14 +51,26 @@ export default function Dashboard({ actives, books, categories, }: DashboardProp
             <section className="flex justify-between mt-6">
               <div className="shadow-md rounded-md w-[48.6%] h-[200px] py-2 px-5">
                 <p className='text-[14px]'>Recommended Book</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
+                {recommended2.map((recommend, index) => (
+                  <div key={index}>
+                    <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-[70px]' />
+                    <p>{recommend.name}</p>
+                    <p>{recommend.author}</p>
+                    <p>{`${recommend.description.substring(0, 100)}...`}</p>
+                  </div> 
+                ))}
               </div>
               <div className="shadow-md rounded-md w-[48.6%] h-[200px] py-2 px-5">
-                <p className='text-[14px]'>Promosi</p>
+                <p className='text-[14px]'>Top Picked Books</p>
+                {recommended.map((recommend, index) => (
+                  <div key={index}>
+                    <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-[70px]' />
+                    <p>{recommend.name}</p>
+                    <p>{recommend.author}</p>
+                    <p>{`${recommend.description.substring(0, 100)}...`}</p>
+                  </div> 
+                ))}
               </div>
-            </section>
-            <section className="mt-4">
-              <h1 className='font-bold text-[20px]'>Favourite Books</h1>
             </section>
           </div>
         </main>

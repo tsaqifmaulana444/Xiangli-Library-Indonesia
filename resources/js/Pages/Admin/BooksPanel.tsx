@@ -101,12 +101,12 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
                   <tbody>
                     {books.map((book, index) => (
                       <tr key={book.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{index + 1}</td>
+                        <td className="px-6 py-4 font-medium t  ext-gray-900 whitespace-nowrap">{index + 1}</td>
                         <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{book.name}</td>
                         <td className="px-6 py-4 text-center">{book.date}</td>
                         <td className="px-6 py-4 text-center">{book.author}</td>
                         <td className="px-6 py-4 text-center">{book.stock}</td>
-                        <td className="px-6 py-4 text-center">{book.description}</td>
+                        <td className="px-6 py-4 text-center">{`${book.description.substring(0, 100)}...`}</td>
                         <td className="px-6 py-4 text-center">
                           <img src={`/storage/book/${book.image.substring(book.image.lastIndexOf('/'))}`} alt="image" className='w-[70px]' />
                         </td>

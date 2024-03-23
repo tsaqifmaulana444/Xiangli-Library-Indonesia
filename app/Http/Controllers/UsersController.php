@@ -17,11 +17,16 @@ class UsersController extends Controller
     {
         $books = BookUser::where('user_id', '=', Auth::user()->id)->count();
         $actives = BookUser::where('status', '=', 'On Read')->where('user_id', '=', Auth::user()->id)->count();
-        $categories = Category::count();
+        $categories = Category::count();    
+        $recommended = Book::all()->random(1);
+        $recommended2 = Book::all()->random(1);
+        
         return Inertia::render('Users/User', [
             'books' => $books,
             'actives' => $actives,
             'categories' => $categories,
+            'recommended' => $recommended,
+            'recommended2' => $recommended2,
         ]);
     }
 
