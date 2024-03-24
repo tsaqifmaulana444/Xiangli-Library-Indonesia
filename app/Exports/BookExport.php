@@ -3,15 +3,17 @@
 namespace App\Exports;
 
 use App\Models\Book;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Contracts\View\View;
 
-class BookExport implements FromCollection
+class BookExport implements FromView
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+    public function view(): View
     {
-        return Book::all();
+        $datas = Book::all();
+        return view('table_book', ['books' => $datas]);
     }
 }

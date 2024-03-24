@@ -11,6 +11,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\FromView;
 
 class AdminController extends Controller
 {
@@ -33,7 +34,7 @@ class AdminController extends Controller
             'actives' => $actives,
             'categories' => $categories,
             'book_id' => $top->book_id,
-            'amount' => $top->amount,
+            'amount                                                                                                                                     ' => $top->amount,
         ]);
     }
 
@@ -205,4 +206,11 @@ class AdminController extends Controller
             return redirect()->route('admin.categories')->with('error', 'Data not found!');
         }
     }
+
+    public function book_excel()
+    {
+        $books = Book::with('categories')->latest()->get();
+        return view('table_book', compact('books'));
+    }
+    
 }
