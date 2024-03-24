@@ -2,48 +2,92 @@ import { Link, Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
+import { Chart } from "react-google-charts"
 
-export default function Dashboard() {
+interface DashboardProps {
+  members: number
+  actives: number
+  books: number
+  categories: number
+  book_id: string
+  amount: number
+}
+
+export default function Dashboard({ members, actives, books, categories, book_id, amount }: DashboardProps) {
   const appName = "Dashboard"
+  const data = [
+    [
+      "Element",
+      "Borrow",
+      { role: "style" },
+      {
+        sourceColumn: 0,
+        role: "annotation",
+        type: "string",
+        calc: "stringify",
+      },
+    ],
+    [book_id, amount, "color: #b87333", null],
+  ]
+  
+  
+  const options = {
+    title: "",
+    height: 250,
+    bar: { groupWidth: "95%" },
+    legend: { position: "none" },
+  }
+
   return (
     <>
       <Head>
         <title>{appName}</title>
       </Head>
       <div className='flex'>
-       <Sidebar />
+        <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
             <Navbar />
             <section className="flex justify-between mt-12">
               <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Active Borrowed Books</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
+                <p className='text-[14px]'>Total Users</p>
+                <h3 className='mt-2 text-[25px] font-bold'>{members}</h3>
+              </div>
+              <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
+                <p className='text-[14px]'>Total Books</p>
+                <h3 className='mt-2 text-[25px] font-bold'>{books}</h3>
               </div>
               <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
                 <p className='text-[14px]'>Active Borrowed Books</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
+                <h3 className='mt-2 text-[25px] font-bold'>{actives}</h3>
               </div>
               <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Active Borrowed Books</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
-              </div>
-              <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Active Borrowed Books</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
+                <p className='text-[14px]'>Total Categories</p>
+                <h3 className='mt-2 text-[25px] font-bold'>{categories}</h3>
               </div>
             </section>
             <section className="flex justify-between mt-6">
-              <div className="shadow-md rounded-md w-[48.6%] h-[200px] py-2 px-5">
-                <p className='text-[14px]'>Recommended Book</p>
-                <h3 className='mt-2 text-[25px] font-bold'>20</h3>
+              <div className="shadow-md rounded-md w-[48.6%] py-2 px-5">
+                <p className='text-[14px]'>Top Borrowed Book</p>
+                <Chart
+                  chartType="BarChart"
+                  width="100%"
+                  height="250px"
+                  data={data}
+                  options={options}
+                />
               </div>
               <div className="shadow-md rounded-md w-[48.6%] h-[200px] py-2 px-5">
-                <p className='text-[14px]'>Promosi</p>
+                <p className='text-[14px]'>Report In Xlsx</p>
+                <div className="flex justify-between mt-8">
+                  <p className="font-bold">Book Report</p>
+                  <a href="/super-admin/book_export" className='hover:underline'>Download</a>
+                </div>
+                <div className="flex justify-between mt-5">
+                  <p className="font-bold">Borrowing Report</p>
+                  <a href="/super-admin/borrow_export" className='hover:underline'>Download</a>
+                </div>
               </div>
-            </section>
-            <section className="mt-4">
-              <h1 className='font-bold text-[20px]'>Anything lah</h1>
             </section>
           </div>
         </main>

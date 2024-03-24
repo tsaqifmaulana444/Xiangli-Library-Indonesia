@@ -64,6 +64,11 @@ Route::prefix('/super-admin')->group(function(){
     Route::post('/admins', [SuperAdminController::class, 'store_admin'])->name('super-admin.store_admin');
     Route::delete('/admins/{id}', [SuperAdminController::class, 'delete_admin'])->name('super-admin.delete_admin');
 
+    Route::get('/book_export', [SuperAdminController::class, 'book_export'])->name('super-admin.book_export');
+    Route::get('/borrow_export', [SuperAdminController::class, 'borrow_export'])->name('super-admin.borrow_export');
+    Route::get('/book_export_page', [SuperAdminController::class, 'book_excel'])->name('super-admin.book_excel');
+    Route::get('/borrow_export_page', [SuperAdminController::class, 'borrow_excel'])->name('super-admin.borrow_excel');
+
 });
 
 

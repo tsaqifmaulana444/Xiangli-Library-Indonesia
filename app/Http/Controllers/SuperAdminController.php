@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BookExport;
+use App\Exports\BorrowExport;
 use App\Models\Admin;
 use App\Models\Book;
+use App\Models\BookUser;
 use App\Models\Category;
 use App\Models\User;
 use Inertia\Inertia;
@@ -11,12 +14,31 @@ use Inertia\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SuperAdminController extends Controller
 {
     public function dashboard(): Response
     {
-        return Inertia::render('SuperAdmin/Dashboard');
+        $members = User::where('role', '=', 1)->count();
+        $books = Book::count();
+        $actives = BookUser::where('status', '=', 'On Read')->count();
+        $categories = Category::count();
+        $mostFrequentBookId = BookUser::groupBy('book_id')
+            ->selectRaw('book_id, COUNT(*) as count')
+            ->orderByDesc('count')
+            ->value('book_id');
+
+        $top = BookUser::where('book_id', $mostFrequentBookId)->first();
+
+        return Inertia::render('SuperAdmin/Dashboard', [
+            'members' => $members,
+            'books' => $books,
+            'actives' => $actives,
+            'categories' => $categories,
+            'book_id' => $top->book_id,
+            'amount' => $top->amount,
+        ]);
     }
     
     public function books_panel(): Response
@@ -129,5 +151,27 @@ class SuperAdminController extends Controller
         } else {
             return redirect()->route('super-admin.admins')->with('error', 'Data not found!');
         }
+    }
+
+    public function book_export()
+    {
+        return Excel::download(new BookExport, 'book report.xlsx');
+    }
+
+    public function borrow_export()
+    {
+        return Excel::download(new BorrowExport, 'borrow report.xlsx');
+    }
+    
+    public function book_excel()
+    {
+        $books = Book::with('categories')->latest()->get();
+        return view('table_book', compact('books'));
+    }
+
+    public function borrow_excel()
+    {
+        $borrows = BookUser::latest()->get();
+        return view('table_borrow', compact('borrows'));
     }
 }
