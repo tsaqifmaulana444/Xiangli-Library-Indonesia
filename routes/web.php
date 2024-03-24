@@ -31,7 +31,9 @@ Route::prefix('')->group(function(){
 Route::prefix('/admin')->group(function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/book_export', [AdminController::class, 'book_export'])->name('admin.book_export');
+    Route::get('/borrow_export', [AdminController::class, 'borrow_export'])->name('admin.borrow_export');
     Route::get('/book_export_page', [AdminController::class, 'book_excel'])->name('admin.book_excel');
+    Route::get('/borrow_export_page', [AdminController::class, 'borrow_excel'])->name('admin.borrow_excel');
 
     Route::get('/borrowers', [AdminController::class, 'borrowers'])->name('admin.borrowers');
     Route::delete('/borrowers/{id}', [AdminController::class, 'delete_borrowers'])->name('admin.delete_borrowers');

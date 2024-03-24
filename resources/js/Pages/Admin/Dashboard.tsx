@@ -10,15 +10,25 @@ interface DashboardProps {
   books: number
   categories: number
   book_id: string
-  amount: number
+  amount: string
 }
 
 
 export default function Dashboard({ members, actives, books, categories, book_id, amount }: DashboardProps) {
   const appName = "Dashboard"
   const data = [
-    ["Element", "Borrow", { role: "style" }, { sourceColumn: 0, role: "annotation", type: "string", calc: "stringify" }],
-    [book_id, amount, "color: #b87333", null],
+    [
+      "Element",
+      "Borrow",
+      { role: "style" },
+      {
+        sourceColumn: 0,
+        role: "annotation",
+        type: "string",
+        calc: "stringify",
+      },
+    ],
+    [book_id, parseInt(amount), "color: #b87333", null],
   ]
   
   
@@ -76,9 +86,8 @@ export default function Dashboard({ members, actives, books, categories, book_id
                 </div>
                 <div className="flex justify-between mt-5">
                   <p className="font-bold">Borrowing Report</p>
-                  <a href="/admin/book_export" className='hover:underline'>Download</a>
+                  <a href="/admin/borrow_export" className='hover:underline'>Download</a>
                 </div>
-                {/* {top[0].book_id} */}
               </div>
             </section>
           </div>

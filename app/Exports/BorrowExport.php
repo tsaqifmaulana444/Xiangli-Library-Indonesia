@@ -2,18 +2,18 @@
 
 namespace App\Exports;
 
-use App\Models\Book;
+use App\Models\BookUser;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
 
-class BookExport implements FromView
+class BorrowExport implements FromView
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function view(): View
     {
-        $datas = Book::with('categories')->latest()->get();
-        return view('table_book', ['books' => $datas]);
+        $datas = BookUser::latest()->get();
+        return view('table_borrow', ['borrows' => $datas]);
     }
 }

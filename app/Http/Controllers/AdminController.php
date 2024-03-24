@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\BookExport;
+use App\Exports\BorrowExport;
 use App\Models\Book;
 use App\Models\BookUser;
 use App\Models\Category;
@@ -40,7 +41,12 @@ class AdminController extends Controller
 
     public function book_export()
     {
-        return Excel::download(new BookExport, 'report.xlsx');
+        return Excel::download(new BookExport, 'book report.xlsx');
+    }
+
+    public function borrow_export()
+    {
+        return Excel::download(new BorrowExport, 'borrow report.xlsx');
     }
 
     public function borrowers(): Response
@@ -211,6 +217,12 @@ class AdminController extends Controller
     {
         $books = Book::with('categories')->latest()->get();
         return view('table_book', compact('books'));
+    }
+
+    public function borrow_excel()
+    {
+        $borrows = BookUser::latest()->get();
+        return view('table_borrow', compact('borrows'));
     }
     
 }
