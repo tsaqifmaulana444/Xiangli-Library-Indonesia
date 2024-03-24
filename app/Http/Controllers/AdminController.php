@@ -35,7 +35,7 @@ class AdminController extends Controller
             'actives' => $actives,
             'categories' => $categories,
             'book_id' => $top->book_id,
-            'amount                                                                                                                                     ' => $top->amount,
+            'amount' => $top->amount,
         ]);
     }
 

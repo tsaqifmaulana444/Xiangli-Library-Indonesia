@@ -10,7 +10,7 @@ interface DashboardProps {
   books: number
   categories: number
   book_id: string
-  amount: string
+  amount: number
 }
 
 
@@ -28,7 +28,7 @@ export default function Dashboard({ members, actives, books, categories, book_id
         calc: "stringify",
       },
     ],
-    [book_id, parseInt(amount), "color: #b87333", null],
+    [book_id, amount, "color: #b87333", null],
   ]
   
   
