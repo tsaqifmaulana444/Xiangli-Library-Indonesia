@@ -36,15 +36,15 @@ class SuperAdminController extends Controller
             'books' => $books,
             'actives' => $actives,
             'categories' => $categories,
-            'book_id' => $top->book_id,
-            'amount' => $top->amount,
+            'book_id' => 1,
+            'amount' => 2,
         ]);
     }
     
     public function books_panel(): Response
     {
         $categories = Category::latest()->get();
-        $books = Book::latest()->get();
+        $books = Book::with('categories')->latest()->get();
         return Inertia::render('SuperAdmin/BooksPanel', [
             'categories' => $categories,
             'books' => $books
@@ -53,39 +53,39 @@ class SuperAdminController extends Controller
 
     public function store_book(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'date' => 'required',
             'author' => 'required',
             'stock' => 'required',
             'description' => 'required',
-            'categories' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        Book::create([
+        $imageName = $request->file('image')->store('public/book');
+
+        $book = Book::create([
             'name' => $request->name,
             'date' => $request->date,
             'author' => $request->author,
             'stock' => $request->stock,
             'description' => $request->description,
-            'categories' => $request->categories,
+            'image' => $imageName
         ]);
+
+        $book->categories()->attach($request->categories);
 
         return redirect()->route('super-admin.books_panel')->with('success', 'Data Successfully Added!');
     }
 
     public function update_book(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'date' => 'required',
-            'author' => 'required',
-            'stock' => 'required',
-            'description' => 'required',
-            'categories' => 'required',
-        ]);
+        // dd($request->all());
 
-        $book = Book::findOrFail($id);
+        $book = Book::find($id);
+
+        // $imageName = $request->file('image')->store('public/book');
 
         $book->update([
             'name' => $request->name,
@@ -93,11 +93,16 @@ class SuperAdminController extends Controller
             'author' => $request->author,
             'stock' => $request->stock,
             'description' => $request->description,
-            'categories' => $request->categories,
+            // 'image' => $imageName
         ]);
+
+        // dd($request->categories);
+
+        $book->categories()->sync($request->categories);
 
         return redirect()->route('super-admin.books_panel')->with('success', 'Data Successfully Updated!');
     }
+
 
     public function delete_book($id)
     {
@@ -162,7 +167,7 @@ class SuperAdminController extends Controller
     {
         return Excel::download(new BorrowExport, 'borrow report.xlsx');
     }
-    
+
     public function book_excel()
     {
         $books = Book::with('categories')->latest()->get();

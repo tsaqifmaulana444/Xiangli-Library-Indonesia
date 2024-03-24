@@ -20,7 +20,14 @@ export default function BookModal({ closeModal, categories }: modalProps) {
     const [author, setAuthor] = useState('')
     const [stock, setStock] = useState('')
     const [description, setDescription] = useState('')
+    const [image, setImage] = useState<File | null>(null)
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+          setImage(e.target.files[0])
+        }
+    }
 
     const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryId: string) => {
         const isChecked = e.target.checked
@@ -35,17 +42,20 @@ export default function BookModal({ closeModal, categories }: modalProps) {
     const storeBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
     
-        const categoriesJSON = JSON.stringify(selectedCategories)
+        const formData = new FormData()
+        formData.append('name', name)
+        formData.append('date', date)
+        formData.append('author', author)
+        formData.append('stock', stock)
+        formData.append('description', description)
+        formData.append('image', image as Blob)
     
-        Inertia.post('/super-admin/books-panel', {
-            name: name,
-            date: date,
-            author: author,
-            stock: stock,
-            description: description,
-            categories: categoriesJSON
+        selectedCategories.forEach(categoryId => {
+            formData.append('categories[]', categoryId)
         })
-    }
+    
+        Inertia.post('/super-admin/books-panel', formData)
+    }    
     
     return (
         <>
@@ -75,6 +85,10 @@ export default function BookModal({ closeModal, categories }: modalProps) {
                                 <textarea id="message" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 h-28 focus:ring-black focus:border-black" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe the book in the best way..."></textarea>
                             </div>
                             <div className="mb-5">
+                                <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-900">Image</label>
+                                <input type="file" id="image" name="image" onChange={handleImageChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
+                            </div>
+                            <div className="mb-5">
                                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Category</label>
                                 {categories.map((category) => (
                                     <div key={category.id} className="flex items-center mb-4 mx-1">
@@ -83,7 +97,7 @@ export default function BookModal({ closeModal, categories }: modalProps) {
                                             type="checkbox"
                                             value={category.name}
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                                            onChange={(e) => handleCategoryCheckboxChange(e, category.name || '')}
+                                            onChange={(e) => handleCategoryCheckboxChange(e, category.id || '')}
                                         />
                                         <label htmlFor={category.id} className="ms-2 text-sm font-medium text-gray-900">{category.name}</label>
                                     </div>

@@ -29,26 +29,45 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
     const [author, setAuthor] = useState(book.author || '')
     const [stock, setStock] = useState(book.stock || '')
     const [description, setDescription] = useState(book.description || '')
+    const [image, setImage] = useState<File | null>(null)
     const [selectedCategories, setSelectedCategories] = useState<string[]>(book.categories || [])
 
-    const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryName: string) => {
-        setSelectedCategories([categoryName])
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setImage(e.target.files[0])
+        }
+    }
+
+    // console.log(image)
+
+    const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryId: string) => {
+        const isChecked = e.target.checked
+
+        if (isChecked) {
+            setSelectedCategories([...selectedCategories, categoryId])
+        } else {
+            setSelectedCategories(selectedCategories.filter((cat) => cat !== categoryId))
+        }
     }
 
     const updateBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
-        const categoriesJSON = JSON.stringify(selectedCategories)
-
+        
+        let cat: string[] = []
+        selectedCategories.forEach(categoryId => {
+            cat.push(categoryId)
+        })
+        
         Inertia.put(`/super-admin/books-panel/${book.id}`, {
             name: name,
             date: date,
             author: author,
             stock: stock,
             description: description,
-            categories: categoriesJSON
+            // image: image as Blob,
+            categories: cat.slice(1)
         })
-    }
+   }
 
     return (
         <>
@@ -56,7 +75,7 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
                 <div className='bg-white w-[50%] rounded-lg z-[999] px-6 flex items-center'>
                     <div className="w-full py-7 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 100px)' }}>
                         <h1 className='font-bold text-xl mb-5'>Edit Book</h1>
-                        <form onSubmit={updateBook}>
+                        <form onSubmit={updateBook} encType="multipart/form-data">
                             <div className='mb-4'>
                                 <label htmlFor='name' className='block text-sm font-medium text-gray-700'>Name</label>
                                 <input type='text' id='name' value={name} onChange={(e) => setName(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Book name" required />
@@ -71,11 +90,15 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
                             </div>
                             <div className='mb-4'>
                                 <label htmlFor='stock' className='block text-sm font-medium text-gray-700'>Stock</label>
-                                <input type='number' id='stock' value={stock} onChange={(e) => setStock(e.target.value)}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Stock" required />
+                                <input type='number' id='stock' value={stock} onChange={(e) => setStock(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Stock" required />
                             </div>
                             <div className='mb-4'>
                                 <label htmlFor='description' className='block text-sm font-medium text-gray-700'>Description</label>
                                 <textarea id='description' value={description} onChange={(e) => setDescription(e.target.value)} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 h-28 focus:ring-black focus:border-black" required />
+                            </div>
+                            <div className='mb-4'>
+                                <label htmlFor='image' className='block text-sm font-medium text-gray-700'>Image</label>
+                                <input type='file' id='image' onChange={handleImageChange} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' />
                             </div>
                             <div className='mb-4'>
                                 <label className='block text-sm font-medium text-gray-700'>Categories</label>
@@ -84,9 +107,9 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
                                         <input
                                             id={category.id}
                                             type="checkbox"
-                                            value={category.name}
+                                            value={category.id}
                                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                                            onChange={(e) => handleCategoryCheckboxChange(e, category.name || '')}
+                                            onChange={(e) => handleCategoryCheckboxChange(e, category.id || '')}
                                         />
                                         <label htmlFor={category.id} className="ms-2 text-sm font-medium text-gray-900">{category.name}</label>
                                     </div>
