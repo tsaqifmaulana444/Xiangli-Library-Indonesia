@@ -2,23 +2,40 @@ import { Link, Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
+import { Chart } from "react-google-charts"
 
 interface DashboardProps {
   members: number
   actives: number
   books: number
   categories: number
+  book_id: string
+  amount: number
 }
 
-export default function Dashboard({ members, actives, books, categories, }: DashboardProps) {
+
+export default function Dashboard({ members, actives, books, categories, book_id, amount }: DashboardProps) {
   const appName = "Dashboard"
+  const data = [
+    ["Element", "Borrow", { role: "style" }, { sourceColumn: 0, role: "annotation", type: "string", calc: "stringify" }],
+    [book_id, amount, "color: #b87333", null],
+  ]
+  
+  
+  const options = {
+    title: "",
+    height: 250,
+    bar: { groupWidth: "95%" },
+    legend: { position: "none" },
+  }
+
   return (
     <>
       <Head>
         <title>{appName}</title>
       </Head>
       <div className='flex'>
-       <Sidebar />
+        <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
             <Navbar />
@@ -41,8 +58,15 @@ export default function Dashboard({ members, actives, books, categories, }: Dash
               </div>
             </section>
             <section className="flex justify-between mt-6">
-              <div className="shadow-md rounded-md w-[48.6%] h-[200px] py-2 px-5">
-                <p className='text-[14px]'>Statistic</p>
+              <div className="shadow-md rounded-md w-[48.6%] py-2 px-5">
+                <p className='text-[14px]'>Top Borrowed Book</p>
+                <Chart
+                  chartType="BarChart"
+                  width="100%"
+                  height="250px"
+                  data={data}
+                  options={options}
+                />
               </div>
               <div className="shadow-md rounded-md w-[48.6%] h-[200px] py-2 px-5">
                 <p className='text-[14px]'>Report In Xlsx</p>
@@ -54,10 +78,8 @@ export default function Dashboard({ members, actives, books, categories, }: Dash
                   <p className="font-bold">Borrowing Report</p>
                   <a href="/admin/book_export" className='hover:underline'>Download</a>
                 </div>
+                {/* {top[0].book_id} */}
               </div>
-            </section>
-            <section className="mt-4">
-              <h1 className='font-bold text-[20px]'>Books Stock</h1>
             </section>
           </div>
         </main>

@@ -20,12 +20,20 @@ class AdminController extends Controller
         $books = Book::count();
         $actives = BookUser::where('status', '=', 'On Read')->count();
         $categories = Category::count();
+        $mostFrequentBookId = BookUser::groupBy('book_id')
+            ->selectRaw('book_id, COUNT(*) as count')
+            ->orderByDesc('count')
+            ->value('book_id');
+
+        $top = BookUser::where('book_id', $mostFrequentBookId)->first();
 
         return Inertia::render('Admin/Dashboard', [
             'members' => $members,
             'books' => $books,
             'actives' => $actives,
             'categories' => $categories,
+            'book_id' => $top->book_id,
+            'amount' => $top->amount,
         ]);
     }
 
@@ -130,7 +138,7 @@ class AdminController extends Controller
     public function update_book(Request $request, $id)
     {
         // dd($request->all());
-        
+
         $book = Book::find($id);
 
         // $imageName = $request->file('image')->store('public/book');
