@@ -48,13 +48,13 @@ export default function Dashboard({ actives, books, categories, recommended, rec
                 <h3 className='mt-2 text-[25px] font-bold'>{categories}</h3>
               </div>
             </section>
-            <section className="flex justify-between mt-6">
-              <div className="shadow-md rounded-md w-[48.6%] py-2 px-5">
+            <section className="flex justify-evenly mt-6">
+              <div className="shadow-md rounded-md w-[43%] py-2 px-5">
                 <p className='text-[14px]'>Recommended Book</p>
                 {recommended2.map((recommend, index) => (
                   <Link href="/list-book">
                     <div key={index} className='mt-2'>
-                      <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[260px]' />
+                      <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[210px]' />
                       <p className='font-bold text-lg mt-2'>{recommend.name}</p>
                       <p className='opacity-70 text-xs'>{recommend.author}</p>
                       <p>{`${recommend.description.substring(0, 100)}...`}</p>
@@ -62,12 +62,12 @@ export default function Dashboard({ actives, books, categories, recommended, rec
                   </Link>
                 ))}
               </div>
-              <div className="shadow-md rounded-md w-[48.6%] py-2 px-5">
+              <div className="shadow-md rounded-md w-[43%] py-2 px-5">
                 <p className='text-[14px]'>Top Picked Books</p>
                 {recommended.map((recommend, index) => (
                   <Link href="/list-book">
                     <div key={index} className='mt-2'>
-                      <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[260px]' />
+                      <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[210px]' />
                       <p className='font-bold text-lg mt-2'>{recommend.name}</p>
                       <p className='opacity-70 text-xs'>{recommend.author}</p>
                       <p>{`${recommend.description.substring(0, 120)}...`}</p>

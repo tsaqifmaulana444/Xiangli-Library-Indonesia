@@ -39,6 +39,9 @@ Route::prefix('/admin')->group(function(){
     Route::delete('/borrowers/{id}', [AdminController::class, 'delete_borrowers'])->name('admin.delete_borrowers');
     Route::put('/borrowers/{id}', [AdminController::class, 'approve_borrowers'])->name('admin.approve_borrowers');
 
+    Route::put('/book-okay/{id}', [AdminController::class, 'book_okay'])->name('admin.book_okay');
+    Route::put('/book-broken/{id}', [AdminController::class, 'book_broken'])->name('admin.book_broken');
+
     Route::get('/members', [AdminController::class, 'members'])->name('admin.members');
     Route::delete('/member/{id}', [AdminController::class, 'delete_members'])->name('admin.delete_member');
 

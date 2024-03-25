@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id');
             $table->integer('amount');
             $table->string('status')->default('Waiting');
+            $table->string('book_quality')->default('-');
             $table->date('borrow_in');
             $table->date('borrow_out');
             $table->timestamps();

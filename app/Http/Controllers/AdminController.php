@@ -72,6 +72,36 @@ class AdminController extends Controller
         return redirect()->route('admin.borrowers')->with('success', 'Approved!');
     }
 
+    public function book_okay($id)
+    {
+        $data = BookUser::find($id);
+
+        if (!$data) {
+            return redirect()->back()->with('error', 'Record not found!');
+        }
+
+        $data->update([
+            'book_quality' => 'Okay',
+        ]);
+
+        return redirect()->route('admin.borrowers')->with('success', 'Success!');
+    }
+
+    public function book_broken($id)
+    {
+        $data = BookUser::find($id);
+
+        if (!$data) {
+            return redirect()->back()->with('error', 'Record not found!');
+        }
+
+        $data->update([
+            'book_quality' => 'Broken',
+        ]);
+
+        return redirect()->route('admin.borrowers')->with('success', 'Success!');
+    }
+
     public function delete_borrowers($id)
     {
         $borrower = BookUser::find($id);
