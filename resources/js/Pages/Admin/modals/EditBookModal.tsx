@@ -77,8 +77,8 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
                         <h1 className='font-bold text-xl mb-5'>Edit Book</h1>
                         <form onSubmit={updateBook} encType="multipart/form-data">
                             <div className='mb-4'>
-                                <label htmlFor='name' className='block text-sm font-medium text-gray-700'>Name</label>
-                                <input type='text' id='name' value={name} onChange={(e) => setName(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Book name" required />
+                                <label htmlFor='name' className='block text-sm font-medium text-gray-700'>Title</label>
+                                <input type='text' id='name' value={name} onChange={(e) => setName(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Book title" required />
                             </div>
                             <div className='mb-4'>
                                 <label htmlFor='date' className='block text-sm font-medium text-gray-700'>Date Published</label>
