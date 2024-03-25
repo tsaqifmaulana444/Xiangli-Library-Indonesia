@@ -16,6 +16,7 @@ export default function Sidebar() {
                     <div className="flex flex-col">
                         <Link href="/super-admin/dashboard" className={component === 'SuperAdmin/Dashboard' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Dashboard</Link>
                         <Link href="/super-admin/books-panel" className={component === 'SuperAdmin/BooksPanel' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Books Panel</Link>
+                        <Link href="/super-admin/categories" className={component === 'SuperAdmin/Categories' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Categories</Link>
                         <Link href="/super-admin/admins" className={component === 'SuperAdmin/Admins' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Admins</Link>
                     </div>
                     <div className="">

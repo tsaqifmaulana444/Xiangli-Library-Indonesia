@@ -73,7 +73,7 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
                         #
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Book Name
+                        Title
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
                         Date Published

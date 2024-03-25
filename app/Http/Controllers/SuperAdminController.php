@@ -158,6 +158,40 @@ class SuperAdminController extends Controller
         }
     }
 
+    public function categories(): Response
+    {
+        $categories = Category::latest()->get();
+
+        return Inertia::render('SuperAdmin/Categories', [
+            'categories' => $categories,
+        ]);
+    }
+
+    public function store_categories(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        Category::create([
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('super-admin.categories')->with('success', 'Data Successfully Added!');
+    }
+
+    public function delete_categories($id)
+    {
+        $category = Category::find($id);
+
+        if ($category) {
+            $category->delete();
+            return redirect()->route('suoer-admin.categories')->with('success', 'Data Successfully Deleted!');
+        } else {
+            return redirect()->route('super-admin.categories')->with('error', 'Data not found!');
+        }
+    }
+
     public function book_export()
     {
         return Excel::download(new BookExport, 'book report.xlsx');

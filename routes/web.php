@@ -72,7 +72,9 @@ Route::prefix('/super-admin')->group(function(){
     Route::get('/book_export_page', [SuperAdminController::class, 'book_excel'])->name('super-admin.book_excel');
     Route::get('/borrow_export_page', [SuperAdminController::class, 'borrow_excel'])->name('super-admin.borrow_excel');
 
+    Route::get('/categories', [SuperAdminController::class, 'categories'])->name('super-admin.categories');
+    Route::post('/categories', [SuperAdminController::class, 'store_categories'])->name('super-admin.store_categories');
+    Route::delete('/categories/{id}', [SuperAdminController::class, 'delete_categories'])->name('super-admin.delete_categories');
 });
-
 
 require __DIR__.'/auth.php';
