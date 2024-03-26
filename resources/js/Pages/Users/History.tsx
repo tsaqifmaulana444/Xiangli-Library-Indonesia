@@ -14,6 +14,7 @@ interface Borrow {
   borrow_in: string
   borrow_out: string
   status: string
+  pay_fine: boolean
 }
 
 export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
@@ -39,6 +40,12 @@ export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
   const doneBorrow = async (id: string | undefined) => {
     Inertia.put(`/done-borrow-book/${id}`, {
       status: "Done",
+    })
+  }
+
+  const payFine = async (id: string | undefined) => {
+    Inertia.put(`/pay-fine/${id}`, {
+      pay_fine: false,
     })
   }
 
@@ -80,6 +87,9 @@ export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
                       <th scope="col" className="px-6 py-3 text-center">
                         Action
                       </th>
+                      <th scope="col" className="px-6 py-3 text-center">
+                        Fine
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -104,8 +114,16 @@ export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
                           ) : (
                             <button type="button" className="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mb-2" onClick={() => doneBorrow(borrow.id)}>Return Book</button>
                           )}
-
                         </td>
+                        {borrow.pay_fine == true ? (
+                          <td className="px-6 py-4 text-center">
+                            <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300   font-medium rounded-lg text-sm px-5 py-2.5 mb-2" onClick={() => payFine(borrow.id)}>Pay Fine</button>
+                          </td>
+                        ) : (
+                          <td className="px-6 py-4 text-center">
+                            -
+                          </td>
+                        )}
                       </tr>
                     ))}
                   </tbody>

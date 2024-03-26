@@ -95,6 +95,21 @@ class UsersController extends Controller
         return redirect()->route('user.history')->with('success', 'Approved!');
     }
 
+    public function pay_fine($id)
+    {
+        $data = BookUser::find($id);
+
+        if (!$data) {
+            return redirect()->back()->with('error', 'Record not found!');
+        }
+
+        $data->update([
+            'pay_fine' => false,
+        ]);
+
+        return redirect()->route('user.history')->with('success', 'Approved!');
+    }
+
     public function amend_borrow(Request $request, $id)
     {
         $request->validate([

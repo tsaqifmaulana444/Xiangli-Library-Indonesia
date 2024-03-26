@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('amount');
             $table->string('status')->default('Waiting');
             $table->string('book_quality')->default('-');
+            $table->string('pay_fine')->default(false);
             $table->date('borrow_in');
             $table->date('borrow_out');
             $table->timestamps();

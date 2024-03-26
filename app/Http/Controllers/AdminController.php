@@ -97,6 +97,7 @@ class AdminController extends Controller
 
         $data->update([
             'book_quality' => 'Broken',
+            'pay_fine' => true,
         ]);
 
         return redirect()->route('admin.borrowers')->with('success', 'Success!');
