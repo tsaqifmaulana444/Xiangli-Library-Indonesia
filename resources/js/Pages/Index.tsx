@@ -30,39 +30,6 @@ export default function Index() {
               >
                 Sign Up
               </Link>
-              <button
-                data-collapse-toggle="mobile-menu-2"
-                type="button"
-                className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                aria-controls="mobile-menu-2"
-                aria-expanded="false"
-              >
-                <span className="sr-only">Open main menu</span>
-                <svg
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <svg
-                  className="hidden w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
             </div>
             <div
               className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
@@ -71,7 +38,7 @@ export default function Index() {
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 <li>
                   <a
-                    href="#"
+                    href="#hero"
                     className="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-purple-700 lg:p-0 "
                     aria-current="page"
                   >
@@ -80,7 +47,7 @@ export default function Index() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="#about-us"
                     className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
                     About Us
@@ -88,23 +55,15 @@ export default function Index() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="#testimony"
                     className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
-                    Privacy and Policy
+                    What People Said
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#"
-                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
-                  >
-                    FAQ
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
+                    href="#contact"
                     className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
                     Contact
@@ -116,7 +75,7 @@ export default function Index() {
         </nav>
       </header>
       {/* Start block */}
-      <section className="bg-white  h-[100vh]">
+      <section className="bg-white h-[100vh]" id='hero'>
         <div className="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
           <div className="mr-auto place-self-center lg:col-span-7">
             <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl ">
@@ -145,7 +104,7 @@ export default function Index() {
         </div>
       </section>
       {/* Start block */}
-      <section className="bg-gray-50">
+      <section className="bg-gray-50" id='about-us'>
         <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
           {/* Row */}
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
@@ -214,7 +173,7 @@ export default function Index() {
                     />
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 ">
-                    Affordable price
+                    School point increasement
                   </span>
                 </li>
               </ul>
@@ -230,14 +189,14 @@ export default function Index() {
       </section>
       {/* End block */}
       {/* Start block */}
-      <section className="bg-white ">
+      <section className="bg-white" id='testimony'>
         <div className="items-center max-w-screen-xl px-4 py-8 mx-auto lg:grid lg:grid-cols-4 lg:gap-16 xl:gap-24 lg:py-24 lg:px-6">
           <div className="col-span-2 mb-8">
             <p className="text-lg font-medium text-purple-600 ">
               Trusted Widely
             </p>
             <h2 className="mt-3 mb-4 text-3xl font-extrabold tracking-tight text-gray-900 md:text-3xl ">
-              Trusted by over 10 million users and 100 schools
+              Trusted by over 1 thousand students.
             </h2>
             <p className="font-light text-gray-500 sm:text-xl">
               Our strict procedure and availability standards are at the heart of
@@ -278,7 +237,7 @@ export default function Index() {
                 10M+ Users
               </h3>
               <p className="font-light text-gray-500">
-                Trusted by over 10 milion users around the world
+                Trusted by over 1 thousand students in the school
               </p>
             </div>
             <div>
@@ -295,10 +254,10 @@ export default function Index() {
                 />
               </svg>
               <h3 className="mb-2 text-2xl font-bold ">
-                4+ countries
+                2 rooms
               </h3>
               <p className="font-light text-gray-500">
-                Xiangli book outlet accross the globe.
+                Xiangli reading room accross the school.
               </p>
             </div>
             <div>
@@ -322,7 +281,7 @@ export default function Index() {
       </section>
       {/* End block */}
       {/* Start block */}
-      <section className="bg-gray-50">
+      <section className="bg-gray-50" id='contact'>
         <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-24 lg:px-6">
           <figure className="max-w-screen-md mx-auto">
             <svg
@@ -340,7 +299,7 @@ export default function Index() {
               <p className="text-xl font-medium text-gray-900 md:text-2xl ">
                 "Our library web application is a testament to innovation and
                 user-centric design. This project exemplifies our commitment to
-                excellence and reinforces our position as a leader in the industry.
+                excellence and reinforces our position as a leader in the school.
                 Congratulations to the entire team for delivering such an
                 outstanding product!"
               </p>
@@ -356,7 +315,7 @@ export default function Index() {
                   Zhang Jianwei
                 </div>
                 <div className="pl-3 text-sm font-light text-gray-500">
-                  CEO at Xiangli
+                  CEO at Xiangli | Headmaster Of School
                 </div>
               </div>
             </figcaption>
@@ -365,162 +324,27 @@ export default function Index() {
       </section>
       {/* End block */}
       {/* Start block */}
-      <section className="bg-white ">
+      <section className="bg-white">
         <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
           <div className="max-w-screen-sm mx-auto text-center">
             <h2 className="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-gray-900 ">
-              Join us to explore numerous amazing books.
+              Join the library to explore numerous amazing books.
             </h2>
             <p className="mb-6 font-light text-gray-500 md:text-lg">
-              Try Xiangli Web now, it's worth it.
+              Read book now, it's worth it!
             </p>
             <a
               href="#"
               className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
             >
-              Join our membersip
+              Sign In
             </a>
           </div>
         </div>
       </section>
       {/* End block */}
-      <footer className="bg-white">
+      <footer className="bg-gray-50">
         <div className="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
-            <div>
-              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
-                Company
-              </h3>
-              <ul className="text-gray-500">
-                <li className="mb-4">
-                  <a href="#" className=" hover:underline">
-                    About
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Careers
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Brand Center
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Blog
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
-                Help center
-              </h3>
-              <ul className="text-gray-500">
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Discord Server
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Twitter
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Facebook
-                  </a>
-                </li>
-                <a href="#" className="hover:underline"></a>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline"></a>
-                  <a href="#" className="hover:underline">
-                    Contact Us
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
-                Legal
-              </h3>
-              <ul className="text-gray-500">
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Licensing
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Terms
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
-                Company
-              </h3>
-              <ul className="text-gray-500">
-                <li className="mb-4">
-                  <a href="#" className=" hover:underline">
-                    About
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Careers
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Brand Center
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Blog
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase ">
-                Download
-              </h3>
-              <ul className="text-gray-500">
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    iOS
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Android
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    Windows
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a href="#" className="hover:underline">
-                    MacOS
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
           <div className="text-center">
             <a
               href="#"
