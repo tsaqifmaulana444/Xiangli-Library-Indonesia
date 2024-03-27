@@ -62,6 +62,11 @@ class UsersController extends Controller
     {
         $userId = Auth::id();
         $borrows = BookUser::latest()->where('user_id', '=', $userId)->get();
+        foreach ($borrows as $key => $value) {
+            $names = Book::find($value->user_id);
+            $borrows[$key]->book = $names;
+        }
+
         // dd($borrows);
         return Inertia::render('Users/History', [
             'borrows' => $borrows,

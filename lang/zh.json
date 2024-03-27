@@ -62,5 +62,27 @@
     "user_dashboard2": "总借阅图书",
     "user_dashboard3": "图书分类",
     "user_dashboard4": "推荐图书",
-    "user_dashboard5": "热门图书"
+    "user_dashboard5": "热门图书",
+
+    "user_book": "我们现有的书籍清单",
+    "user_book1": "图书详情",
+    "user_book2": "书名",
+    "user_book3": "出版日期",
+    "user_book4": "作者",
+    "user_book5": "描述",
+    "user_book6": "库存",
+    "user_book7": "借阅数量",
+    "user_book8": "借入",
+    "user_book9": "借出",
+    "user_book10": "取消",
+    "user_book11": "借阅",
+    "user_book12": "借阅者姓名",
+    "user_book13": "保存更改",
+    "user_book14": "历史",
+    "user_book15": "状态",
+    "user_book16": "操作",
+    "user_book17": "罚款",
+    "user_book18": "修改",
+    "user_book19": "归还图书",
+    "user_book20": "支付罚款"
 }

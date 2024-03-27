@@ -62,6 +62,27 @@
     "user_dashboard2": "Total Borrowed Books",
     "user_dashboard3": "Books Category",
     "user_dashboard4": "Recommended Book",
-    "user_dashboard5": "Top Picked Books"
+    "user_dashboard5": "Top Picked Books",
 
+    "user_book": "List Of Our Available Book",
+    "user_book1": "Book Detail",
+    "user_book2": "Book Title",
+    "user_book3": "Date Release",
+    "user_book4": "Author",
+    "user_book5": "Description",
+    "user_book6": "Stock",
+    "user_book7": "Borrow Quantitiy",
+    "user_book8": "Borrow In",
+    "user_book9": "Borrow Out",
+    "user_book10": "Cancel",
+    "user_book11": "Borrow",
+    "user_book12": "Borrower Name",
+    "user_book13": "Save Changes",
+    "user_book14": "History",
+    "user_book15": "Status",
+    "user_book16": "Action",
+    "user_book17": "Fine",
+    "user_book18": "Amend",
+    "user_book19": "Return Book",
+    "user_book20": "Pay Fine"
 }

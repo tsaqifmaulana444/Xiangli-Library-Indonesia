@@ -3,6 +3,7 @@ import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import { useState } from 'react'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 import BorrowBookModal from './modals/BorrowBookModal'
 
 interface Book {
@@ -20,7 +21,7 @@ export default function Dashboard({ books }: PageProps<{ books: Book[] }>) {
   const appName = "List Book"
   const [isBorrowModalOpen, setIsBorrowModalOpen] = useState(false)
   const [selectedBook, setSelectedBook] = useState<Book | null>(null)
-
+  const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
 
   const openBorrowModal = (book: Book) => {
     setSelectedBook(book)
@@ -44,7 +45,7 @@ export default function Dashboard({ books }: PageProps<{ books: Book[] }>) {
           <div className="w-[92%] mx-auto">
             <Navbar />
             <section className="">
-              <h1 className='mt-4 mb-8 font-bold text-[22px]'>List Of Our Available Book</h1>
+              <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t('user_book')}</h1>
               <div className="grid grid-cols-3 gap-4">
                 {books.map((book) => (
                   <div onClick={() => openBorrowModal(book)}>
