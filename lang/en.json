@@ -50,5 +50,18 @@
     "sign_up5": "Birth Date",
     "sign_up6": "Address",
     "sign_up7": "Password",
-    "sign_up8": "Already have account?"
+    "sign_up8": "Already have account?",
+
+    "sidebar1": "Dashboard",
+    "sidebar2": "List Book",
+    "sidebar3": "History List",
+    "sign_out": "Sign Out",
+
+    "nav_dashboard1": "Hi, How Are You?",
+    "user_dashboard1": "Active Borrowed Books",
+    "user_dashboard2": "Total Borrowed Books",
+    "user_dashboard3": "Books Category",
+    "user_dashboard4": "Recommended Book",
+    "user_dashboard5": "Top Picked Books"
+
 }

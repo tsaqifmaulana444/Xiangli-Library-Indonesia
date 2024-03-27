@@ -13,7 +13,7 @@ export default function Index() {
   const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
   const getLanguageName = (locale: string) => {
     const localeToLanguage: LocaleToLanguage = {
-      en: 'English',
+      en: 'English(UK)',
       zh: '中文',
     };
   

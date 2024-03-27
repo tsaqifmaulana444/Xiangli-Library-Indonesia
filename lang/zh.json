@@ -50,5 +50,17 @@
     "sign_up5": "出生日期",
     "sign_up6": "地址",
     "sign_up7": "密码",
-    "sign_up8": "已有账户？"
+    "sign_up8": "已有账户？",
+
+    "sidebar1": "仪表板",
+    "sidebar2": "图书清单",
+    "sidebar3": "历史记录",
+    "sign_out": "登出",
+
+    "nav_dashboard1": "大家好, 你好吗？",
+    "user_dashboard1": "活跃借阅图书",
+    "user_dashboard2": "总借阅图书",
+    "user_dashboard3": "图书分类",
+    "user_dashboard4": "推荐图书",
+    "user_dashboard5": "热门图书"
 }

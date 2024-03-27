@@ -2,6 +2,7 @@ import { Link, Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 interface DashboardProps {
   actives: number
@@ -23,6 +24,7 @@ interface Book {
 }
 
 export default function Dashboard({ actives, books, categories, recommended, recommended2 }: DashboardProps) {
+  const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
   const appName = "Dashboard"
   return (
     <>
@@ -36,21 +38,21 @@ export default function Dashboard({ actives, books, categories, recommended, rec
             <Navbar />
             <section className="flex justify-between mt-12">
               <div className="shadow-md rounded-md w-[31%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Active Borrowed Books</p>
+                <p className='text-[14px]'>{t('user_dashboard1')}</p>
                 <h3 className='mt-2 text-[25px] font-bold'>{actives}</h3>
               </div>
               <div className="shadow-md rounded-md w-[31%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Total Borrowed Books</p>
+                <p className='text-[14px]'>{t('user_dashboard2')}</p>
                 <h3 className='mt-2 text-[25px] font-bold'>{books}</h3>
               </div>
               <div className="shadow-md rounded-md w-[31%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Books Category</p>
+                <p className='text-[14px]'>{t('user_dashboard3')}</p>
                 <h3 className='mt-2 text-[25px] font-bold'>{categories}</h3>
               </div>
             </section>
             <section className="flex justify-evenly mt-6">
               <div className="shadow-md rounded-md w-[43%] py-2 px-5">
-                <p className='text-[14px]'>Recommended Book</p>
+                <p className='text-[14px]'>{t('user_dashboard4')}</p>
                 {recommended2.map((recommend, index) => (
                   <Link href="/list-book">
                     <div key={index} className='mt-2'>
@@ -63,7 +65,7 @@ export default function Dashboard({ actives, books, categories, recommended, rec
                 ))}
               </div>
               <div className="shadow-md rounded-md w-[43%] py-2 px-5">
-                <p className='text-[14px]'>Top Picked Books</p>
+                <p className='text-[14px]'>{t('user_dashboard5')}</p>
                 {recommended.map((recommend, index) => (
                   <Link href="/list-book">
                     <div key={index} className='mt-2'>
