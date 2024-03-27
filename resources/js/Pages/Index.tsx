@@ -1,8 +1,18 @@
 import { Link, Head } from '@inertiajs/react'
 import { PageProps } from '@/types'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
+import { useState } from 'react'
 
 export default function Index() {
   const appName = "Home"
+  const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
+  const [selectedLocale, setSelectedLocale] = useState(currentLocale())
+
+  const handleLocaleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newLocale = event.target.value
+    setSelectedLocale(newLocale)
+    setLocale(newLocale)
+  }
   return (
     <>
       <Head>
@@ -20,9 +30,15 @@ export default function Index() {
                 alt="Logo"
               />
               <span className="self-center text-xl font-semibold whitespace-nowrap ">
-                Xiangli
+                {t('He')}
               </span>
             </a>
+            <select value={currentLocale()} onChange={(event) => setLocale(event.currentTarget.value)}>
+              {getLocales().map(locale => (
+                <option key={locale} value={locale}>{locale}</option>
+              ))}
+            </select>
+
             <div className="flex items-center lg:order-2">
               <Link href="/sign-in" className="text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2  focus:outline-none">Sign In</Link>
               <Link href="/sign-up"
