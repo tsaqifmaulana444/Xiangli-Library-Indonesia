@@ -1,26 +1,32 @@
-<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+<table>
+    <thead>
       <tr>
-        <th scope="col" className="px-6 py-3 text-center">
+        <th style="background-color: rgb(6, 169, 6); width: 40px;">
           #
         </th>
-        <th scope="col" className="px-6 py-3 text-center">
+        <th style="background-color: rgb(6, 169, 6); width: 100px;" >
           Borrower
         </th>
-        <th scope="col" className="px-6 py-3 text-center">
+        <th style="background-color: rgb(6, 169, 6); width: 100px;" >
           Book Name
         </th>
-        <th scope="col" className="px-6 py-3 text-center">
+        <th style="background-color: rgb(6, 169, 6); width: 100px;" >
           Quantity
         </th>
-        <th scope="col" className="px-6 py-3 text-center">
+        <th style="background-color: rgb(6, 169, 6); width: 100px;" >
           Borrow Date
         </th>
-        <th scope="col" className="px-6 py-3 text-center">
+        <th style="background-color: rgb(6, 169, 6); width: 100px;" >
           Return Date
         </th>
-        <th scope="col" className="px-6 py-3 text-center">
+        <th style="background-color: rgb(6, 169, 6); width: 100px;" >
           Status
+        </th>
+        <th style="background-color: rgb(6, 169, 6); width: 100px;" >
+          Quality
+        </th>
+        <th style="background-color: rgb(6, 169, 6); width: 100px;" >
+          Is Paying Fine
         </th>
       </tr>
     </thead>
@@ -30,13 +36,15 @@
       @endphp
       @foreach ($borrows as $borrow)
         <tr>
-          <td className="px-6 py-4 font-medium t  ext-gray-900 whitespace-nowrap">{{ $no++ }}</td>
-          <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{{$borrow->user_id}}</td>
-          <td className="px-6 py-4 text-center">{{$borrow->book_id}}</td>
-          <td className="px-6 py-4 text-center">{{$borrow->quantity}}</td>
-          <td className="px-6 py-4 text-center">{{$borrow->borrow_in}}</td>
-          <td className="px-6 py-4 text-center">{{$borrow->borrow_out}}</td>
-          <td className="px-6 py-4 text-center">{{$borrow->status}}</td>
+          <td>{{ $no++ }}</td>
+          <td>{{$borrow->user_id}}</td>
+          <td>{{$borrow->book_id}}</td>
+          <td>{{$borrow->quantity}}</td>
+          <td>{{$borrow->borrow_in}}</td>
+          <td>{{$borrow->borrow_out}}</td>
+          <td>{{$borrow->status}}</td>
+          <td>{{$borrow->book_quality}}</td>
+          <td>{{$borrow->pay_fine}}</td>
         </tr>
       @endforeach
     </tbody>
