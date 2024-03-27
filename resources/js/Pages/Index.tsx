@@ -11,7 +11,6 @@ export default function Index() {
 
   const appName = "Home"
   const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
-  const [selectedLocale, setSelectedLocale] = useState(currentLocale())
   const getLanguageName = (locale: string) => {
     const localeToLanguage: LocaleToLanguage = {
       en: 'English',

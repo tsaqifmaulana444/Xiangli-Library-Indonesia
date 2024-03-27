@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { PageProps } from '@/types'
 import { FormEvent } from 'react'
 import { Inertia } from '@inertiajs/inertia'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 export default function SignIn() {
   const appName = "Sign Up"
@@ -12,6 +13,7 @@ export default function SignIn() {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [address, setAddress] = useState('')
   const [birthDate, setBirthDate] = useState('')
+  const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
 
   const storeUser = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -43,13 +45,13 @@ export default function SignIn() {
             </div>
           </Link>
           <h1 className="text-2xl font-semibold text-center text-gray-500 mb-5">
-            Register Page
+            {t('sign_up1')}
           </h1>
           <form onSubmit={storeUser}>
             <div className="flex gap-2">
               <div className="mb-4">
                 <label htmlFor="name" className="block mb-2 text-sm text-gray-600">
-                  Name
+                  {t('sign_up2')}
                 </label>
                 <input
                   type="text"
@@ -63,7 +65,7 @@ export default function SignIn() {
               </div>
               <div className="mb-4">
                 <label htmlFor="email" className="block mb-2 text-sm text-gray-600">
-                  Email
+                  {t('sign_up3')}
                 </label>
                 <input
                   type="email"
@@ -79,7 +81,7 @@ export default function SignIn() {
             <div className="flex gap-2">
               <div className="mb-4">
                 <label htmlFor="phoneNumber" className="block mb-2 text-sm text-gray-600">
-                  Phone Number
+                  {t('sign_up4')}
                 </label>
                 <input
                   type="number"
@@ -93,7 +95,7 @@ export default function SignIn() {
               </div>
               <div className="mb-4">
                 <label htmlFor="birthDate" className="block mb-2 text-sm text-gray-600">
-                  Birth Date
+                  {t('sign_up5')}
                 </label>
                 <input
                   type="date"
@@ -109,7 +111,7 @@ export default function SignIn() {
             <div className="flex gap-2">
               <div className="mb-4">
                 <label htmlFor="address" className="block mb-2 text-sm text-gray-600">
-                  Address
+                  {t('sign_up6')}
                 </label>
                 <input
                   type="text"
@@ -126,7 +128,7 @@ export default function SignIn() {
                   htmlFor="password"
                   className="block mb-2 text-sm text-gray-600"
                 >
-                  Password
+                  {t('sign_up7')}
                 </label>
                 <input
                   type="password"
@@ -137,23 +139,21 @@ export default function SignIn() {
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   required
                 />
-                {/* <a href="#" className="block text-right text-xs text-cyan-600 mt-2">
-                  忘记密码?
-                </a> */}
+               
               </div>
             </div>
             <button
               type="submit"
               className="w-32 bg-gradient-to-r from-[#4E00D3] to-[#7A36F0] text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mt-4 mb-6"
             >
-              Sign Up
+              {t('nav_signup')}
             </button>
           </form>
           <div className="text-center">
             <p className="text-sm">
-              Already have account?{" "}
+              {t('sign_up8')}{" "}
               <a href="/sign-in" className="text-cyan-600">
-                Sign In
+              {t('nav_signin')}
               </a>
             </p>
           </div>

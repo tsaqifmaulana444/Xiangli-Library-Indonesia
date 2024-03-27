@@ -36,5 +36,19 @@
     "contact3": "CEO at Xiangli | Headmaster Of School",
     "contact4": "Join the library to explore numerous amazing books.",
     "contact5": "Read book now, it's worth it!",
-    "footer": "© 2024 Xiangli™. All Rights Reserved"
+    "footer": "© 2024 Xiangli™. All Rights Reserved",
+
+    "sign_in1": "Login To Continue",
+    "sign_in2": "Email",
+    "sign_in3": "Password",
+    "sign_in4": "Don't have an account?",
+
+    "sign_up1": "Register Page",
+    "sign_up2": "Name",
+    "sign_up3": "Email",
+    "sign_up4": "Phone Number",
+    "sign_up5": "Birth Date",
+    "sign_up6": "Address",
+    "sign_up7": "Password",
+    "sign_up8": "Already have account?"
 }
