@@ -3,10 +3,23 @@ import { PageProps } from '@/types'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
 import { useState } from 'react'
 
+
 export default function Index() {
+  type LocaleToLanguage = {
+    [key: string]: string;
+  }
+
   const appName = "Home"
   const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
   const [selectedLocale, setSelectedLocale] = useState(currentLocale())
+  const getLanguageName = (locale: string) => {
+    const localeToLanguage: LocaleToLanguage = {
+      en: 'English',
+      zh: '中文',
+    };
+  
+    return localeToLanguage[locale] || locale
+  }
 
   return (
     <>
@@ -28,12 +41,6 @@ export default function Index() {
                 {t('xiangli')}
               </span>
             </a>
-            <select value={currentLocale()} onChange={(event) => setLocale(event.currentTarget.value)}>
-              {getLocales().map(locale => (
-                <option key={locale} value={locale}>{locale}</option>
-              ))}
-            </select>
-
             <div className="flex items-center lg:order-2">
               <Link href="/sign-in" className="text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2  focus:outline-none">{t('nav_signin')}</Link>
               <Link href="/sign-up"
@@ -47,38 +54,45 @@ export default function Index() {
               id="mobile-menu-2"
             >
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-                <li>
+                <li className="flex items-center">
                   <a
                     href="#hero"
-                    className="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-purple-700 lg:p-0 "
+                    className="block  pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-purple-700 lg:p-0 "
                     aria-current="page"
                   >
                     {t('nav_home')}
                   </a>
                 </li>
-                <li>
+                <li className="flex items-center">
                   <a
                     href="#about-us"
-                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
+                    className="block  pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
                     {t('nav_about_us')}
                   </a>
                 </li>
-                <li>
+                <li className="flex items-center">
                   <a
                     href="#testimony"
-                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
+                    className="block  pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
                     {t('nav_testimony')}
                   </a>
                 </li>
-                <li>
+                <li className="flex items-center">
                   <a
                     href="#contact"
-                    className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
+                    className="block  pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
                     {t('nav_contact')}
                   </a>
+                </li>
+                <li>
+                  <select value={currentLocale()} onChange={(event) => setLocale(event.currentTarget.value)} className='border-transparent'>
+                    {getLocales().map(locale => (
+                      <option key={locale} value={locale}>{getLanguageName(locale)}</option>
+                    ))}
+                  </select>
                 </li>
               </ul>
             </div>
@@ -119,12 +133,10 @@ export default function Index() {
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
             <div className="text-gray-500 sm:text-lg">
               <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">
-                Why Xiangli Book Website?
+                {t('about_us1')}
               </h2>
               <p className="mb-8 font-light lg:text-xl">
-                We have a very large number of books with varying genres, allowing
-                customers to get a unique experience, we prioritize increasing
-                interest in educational book readers.
+                {t('about_us2')}
               </p>
               {/* List */}
               <ul
@@ -146,7 +158,7 @@ export default function Index() {
                     />
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 ">
-                    More than 10000+ unique books
+                    {t('about_us3')}
                   </span>
                 </li>
                 <li className="flex space-x-3">
@@ -164,7 +176,7 @@ export default function Index() {
                     />
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 ">
-                    Easy procedure
+                    {t('about_us4')}
                   </span>
                 </li>
                 <li className="flex space-x-3">
@@ -182,7 +194,7 @@ export default function Index() {
                     />
                   </svg>
                   <span className="text-base font-medium leading-tight text-gray-900 ">
-                    School point increasement
+                    {t('about_us5')}
                   </span>
                 </li>
               </ul>
@@ -202,14 +214,13 @@ export default function Index() {
         <div className="items-center max-w-screen-xl px-4 py-8 mx-auto lg:grid lg:grid-cols-4 lg:gap-16 xl:gap-24 lg:py-24 lg:px-6">
           <div className="col-span-2 mb-8">
             <p className="text-lg font-medium text-purple-600 ">
-              Trusted Widely
+            {t('testi1')}
             </p>
             <h2 className="mt-3 mb-4 text-3xl font-extrabold tracking-tight text-gray-900 md:text-3xl ">
-              Trusted by over 1 thousand students.
+            {t('testi2')}
             </h2>
             <p className="font-light text-gray-500 sm:text-xl">
-              Our strict procedure and availability standards are at the heart of
-              all we do. We work tirelessly to protect customers.
+            {t('testi3')}
             </p>
           </div>
           <div className="col-span-2 space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0">
@@ -227,10 +238,10 @@ export default function Index() {
                 />
               </svg>
               <h3 className="mb-2 text-2xl font-bold ">
-                99.99% uptime
+                {t('testi_group1')}
               </h3>
               <p className="font-light text-gray-500">
-                For Xiangli, with zero maintenance downtime
+                {t('testi_group2')}
               </p>
             </div>
             <div>
@@ -243,10 +254,10 @@ export default function Index() {
                 <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
               </svg>
               <h3 className="mb-2 text-2xl font-bold ">
-                10M+ Users
+                {t('testi_group3')}
               </h3>
               <p className="font-light text-gray-500">
-                Trusted by over 1 thousand students in the school
+                {t('testi_group4')}
               </p>
             </div>
             <div>
@@ -263,10 +274,10 @@ export default function Index() {
                 />
               </svg>
               <h3 className="mb-2 text-2xl font-bold ">
-                2 rooms
+                {t('testi_group5')}
               </h3>
               <p className="font-light text-gray-500">
-                Xiangli reading room accross the school.
+                {t('testi_group6')}
               </p>
             </div>
             <div>
@@ -279,10 +290,10 @@ export default function Index() {
                 <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
               </svg>
               <h3 className="mb-2 text-2xl font-bold ">
-                500+ Hundred
+                {t('testi_group7')}
               </h3>
               <p className="font-light text-gray-500">
-                Transactions per day
+                {t('testi_group8')}
               </p>
             </div>
           </div>
@@ -306,11 +317,7 @@ export default function Index() {
             </svg>
             <blockquote>
               <p className="text-xl font-medium text-gray-900 md:text-2xl ">
-                "Our library web application is a testament to innovation and
-                user-centric design. This project exemplifies our commitment to
-                excellence and reinforces our position as a leader in the school.
-                Congratulations to the entire team for delivering such an
-                outstanding product!"
+                {t('contact1')}
               </p>
             </blockquote>
             <figcaption className="flex items-center justify-center mt-6 space-x-3">
@@ -321,10 +328,10 @@ export default function Index() {
               />
               <div className="flex items-center divide-x-2 divide-gray-500 ">
                 <div className="pr-3 font-medium text-gray-900 ">
-                  Zhang Jianwei
+                  {t('contact2')}
                 </div>
                 <div className="pl-3 text-sm font-light text-gray-500">
-                  CEO at Xiangli | Headmaster Of School
+                  {t('contact3')}
                 </div>
               </div>
             </figcaption>
@@ -337,16 +344,16 @@ export default function Index() {
         <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
           <div className="max-w-screen-sm mx-auto text-center">
             <h2 className="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-gray-900 ">
-              Join the library to explore numerous amazing books.
+              {t('contact4')}
             </h2>
             <p className="mb-6 font-light text-gray-500 md:text-lg">
-              Read book now, it's worth it!
+              {t('contact5')}
             </p>
             <a
               href="#"
               className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
             >
-              Sign In
+              {t('nav_signin')}
             </a>
           </div>
         </div>
@@ -364,24 +371,10 @@ export default function Index() {
                 className="h-6 mr-3 sm:h-9"
                 alt="Landwind Logo"
               />
-              Xiangli
+              {t('xiangli')}
             </a>
             <span className="block text-sm text-center text-gray-500">
-              © 2024 Xiangli™. All Rights Reserved. Built with{" "}
-              <a
-                href="https://flowbite.com"
-                className="text-purple-600 hover:underline "
-              >
-                Flowbite
-              </a>{" "}
-              and{" "}
-              <a
-                href="https://tailwindcss.com"
-                className="text-purple-600 hover:underline "
-              >
-                Tailwind CSS
-              </a>
-              .
+              {t('footer')}
             </span>
             <ul className="flex justify-center mt-5 space-x-5">
               <li>
