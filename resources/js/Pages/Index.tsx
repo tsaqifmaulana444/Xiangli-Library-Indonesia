@@ -8,11 +8,6 @@ export default function Index() {
   const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
   const [selectedLocale, setSelectedLocale] = useState(currentLocale())
 
-  const handleLocaleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLocale = event.target.value
-    setSelectedLocale(newLocale)
-    setLocale(newLocale)
-  }
   return (
     <>
       <Head>
@@ -30,7 +25,7 @@ export default function Index() {
                 alt="Logo"
               />
               <span className="self-center text-xl font-semibold whitespace-nowrap ">
-                {t('He')}
+                {t('xiangli')}
               </span>
             </a>
             <select value={currentLocale()} onChange={(event) => setLocale(event.currentTarget.value)}>
@@ -40,11 +35,11 @@ export default function Index() {
             </select>
 
             <div className="flex items-center lg:order-2">
-              <Link href="/sign-in" className="text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2  focus:outline-none">Sign In</Link>
+              <Link href="/sign-in" className="text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2  focus:outline-none">{t('nav_signin')}</Link>
               <Link href="/sign-up"
                 className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 focus:outline-none"
               >
-                Sign Up
+                {t('nav_signup')}
               </Link>
             </div>
             <div
@@ -58,7 +53,7 @@ export default function Index() {
                     className="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-purple-700 lg:p-0 "
                     aria-current="page"
                   >
-                    Home
+                    {t('nav_home')}
                   </a>
                 </li>
                 <li>
@@ -66,7 +61,7 @@ export default function Index() {
                     href="#about-us"
                     className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
-                    About Us
+                    {t('nav_about_us')}
                   </a>
                 </li>
                 <li>
@@ -74,7 +69,7 @@ export default function Index() {
                     href="#testimony"
                     className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
-                    What People Said
+                    {t('nav_testimony')}
                   </a>
                 </li>
                 <li>
@@ -82,7 +77,7 @@ export default function Index() {
                     href="#contact"
                     className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0"
                   >
-                    Contact
+                    {t('nav_contact')}
                   </a>
                 </li>
               </ul>
@@ -94,23 +89,21 @@ export default function Index() {
       <section className="bg-white h-[100vh]" id='hero'>
         <div className="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
           <div className="mr-auto place-self-center lg:col-span-7">
-            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl ">
-              Number 1 <br />
-              Literacy Solution
+            <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-wide md:text-5xl xl:text-6xl ">
+              {t('hero1')} <br />
+              {t('hero2')}
               <br />
-              For You
+              {t('hero3')}
             </h1>
             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
-              Introducing to our website Xiangli, biggest literacy web solution in
-              the school. Our site provides many free and paid book with various
-              genre, borrow book at our site for better literacy ability!
+              {t('hero4')}
             </p>
             <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
               <a
                 href=""
                 className="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center text-gray-900 border border-gray-200 rounded-lg sm:w-auto hover:bg-gray-100 focus:ring-4 focus:ring-gray-100  "
               >
-                Join us
+                {t('hero5')}
               </a>
             </div>
           </div>

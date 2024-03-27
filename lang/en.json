@@ -1,3 +1,15 @@
 {
-    "He" : "Hello"
+    "xiangli": "Xiangli",
+    "nav_home" : "Home",
+    "nav_about_us" : "About Us",
+    "nav_testimony" : "What People Said",
+    "nav_contact" : "Contact",
+    "nav_signin" : "Sign In",
+    "nav_signup" : "Sign Up",
+
+    "hero1" : "Number 1",
+    "hero2" : "Literacy Solution",
+    "hero3" : "For You",
+    "hero4" : "Introducing to our website Xiangli, biggest literacy web solution in the school. Our site provides many free and paid book with various genre, borrow book at our site for better literacy ability!",
+    "hero5" : "Join Us"
 }
