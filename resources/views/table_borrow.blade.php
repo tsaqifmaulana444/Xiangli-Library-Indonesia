@@ -37,9 +37,9 @@
       @foreach ($borrows as $borrow)
         <tr>
           <td>{{ $no++ }}</td>
-          <td>{{$borrow->user_id}}</td>
-          <td>{{$borrow->book_id}}</td>
-          <td>{{$borrow->quantity}}</td>
+          <td>{{$borrow->user->name}}</td>
+          <td>{{$borrow->book->name}}</td>
+          <td>{{$borrow->amount}}</td>
           <td>{{$borrow->borrow_in}}</td>
           <td>{{$borrow->borrow_out}}</td>
           <td>{{$borrow->status}}</td>

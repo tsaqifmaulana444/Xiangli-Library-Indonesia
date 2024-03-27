@@ -211,6 +211,16 @@ class SuperAdminController extends Controller
     public function borrow_excel()
     {
         $borrows = BookUser::latest()->get();
+        foreach ($borrows as $key => $value) {
+            $names = User::find($value->user_id);
+            $borrows[$key]->user = $names;
+        }
+
+        foreach ($borrows as $key => $value) {
+            $names = Book::find($value->book_id);
+            $borrows[$key]->book = $names;
+        }
+        
         return view('table_borrow', compact('borrows'));
     }
 }
