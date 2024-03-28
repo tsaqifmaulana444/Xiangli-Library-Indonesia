@@ -3,6 +3,7 @@ import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import { Chart } from "react-google-charts"
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 interface DashboardProps {
   members: number
@@ -14,6 +15,7 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ members, actives, books, categories, book_id, amount }: DashboardProps) {
+  const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
   const appName = "Dashboard"
   const data = [
     [
@@ -50,25 +52,25 @@ export default function Dashboard({ members, actives, books, categories, book_id
             <Navbar />
             <section className="flex justify-between mt-12">
               <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Total Users</p>
+                <p className='text-[14px]'>{t('admin1')}</p>
                 <h3 className='mt-2 text-[25px] font-bold'>{members}</h3>
               </div>
               <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Total Books</p>
+                <p className='text-[14px]'>{t('admin2')}</p>
                 <h3 className='mt-2 text-[25px] font-bold'>{books}</h3>
               </div>
               <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Active Borrowed Books</p>
+                <p className='text-[14px]'>{t('admin3')}</p>
                 <h3 className='mt-2 text-[25px] font-bold'>{actives}</h3>
               </div>
               <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
-                <p className='text-[14px]'>Total Categories</p>
+                <p className='text-[14px]'>{t('admin4')}</p>
                 <h3 className='mt-2 text-[25px] font-bold'>{categories}</h3>
               </div>
             </section>
             <section className="flex justify-between mt-6">
               <div className="shadow-md rounded-md w-[48.6%] py-2 px-5">
-                <p className='text-[14px]'>Top Borrowed Book</p>
+                <p className='text-[14px]'>{t('admin5')}</p>
                 <Chart
                   chartType="BarChart"
                   width="100%"
@@ -78,14 +80,14 @@ export default function Dashboard({ members, actives, books, categories, book_id
                 />
               </div>
               <div className="shadow-md rounded-md w-[48.6%] h-[200px] py-2 px-5">
-                <p className='text-[14px]'>Report In Xlsx</p>
+                <p className='text-[14px]'>{t('admin6')}</p>
                 <div className="flex justify-between mt-8">
-                  <p className="font-bold">Book Report</p>
-                  <a href="/super-admin/book_export" className='hover:underline'>Download</a>
+                  <p className="font-bold">{t('admin7')}</p>
+                  <a href="/super-admin/book_export" className='hover:underline'>{t('admin9')}</a>
                 </div>
                 <div className="flex justify-between mt-5">
-                  <p className="font-bold">Borrowing Report</p>
-                  <a href="/super-admin/borrow_export" className='hover:underline'>Download</a>
+                  <p className="font-bold">{t('admin8')}</p>
+                  <a href="/super-admin/borrow_export" className='hover:underline'>{t('admin9')}</a>
                 </div>
               </div>
             </section>

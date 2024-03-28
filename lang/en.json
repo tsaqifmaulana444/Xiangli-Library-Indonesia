@@ -162,5 +162,17 @@
     "admin62": "Add Category",
     "admin63": "Create New Category",
     "admin64": "Name",
-    "admin65": "Category name"
+    "admin65": "Category name",
+
+    "super_admin1": "Admins",
+    "super_admin2": "Name",
+    "super_admin3": "Email",
+    "super_admin4": "Phone Number",
+    "super_admin5": "Action",
+    "super_admin6": "Add Admin",
+    "super_admin7": "Delete",
+    "super_admin8": "Create New Admin",
+    "super_admin9": "Close",
+    "super_admin10": "Submit",
+    "super_admin11": "Password"
 }

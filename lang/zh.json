@@ -162,5 +162,17 @@
     "admin62": "添加分类",
     "admin63": "创建新类别",
     "admin64": "名称",
-    "admin65": "类别名称"
+    "admin65": "类别名称",
+
+    "super_admin1": "管理员",
+    "super_admin2": "名称",
+    "super_admin3": "电子邮件",
+    "super_admin4": "电话号码",
+    "super_admin5": "操作",
+    "super_admin6": "添加管理员",
+    "super_admin7": "删除",
+    "super_admin8": "创建新管理员",
+    "super_admin9": "关闭",
+    "super_admin10": "提交",
+    "super_admin11": "密码"
 }

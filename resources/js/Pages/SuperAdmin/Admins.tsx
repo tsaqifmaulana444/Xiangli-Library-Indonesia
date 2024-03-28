@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import { Inertia } from '@inertiajs/inertia'
 import { useState } from 'react'
 import CreateAdminModal from './modals/CreateAdminModal'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 interface Admins {
   id?: string
@@ -16,6 +17,7 @@ interface Admins {
 export default function Admins({ admins }: PageProps<{ admins: Admins[] }>) {
   const appName = "Admins"
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false)
+  const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
 
   const switchAdminModal = () => {
     setIsAdminModalOpen(!isAdminModalOpen)
@@ -38,8 +40,8 @@ export default function Admins({ admins }: PageProps<{ admins: Admins[] }>) {
             <Navbar />
             <section className="">
               <div className="flex justify-between">
-                <h1 className='mt-4 mb-8 font-bold text-[22px]'>Book Panel</h1>
-                <button type="button" onClick={switchAdminModal} className="h-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 mt-4 mb-8">Add Admin</button>
+                <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t('super_admin1')}</h1>
+                <button type="button" onClick={switchAdminModal} className="h-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 mt-4 mb-8">{t('super_admin6')}</button>
               </div>
               <div className="relative overflow-x-auto">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -49,16 +51,16 @@ export default function Admins({ admins }: PageProps<{ admins: Admins[] }>) {
                         #
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Name
+                        {t('super_admin2')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Email
+                        {t('super_admin3')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Phone Number
+                        {t('super_admin4')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Action
+                        {t('super_admin5')}
                       </th>
                     </tr>
                   </thead>
@@ -70,7 +72,7 @@ export default function Admins({ admins }: PageProps<{ admins: Admins[] }>) {
                         <td className="px-6 py-4 text-center">{admin.email}</td>
                         <td className="px-6 py-4 text-center">{admin.phone_number}</td>
                         <td className="px-6 py-4 text-center">
-                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteAdmin(admin.id)}>Delete</button>
+                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteAdmin(admin.id)}>{t('super_admin7')}</button>
                         </td>
                       </tr>
                     ))}
