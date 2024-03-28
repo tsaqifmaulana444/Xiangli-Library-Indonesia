@@ -6,6 +6,7 @@ import CreateBookModal from './modals/CreateBookModal'
 import { useState } from 'react'
 import { Inertia } from '@inertiajs/inertia'
 import EditBookModal from './modals/EditBookModal'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 interface Category {
   id?: string
@@ -29,6 +30,7 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [selectedBook, setSelectedBook] = useState<Book | null>(null)
   let [currentCount, setCurrentCount] = useState(1)
+  const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
 
   const switchBookModal = () => {
     setIsBookModalOpen(!isBookModalOpen)
@@ -62,8 +64,8 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
             <Navbar />
             <section className="">
               <div className="flex justify-between">
-                <h1 className='mt-4 mb-8 font-bold text-[22px]'>Book Panel</h1>
-                <button type="button" onClick={switchBookModal} className="h-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 mt-4 mb-8">Add Book</button>
+                <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t('admin32')}</h1>
+                <button type="button" onClick={switchBookModal} className="h-10 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 mt-4 mb-8">{t('admin41')}</button>
               </div>
               <div className="relative overflow-x-auto">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -73,28 +75,28 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
                         #
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Title
+                        {t('admin33')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Date Published
+                        {t('admin34')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Author
+                        {t('admin35')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Stock
+                        {t('admin36')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Description
+                        {t('admin37')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Image
+                        {t('admin38')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Categories
+                        {t('admin39')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Action
+                        {t('admin40')}
                       </th>
                     </tr>
                   </thead>
@@ -116,8 +118,8 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
                           ))}
                         </td>
                         <td className="px-6 py-4 text-center">
-                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBook(book.id)}>Delete</button>
-                          <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 " onClick={() => openEditModal(book)}>Edit</button>
+                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBook(book.id)}>{t('admin42')}</button>
+                          <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 " onClick={() => openEditModal(book)}>{t('admin43')}</button>
                         </td>
                       </tr>
                     ))}

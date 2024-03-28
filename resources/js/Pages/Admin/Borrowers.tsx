@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import { Inertia } from '@inertiajs/inertia'
 import { FormEvent } from 'react'
+import { useLaravelReactI18n } from 'laravel-react-i18n'
 
 interface Borrow {
   book: any
@@ -20,6 +21,7 @@ interface Borrow {
 
 export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>) {
   const appName = "List Of Borrowers"
+  const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
 
   const approveBorrow = async (id: string | undefined) => {
     Inertia.put(`/admin/borrowers/${id}`, {
@@ -54,7 +56,7 @@ export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>)
           <div className="w-[92%] mx-auto">
             <Navbar />
             <section className="">
-              <h1 className='mt-4 mb-8 font-bold text-[22px]'>Borrowers</h1>
+              <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t('admin10')}</h1>
               <div className="relative overflow-x-auto">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50">
@@ -63,28 +65,28 @@ export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>)
                         #
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Borrower
+                        {t('admin11')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Book Name
+                        {t('admin12')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Quantity
+                        {t('admin13')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Borrow Date
+                        {t('admin14')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Return Date
+                        {t('admin15')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Status
+                        {t('admin16')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                        Book Quality
+                        {t('admin17')}
                       </th>
                       <th scope="col" className="px-6 py-3 text-center">
-                      {borrows[0].status === 'Done' ? (<p>Check Book</p>) : <p>Action</p>}
+                      {borrows[0].status === 'Done' ? (<p>{t('admin18')}</p>) : <p>{t('admin21')}</p>}
                       </th>
                     </tr>
                   </thead>
@@ -102,14 +104,14 @@ export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>)
                         <td className="px-6 py-4 text-center">
                           {borrow.status === 'Waiting' ? (
                             <>
-                              <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBorrower(borrow.id)}>Reject</button>
-                              <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => approveBorrow(borrow.id)}>Approve</button>
+                              <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBorrower(borrow.id)}>{t('admin19')}</button>
+                              <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => approveBorrow(borrow.id)}>{t('admin20')}</button>
                             </>
                           ) : <p></p>}
                           {borrow.status === 'Done' && borrow.book_quality === '-' ? (
                             <>
-                              <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => bookOkay(borrow.id)}>Book Okay</button>
-                              <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => bookBroken(borrow.id)}>Book Broken</button>
+                              <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => bookOkay(borrow.id)}>{t('admin22')}</button>
+                              <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => bookBroken(borrow.id)}>{t('admin23')}</button>
                             </>
                           ) : <p></p>}
                         </td>
