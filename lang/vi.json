@@ -174,5 +174,6 @@
     "super_admin8": "Tạo Quản Trị Viên Mới",
     "super_admin9": "Đóng",
     "super_admin10": "Gửi",
-    "super_admin11": "Mật Khẩu"
+    "super_admin11": "Mật Khẩu",
+    "empty_table": "Dữ liệu vẫn trống"
 }

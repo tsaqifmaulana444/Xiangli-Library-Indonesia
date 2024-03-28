@@ -35,35 +35,44 @@ export default function Dashboard({ books }: PageProps<{ books: Book[] }>) {
 
   return (
     <>
-       {isBorrowModalOpen && selectedBook && <BorrowBookModal closeModal={closeBorrowModal} book={selectedBook} />}
+      {isBorrowModalOpen && selectedBook && <BorrowBookModal closeModal={closeBorrowModal} book={selectedBook} />}
       <Head>
         <title>{appName}</title>
       </Head>
       <div className='flex'>
-       <Sidebar />
+        <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
             <Navbar />
             <section className="">
               <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t('user_book')}</h1>
-              <div className="grid grid-cols-3 gap-4">
-                {books.map((book) => (
-                  <div onClick={() => openBorrowModal(book)}>
-                    <div className="shadow-md rounded-md w-[95%] p-5" key={book.id}>
-                      <a href=""></a>
-                      <img src={`/storage/book/${book.image.substring(book.image.lastIndexOf('/'))}`} alt="" className='w-full h-[160px] rounded-sm' />
-                      <h3 className='text-[18px] font-bold mt-2'>{book.name}</h3>
-                      <p className='text-[11px] my-1'>{book.date}</p>
-                      <p className='text-[13px] mb-2'>{`${book.description.substring(0, 120)}...`}</p>
-                      <>
-                        {book.categories.map((category, index) => (
-                          <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{typeof category === 'string' ? category : category.name}</span>
-                        ))}
-                      </>
+              {books.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="px-6 py-4 text-center">
+                    <h1 className='text-[60px] mt-12'>:)</h1>
+                    <p className='text-[28px] mt-12'>{t('empty_table')}</p>
+                  </td>
+                </tr>
+              ) : (
+                <div className="grid grid-cols-3 gap-4">
+                  {books.map((book) => (
+                    <div onClick={() => openBorrowModal(book)}>
+                      <div className="shadow-md rounded-md w-[95%] p-5" key={book.id}>
+                        <a href=""></a>
+                        <img src={`/storage/book/${book.image.substring(book.image.lastIndexOf('/'))}`} alt="" className='w-full h-[160px] rounded-sm' />
+                        <h3 className='text-[18px] font-bold mt-2'>{book.name}</h3>
+                        <p className='text-[11px] my-1'>{book.date}</p>
+                        <p className='text-[13px] mb-2'>{`${book.description.substring(0, 120)}...`}</p>
+                        <>
+                          {book.categories.map((category, index) => (
+                            <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{typeof category === 'string' ? category : category.name}</span>
+                          ))}
+                        </>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </section>
           </div>
         </main>

@@ -174,5 +174,6 @@
     "super_admin8": "创建新管理员",
     "super_admin9": "关闭",
     "super_admin10": "提交",
-    "super_admin11": "密码"
+    "super_admin11": "密码",
+    "empty_table": "数据仍为空"
 }

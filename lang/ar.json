@@ -174,5 +174,6 @@
     "super_admin8": "إنشاء مشرف جديد",
     "super_admin9": "إغلاق",
     "super_admin10": "إرسال",
-    "super_admin11": "كلمة المرور"
+    "super_admin11": "كلمة المرور",
+    "empty_table": "البيانات لا تزال فارغة"
 }

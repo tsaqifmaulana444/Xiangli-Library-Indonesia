@@ -174,5 +174,6 @@
     "super_admin8": "Create New Admin",
     "super_admin9": "Close",
     "super_admin10": "Submit",
-    "super_admin11": "Password"
+    "super_admin11": "Password",
+    "empty_table": "Data still empty"
 }

@@ -174,5 +174,6 @@
     "super_admin8": "새로운 관리자 만들기",
     "super_admin9": "닫기",
     "super_admin10": "제출",
-    "super_admin11": "비밀번호"
+    "super_admin11": "비밀번호",
+    "empty_table": "데이터가 아직 비어 있음"
 }
