@@ -15,6 +15,16 @@ export default function Index() {
     const localeToLanguage: LocaleToLanguage = {
       en: 'English(UK)',
       zh: '中文(简体)',
+      in: 'हिन्दी',
+      ar: 'عربي',
+      th: 'ภาษาไทย',
+      vi: 'Tiếng Việt',
+      ko: '한국어(북한)',
+      ru: 'Pyccкий',
+      jw: 'Basa Jawa',
+      ur: 'اردو',
+      my: 'မြန်မာ',
+      ph: 'Tagalog',
     };
   
     return localeToLanguage[locale] || locale

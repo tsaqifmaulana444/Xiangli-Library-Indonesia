@@ -10,6 +10,13 @@ export default function Navbar() {
     const localeToLanguage: LocaleToLanguage = {
       en: 'English(UK)',
       zh: '中文(简体)',
+      in: 'हिन्दी',
+      ar: 'عربي',
+      th: 'ภาษาไทย',
+      vi: 'Tiếng Việt',
+      ko: '한국어(북한)',
+      ru: 'Pyccкий',
+      jw: 'Basa Jawa',
     }
 
     return localeToLanguage[locale] || locale
