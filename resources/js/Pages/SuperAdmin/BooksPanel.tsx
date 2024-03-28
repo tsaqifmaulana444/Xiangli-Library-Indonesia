@@ -100,30 +100,39 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {books.map((book, index) => (
-                      <tr key={book.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                        <td className="px-6 py-4 font-medium t  ext-gray-900 whitespace-nowrap">{index + 1}</td>
-                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{book.name}</td>
-                        <td className="px-6 py-4 text-center">{book.date}</td>
-                        <td className="px-6 py-4 text-center">{book.author}</td>
-                        <td className="px-6 py-4 text-center">{book.stock}</td>
-                        <td className="px-6 py-4 text-center">{`${book.description.substring(0, 100)}...`}</td>
-                        <td className="px-6 py-4 text-center">
-                          <img src={`/storage/book/${book.image.substring(book.image.lastIndexOf('/'))}`} alt="image" className='w-[70px]' />
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                          {book.categories.map((category, index) => (
-                            <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{typeof category === 'string' ? category : category.name}</span>
-                          ))}
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBook(book.id)}>{t('admin42')}</button>
-                          <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 " onClick={() => openEditModal(book)}>{t('admin43')}</button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
+                  {books.length === 0 ? (
+                    <tr>
+                      <td colSpan={8} className="px-6 py-4 text-center">
+                        <h1 className='text-[60px] mt-12'>:)</h1>
+                        <p className='text-[28px] mt-12'>{t('empty_table')}</p>
+                      </td>
+                    </tr>
+                  ) : (
+                    <tbody>
+                      {books.map((book, index) => (
+                        <tr key={book.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                          <td className="px-6 py-4 font-medium t  ext-gray-900 whitespace-nowrap">{index + 1}</td>
+                          <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{book.name}</td>
+                          <td className="px-6 py-4 text-center">{book.date}</td>
+                          <td className="px-6 py-4 text-center">{book.author}</td>
+                          <td className="px-6 py-4 text-center">{book.stock}</td>
+                          <td className="px-6 py-4 text-center">{`${book.description.substring(0, 100)}...`}</td>
+                          <td className="px-6 py-4 text-center">
+                            <img src={`/storage/book/${book.image.substring(book.image.lastIndexOf('/'))}`} alt="image" className='w-[70px]' />
+                          </td>
+                          <td className="px-6 py-4 text-center">
+                            {book.categories.map((category, index) => (
+                              <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{typeof category === 'string' ? category : category.name}</span>
+                            ))}
+                          </td>
+                          <td className="px-6 py-4 text-center">
+                            <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteBook(book.id)}>{t('admin42')}</button>
+                            <button type="button" className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 " onClick={() => openEditModal(book)}>{t('admin43')}</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  )}
                 </table>
               </div>
 

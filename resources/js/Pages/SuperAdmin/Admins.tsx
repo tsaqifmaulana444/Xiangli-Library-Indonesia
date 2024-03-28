@@ -64,22 +64,30 @@ export default function Admins({ admins }: PageProps<{ admins: Admins[] }>) {
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
-                  {admins.map((admin, index) => (
-                      <tr key={admin.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{index + 1}</td>
-                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{admin.name}</td>
-                        <td className="px-6 py-4 text-center">{admin.email}</td>
-                        <td className="px-6 py-4 text-center">{admin.phone_number}</td>
-                        <td className="px-6 py-4 text-center">
-                          <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteAdmin(admin.id)}>{t('super_admin7')}</button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
+                  {admins.length === 0 ? (
+                    <tr>
+                      <td colSpan={8} className="px-6 py-4 text-center">
+                        <h1 className='text-[60px] mt-12'>:)</h1>
+                        <p className='text-[28px] mt-12'>{t('empty_table')}</p>
+                      </td>
+                    </tr>
+                  ) : (
+                    <tbody>
+                      {admins.map((admin, index) => (
+                        <tr key={admin.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                          <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{index + 1}</td>
+                          <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center">{admin.name}</td>
+                          <td className="px-6 py-4 text-center">{admin.email}</td>
+                          <td className="px-6 py-4 text-center">{admin.phone_number}</td>
+                          <td className="px-6 py-4 text-center">
+                            <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => deleteAdmin(admin.id)}>{t('super_admin7')}</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  )}
                 </table>
               </div>
-
             </section>
           </div>
         </main>
