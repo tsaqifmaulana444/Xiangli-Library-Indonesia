@@ -17,6 +17,9 @@ export default function Navbar() {
       ko: '한국어(북한)',
       ru: 'Pyccкий',
       jw: 'Basa Jawa',
+      ur: 'اردو',
+      my: 'မြန်မာ',
+      ph: 'Tagalog',
     }
 
     return localeToLanguage[locale] || locale

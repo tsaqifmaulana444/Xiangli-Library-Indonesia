@@ -25,7 +25,7 @@ export default function Index() {
       ur: 'اردو',
       my: 'မြန်မာ',
       ph: 'Tagalog',
-    };
+    }
   
     return localeToLanguage[locale] || locale
   }
