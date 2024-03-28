@@ -9,7 +9,7 @@ export default function Navbar() {
   const getLanguageName = (locale: string) => {
     const localeToLanguage: LocaleToLanguage = {
       en: 'English(UK)',
-      zh: '中文',
+      zh: '中文(简体)',
     }
 
     return localeToLanguage[locale] || locale
