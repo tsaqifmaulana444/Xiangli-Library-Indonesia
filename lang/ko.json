@@ -175,5 +175,6 @@
     "super_admin9": "닫기",
     "super_admin10": "제출",
     "super_admin11": "비밀번호",
-    "empty_table": "데이터가 아직 비어 있음"
+    "empty_table": "데이터가 아직 비어 있음",
+    "empty_cat": "카테고리가 비어 있습니다. 카테고리 필드를 먼저 작성하세요!"
 }

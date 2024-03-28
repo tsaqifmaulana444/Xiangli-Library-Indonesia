@@ -175,5 +175,6 @@
     "super_admin9": "Tutup",
     "super_admin10": "Kirim",
     "super_admin11": "Sandi",
-    "empty_table": "Datane Kosong"
+    "empty_table": "Datane Kosong",
+    "empty_cat": "Kategori Kosong, Monggo Diisi Kategorine!"
 }

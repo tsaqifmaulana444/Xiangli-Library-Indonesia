@@ -67,12 +67,12 @@ export default function BookModal({ closeModal, categories }: modalProps) {
                         <h1 className='font-bold text-[20px]'>{t('admin56')}</h1>
                         {categories.length === 0 ? (
                             <div className='mt-4'>
-                                <p>Categories Empty, Please Fill The Category Field First!</p>
-                                <a href="/super-admin/categories">
+                                <p>{t('empty_cat')}</p>
+                                <Link href="/super-admin/categories">
                                     <button className="mt-2 ml-1 text-gray-900 bg-white border border-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
                                         {t('admin39')}
                                     </button>
-                                </a>
+                                </Link>
                             </div>
                         ) : (
                             <form className="mx-auto mt-5" onSubmit={storeBook}>

@@ -85,9 +85,13 @@ export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>)
                       <th scope="col" className="px-6 py-3 text-center">
                         {t('admin17')}
                       </th>
-                      <th scope="col" className="px-6 py-3 text-center">
-                        {borrows[0].status === 'Done' ? (<p>{t('admin18')}</p>) : <p>{t('admin21')}</p>}
-                      </th>
+                      {borrows.length === 0 ? (
+                        <></>
+                      ) : (
+                        <th scope="col" className="px-6 py-3 text-center">
+                          {borrows[0].status === 'Done' ? (<p>{t('admin18')}</p>) : <p>{t('admin21')}</p>}
+                        </th>
+                      )}
                     </tr>
                   </thead>
                   {borrows.length === 0 ? (

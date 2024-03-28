@@ -175,5 +175,6 @@
     "super_admin9": "Isara",
     "super_admin10": "Ipasa",
     "super_admin11": "Password",
-    "empty_table": "Walang laman ang data"
+    "empty_table": "Walang laman ang data",
+    "empty_cat": "Walang laman ang mga Kategorya, Paki Punan Una ang Field ng Kategorya!"
 }

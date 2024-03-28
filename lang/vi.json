@@ -175,5 +175,6 @@
     "super_admin9": "Đóng",
     "super_admin10": "Gửi",
     "super_admin11": "Mật Khẩu",
-    "empty_table": "Dữ liệu vẫn trống"
+    "empty_table": "Dữ liệu vẫn trống",
+    "empty_cat": "Danh mục trống, vui lòng điền vào trường danh mục trước!"
 }
