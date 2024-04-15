@@ -10,6 +10,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -20,7 +21,9 @@ class UsersController extends Controller
         $categories = Category::count();    
         $recommended = Book::all()->random(1);
         $recommended2 = Book::all()->random(1);
-        
+        // $results = DB::select('SELECT * FROM GetActiveUsers()');
+        // dd($results);
+
         return Inertia::render('Users/User', [
             'books' => $books,
             'actives' => $actives,

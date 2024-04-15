@@ -38,7 +38,7 @@ export default function Navbar() {
           <img src="/images/pp.png" alt="" className='rounded-full w-[50px] ml-4' />
           <div className="ml-3">
             <p className="font-bold text-[16px]">张建伟</p>
-            <p className="text-[16px]">zhangjianwei@gmail.com</p>
+            <p className="text-[16px]">zhangjianwei@test.com</p>
           </div>
         </div>
       </nav>

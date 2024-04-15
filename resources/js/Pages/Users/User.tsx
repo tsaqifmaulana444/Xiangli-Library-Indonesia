@@ -51,7 +51,7 @@ export default function Dashboard({ actives, books, categories, recommended, rec
               </div>
             </section>
             <section className="flex justify-evenly mt-6">
-              <div className="shadow-md rounded-md w-[43%] py-2 px-5">
+              <div className="shadow-md rounded-md w-[41%] py-2 px-5">
                 <p className='text-[14px]'>{t('user_dashboard4')}</p>
                 {recommended2.map((recommend, index) => (
                   <Link href="/list-book">
@@ -64,7 +64,7 @@ export default function Dashboard({ actives, books, categories, recommended, rec
                   </Link>
                 ))}
               </div>
-              <div className="shadow-md rounded-md w-[43%] py-2 px-5">
+              <div className="shadow-md rounded-md w-[41%] py-2 px-5">
                 <p className='text-[14px]'>{t('user_dashboard5')}</p>
                 {recommended.map((recommend, index) => (
                   <Link href="/list-book">
