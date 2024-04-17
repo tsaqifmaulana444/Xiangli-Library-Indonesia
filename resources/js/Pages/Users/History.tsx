@@ -45,8 +45,8 @@ export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
   const doneBorrow = async (id: string | undefined) => {
     Inertia.put(`/done-borrow-book/${id}`, {
       status: "Done",
-      toast.success('Success!')
     })
+    toast.success('Success!')
   }
 
   const payFine = async (id: string | undefined) => {
