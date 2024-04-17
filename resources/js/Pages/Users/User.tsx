@@ -32,7 +32,7 @@ export default function Dashboard({ actives, books, categories, recommended, rec
         <title>{appName}</title>
       </Head>
       <div className='flex'>
-       <Sidebar />
+        <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
             <Navbar />
@@ -53,29 +53,45 @@ export default function Dashboard({ actives, books, categories, recommended, rec
             <section className="flex justify-evenly mt-6">
               <div className="shadow-md rounded-md w-[41%] py-2 px-5">
                 <p className='text-[14px]'>{t('user_dashboard4')}</p>
-                {recommended2.map((recommend, index) => (
-                  <Link href="/list-book">
-                    <div key={index} className='mt-2'>
-                      <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[210px]' />
-                      <p className='font-bold text-lg mt-2'>{recommend.name}</p>
-                      <p className='opacity-70 text-xs'>{recommend.author}</p>
-                      <p>{`${recommend.description.substring(0, 100)}...`}</p>
-                    </div> 
-                  </Link>
-                ))}
+                {recommended2.length === 0 ? (
+                  <tr>
+                    <td colSpan={8} className="px-6 py-4 text-center">
+                      <h1 className='text-[60px] mt-12'>:)</h1>
+                      <p className='text-[28px] mt-12'>{t('empty_table')}</p>
+                    </td>
+                  </tr>
+                ) : (
+                  recommended2.map((recommend, index) => (
+                    <Link href="/list-book">
+                      <div key={index} className='mt-2'>
+                        <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[210px]' />
+                        <p className='font-bold text-lg mt-2'>{recommend.name}</p>
+                        <p className='opacity-70 text-xs'>{recommend.author}</p>
+                        <p>{`${recommend.description.substring(0, 100)}...`}</p>
+                      </div>
+                    </Link>
+                  )))}
               </div>
               <div className="shadow-md rounded-md w-[41%] py-2 px-5">
                 <p className='text-[14px]'>{t('user_dashboard5')}</p>
-                {recommended.map((recommend, index) => (
-                  <Link href="/list-book">
-                    <div key={index} className='mt-2'>
-                      <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[210px]' />
-                      <p className='font-bold text-lg mt-2'>{recommend.name}</p>
-                      <p className='opacity-70 text-xs'>{recommend.author}</p>
-                      <p>{`${recommend.description.substring(0, 120)}...`}</p>
-                    </div> 
-                  </Link>
-                ))}
+                {recommended2.length === 0 ? (
+                  <tr>
+                    <td colSpan={8} className="px-6 py-4 text-center">
+                      <h1 className='text-[60px] mt-12'>:)</h1>
+                      <p className='text-[28px] mt-12'>{t('empty_table')}</p>
+                    </td>
+                  </tr>
+                ) : (
+                  recommended.map((recommend, index) => (
+                    <Link href="/list-book">
+                      <div key={index} className='mt-2'>
+                        <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[210px]' />
+                        <p className='font-bold text-lg mt-2'>{recommend.name}</p>
+                        <p className='opacity-70 text-xs'>{recommend.author}</p>
+                        <p>{`${recommend.description.substring(0, 120)}...`}</p>
+                      </div>
+                    </Link>
+                  )))}
               </div>
             </section>
           </div>

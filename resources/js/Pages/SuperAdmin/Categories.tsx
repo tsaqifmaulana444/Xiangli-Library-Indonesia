@@ -6,6 +6,7 @@ import CategoryModal from './modals/CategoryModal'
 import { useState } from 'react'
 import { Inertia } from '@inertiajs/inertia'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
+import toast, { Toaster } from 'react-hot-toast'
 
 interface Category {
   id?: string
@@ -23,16 +24,21 @@ export default function Categories({ categories }: PageProps<{ categories: Categ
   }
 
   const deleteCategory = async (id: string | undefined) => {
-    Inertia.delete(`/super-admin/categories/${id}`);
+    Inertia.delete(`/super-admin/categories/${id}`)
+    toast.success('Data Successfully Deleted!')
   }
 
   return (
     <>
-      {isCategoryModalOpen && <CategoryModal closeModal={switchCategoryModal}/>}
+      {isCategoryModalOpen && <CategoryModal closeModal={switchCategoryModal} />}
       <Head>
         <title>{appName}</title>
       </Head>
       <div className='flex'>
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">

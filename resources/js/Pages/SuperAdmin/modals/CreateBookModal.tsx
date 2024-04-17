@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Inertia } from '@inertiajs/inertia'
 import { FormEvent } from 'react'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
+import toast, { Toaster } from 'react-hot-toast'
 
 interface Category {
     id?: string
@@ -57,10 +58,15 @@ export default function BookModal({ closeModal, categories }: modalProps) {
         })
 
         Inertia.post('/super-admin/books-panel', formData)
+        toast.success('Data Successfully Created!')
     }
 
     return (
         <>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <div className='fixed w-[100%] h-[100vh] bg-[#1414147c] z-[99] flex justify-center items-center'>
                 <div className='bg-white w-[50%] rounded-lg z-[999] px-6 flex items-center'>
                     <div className="w-full py-7 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 100px)' }}>

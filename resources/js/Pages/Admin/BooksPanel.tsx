@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { Inertia } from '@inertiajs/inertia'
 import EditBookModal from './modals/EditBookModal'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
+import toast, { Toaster } from 'react-hot-toast'
 
 interface Category {
   id?: string
@@ -48,6 +49,7 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
 
   const deleteBook = async (id: string | undefined) => {
     Inertia.delete(`/admin/books-panel/${id}`)
+    toast.success('Data Successfully Deleted!')
   }
 
   return (
@@ -58,6 +60,10 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
         <title>{appName}</title>
       </Head>
       <div className='flex'>
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">

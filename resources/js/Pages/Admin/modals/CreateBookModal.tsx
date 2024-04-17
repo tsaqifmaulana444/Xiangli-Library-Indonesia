@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Inertia } from '@inertiajs/inertia'
 import { FormEvent } from 'react'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
+import toast, { Toaster } from 'react-hot-toast'
 
 interface Category {
     id?: string
@@ -27,23 +28,23 @@ export default function BookModal({ closeModal, categories }: modalProps) {
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-          setImage(e.target.files[0])
+            setImage(e.target.files[0])
         }
     }
 
     const handleCategoryCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, categoryId: string) => {
         const isChecked = e.target.checked
-    
+
         if (isChecked) {
             setSelectedCategories([...selectedCategories, categoryId])
         } else {
             setSelectedCategories(selectedCategories.filter((id) => id !== categoryId))
         }
-    }    
+    }
 
     const storeBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-    
+
         const formData = new FormData()
         formData.append('name', name)
         formData.append('date', date)
@@ -51,16 +52,21 @@ export default function BookModal({ closeModal, categories }: modalProps) {
         formData.append('stock', stock)
         formData.append('description', description)
         formData.append('image', image as Blob)
-    
+
         selectedCategories.forEach(categoryId => {
             formData.append('categories[]', categoryId)
         })
-    
+
         Inertia.post('/admin/books-panel', formData)
-    }    
-    
+        toast.success('Data Successfully Added!')
+    }
+
     return (
         <>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <div className='fixed w-[100%] h-[100vh] bg-[#1414147c] z-[99] flex justify-center items-center'>
                 <div className='bg-white w-[50%] rounded-lg z-[999] px-6 flex items-center'>
                     <div className="w-full py-7 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 100px)' }}>
@@ -98,7 +104,7 @@ export default function BookModal({ closeModal, categories }: modalProps) {
                                 </div>
                                 <div className="mb-5">
                                     <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-900">{t('admin52')}</label>
-                                    <input type="file" id="image" name="image" onChange={handleImageChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
+                                    <input type="file" id="image" name="image" onChange={handleImageChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
                                 </div>
                                 <div className="mb-5">
                                     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">{t('admin53')}</label>

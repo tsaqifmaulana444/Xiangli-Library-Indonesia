@@ -6,6 +6,7 @@ import { Inertia } from '@inertiajs/inertia'
 import { useState } from 'react'
 import AmendBookModal from './modals/AmendBookModal'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
+import toast, { Toaster } from 'react-hot-toast'
 
 interface Borrow {
   book: any
@@ -25,6 +26,7 @@ export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
 
   const deleteBorrower = async (id: string | undefined) => {
     Inertia.delete(`/borrow-book/${id}`)
+    toast.success('Success!')
   }
 
   const [isAmendModalOpen, setIsAmendModalOpen] = useState(false)
@@ -43,6 +45,7 @@ export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
   const doneBorrow = async (id: string | undefined) => {
     Inertia.put(`/done-borrow-book/${id}`, {
       status: "Done",
+      toast.success('Success!')
     })
   }
 
@@ -50,6 +53,7 @@ export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
     Inertia.put(`/pay-fine/${id}`, {
       pay_fine: false,
     })
+    toast.success('Success!')
   }
 
   return (
@@ -59,6 +63,10 @@ export default function History({ borrows }: PageProps<{ borrows: Borrow[] }>) {
         <title>{appName}</title>
       </Head>
       <div className='flex'>
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">

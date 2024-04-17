@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import { Inertia } from '@inertiajs/inertia'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
+import toast, { Toaster } from 'react-hot-toast'
 
 interface Member {
   id?: string
@@ -20,6 +21,7 @@ export default function Members({ members }: PageProps<{ members: Member[] }>) {
 
   const deleteMember = async (id: string | undefined) => {
     Inertia.delete(`/admin/member/${id}`)
+    toast.success('Data Successfully Deleted!')
   }
 
   return (
@@ -28,6 +30,10 @@ export default function Members({ members }: PageProps<{ members: Member[] }>) {
         <title>{appName}</title>
       </Head>
       <div className='flex'>
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">

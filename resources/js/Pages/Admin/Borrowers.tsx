@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import { Inertia } from '@inertiajs/inertia'
 import { FormEvent } from 'react'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
+import toast, { Toaster } from 'react-hot-toast'
 
 interface Borrow {
   book: any
@@ -27,22 +28,26 @@ export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>)
     Inertia.put(`/admin/borrowers/${id}`, {
       status: "On Read",
     })
+    toast.success('Success!')
   }
 
   const bookOkay = async (id: string | undefined) => {
     Inertia.put(`/admin/book-okay/${id}`, {
       book_quality: "Okay",
     })
+    toast.success('Success!')
   }
 
   const bookBroken = async (id: string | undefined) => {
     Inertia.put(`/admin/book-broken/${id}`, {
       book_quality: "Broken",
     })
+    toast.success('Success!')
   }
 
   const deleteBorrower = async (id: string | undefined) => {
     Inertia.delete(`/admin/borrowers/${id}`)
+    toast.success('Data Successfully Deleted!')
   }
 
   return (
@@ -51,6 +56,10 @@ export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>)
         <title>{appName}</title>
       </Head>
       <div className='flex'>
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">

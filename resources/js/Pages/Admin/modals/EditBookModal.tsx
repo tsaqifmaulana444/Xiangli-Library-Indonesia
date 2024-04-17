@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Inertia } from '@inertiajs/inertia'
 import { FormEvent } from 'react'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
+import toast, { Toaster } from 'react-hot-toast'
 
 interface Category {
     id?: string
@@ -54,12 +55,12 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
 
     const updateBook = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        
+
         let cat: string[] = []
         selectedCategories.forEach(categoryId => {
             cat.push(categoryId)
         })
-        
+
         Inertia.put(`/admin/books-panel/${book.id}`, {
             name: name,
             date: date,
@@ -69,10 +70,15 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
             // image: image as Blob,
             categories: cat.slice(1)
         })
-   }
+        toast.success('Data Successfully Edited!')
+    }
 
     return (
         <>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <div className='fixed w-[100%] h-[100vh] bg-[#1414147c] z-[99] flex justify-center items-center'>
                 <div className='bg-white w-[50%] rounded-lg z-[999] px-6 flex items-center'>
                     <div className="w-full py-7 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 100px)' }}>
@@ -96,7 +102,7 @@ export default function EditBookModal({ closeModal, categories, book }: EditBook
                             </div>
                             <div className='mb-4'>
                                 <label htmlFor='description' className='block text-sm font-medium text-gray-700'>{t('admin50')}</label>
-                                <textarea id='description' value={description} onChange={(e) => setDescription(e.target.value)} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 h-28 focus:ring-black focus:border-black" required placeholder={t('admin51')}/>
+                                <textarea id='description' value={description} onChange={(e) => setDescription(e.target.value)} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 h-28 focus:ring-black focus:border-black" required placeholder={t('admin51')} />
                             </div>
                             <div className='mb-4'>
                                 <label htmlFor='image' className='block text-sm font-medium text-gray-700'>{t('admin52')}</label>
