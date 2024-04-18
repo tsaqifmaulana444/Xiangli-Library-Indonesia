@@ -29,7 +29,7 @@ Route::prefix('')->group(function(){
     Route::put('/pay-fine/{id}', [UsersController::class, 'pay_fine'])->name('user.pay_fine');
 });
 
-Route::prefix('/admin')->group(function(){
+Route::prefix('/admin')->middleware(['admin'])->group(function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/book_export', [AdminController::class, 'book_export'])->name('admin.book_export');
     Route::get('/borrow_export', [AdminController::class, 'borrow_export'])->name('admin.borrow_export');
