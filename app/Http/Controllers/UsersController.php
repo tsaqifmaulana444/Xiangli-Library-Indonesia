@@ -30,6 +30,8 @@ class UsersController extends Controller
             'categories' => $categories,
             'recommended' => $recommended,
             'recommended2' => $recommended2,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
         ]);
     }
 
@@ -37,7 +39,9 @@ class UsersController extends Controller
     {
         $books = Book::with('categories')->latest()->get();
         return Inertia::render('Users/ListBook', [
-            'books' => $books
+            'books' => $books,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
         ]);
     }
 
@@ -73,6 +77,8 @@ class UsersController extends Controller
         // dd($borrows);
         return Inertia::render('Users/History', [
             'borrows' => $borrows,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
         ]);
     }
 

@@ -38,6 +38,8 @@ class SuperAdminController extends Controller
             'categories' => $categories,
             'book_id' => 1,
             'amount' => 2,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
         ]);
     }
     
@@ -47,7 +49,9 @@ class SuperAdminController extends Controller
         $books = Book::with('categories')->latest()->get();
         return Inertia::render('SuperAdmin/BooksPanel', [
             'categories' => $categories,
-            'books' => $books
+            'books' => $books,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
         ]);
     }
 
@@ -120,7 +124,9 @@ class SuperAdminController extends Controller
     {
         $admins = User::where('role', 2)->latest()->get();
         return Inertia::render('SuperAdmin/Admins', [
-            'admins' => $admins
+            'admins' => $admins,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
         ]);
     }
 
@@ -164,6 +170,8 @@ class SuperAdminController extends Controller
 
         return Inertia::render('SuperAdmin/Categories', [
             'categories' => $categories,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
         ]);
     }
 

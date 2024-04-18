@@ -10,6 +10,8 @@ interface DashboardProps {
   categories: number
   recommended: Book[]
   recommended2: Book[]
+  name: string
+  email: string
 }
 
 interface Book {
@@ -23,7 +25,7 @@ interface Book {
   categories: string[]
 }
 
-export default function Dashboard({ actives, books, categories, recommended, recommended2 }: DashboardProps) {
+export default function Dashboard({ actives, books, categories, recommended, recommended2, name, email }: DashboardProps) {
   const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
   const appName = "Dashboard"
   return (
@@ -35,7 +37,7 @@ export default function Dashboard({ actives, books, categories, recommended, rec
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
-            <Navbar />
+            <Navbar name={name} email={email} />
             <section className="flex justify-between mt-12">
               <div className="shadow-md rounded-md w-[31%] h-[100px] py-2 px-5">
                 <p className='text-[14px]'>{t('user_dashboard1')}</p>

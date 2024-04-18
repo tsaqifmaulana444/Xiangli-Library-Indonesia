@@ -1,6 +1,11 @@
 import { useLaravelReactI18n } from 'laravel-react-i18n'
 
-export default function Navbar() {
+interface NavProps {
+  name: string
+  email: string
+}
+
+export default function Navbar({ name, email }: NavProps) {
   type LocaleToLanguage = {
     [key: string]: string;
   }
@@ -37,8 +42,8 @@ export default function Navbar() {
           </select>
           <img src="/images/pp.png" alt="" className='rounded-full w-[50px] ml-4' />
           <div className="ml-3">
-            <p className="font-bold text-[16px]">张建伟</p>
-            <p className="text-[16px]">zhangjianwei@test.com</p>
+            <p className="font-bold text-[16px]">{name}</p>
+            <p className="text-[16px]">{email}</p>
           </div>
         </div>
       </nav>

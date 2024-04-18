@@ -13,7 +13,7 @@ interface Category {
   name: string
 }
 
-export default function Categories({ categories }: PageProps<{ categories: Category[] }>) {
+export default function Categories({ categories, name, email }: PageProps<{ categories: Category[], name: string, email: string }>) {
   const appName = "Categories"
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false)
   let [currentCount, setCurrentCount] = useState(1)
@@ -42,7 +42,7 @@ export default function Categories({ categories }: PageProps<{ categories: Categ
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
-            <Navbar />
+            <Navbar name={name} email={email} />
             <section className="">
               <div className="flex justify-between">
                 <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t('admin58')}</h1>

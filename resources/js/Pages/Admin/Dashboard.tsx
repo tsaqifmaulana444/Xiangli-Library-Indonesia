@@ -12,9 +12,11 @@ interface DashboardProps {
   categories: number
   book_id: string
   amount: number
+  name: string
+  email: string
 }
 
-export default function Dashboard({ members, actives, books, categories, book_id, amount }: DashboardProps) {
+export default function Dashboard({ members, actives, books, categories, book_id, amount, name, email }: DashboardProps) {
   const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
   const appName = "Dashboard"
   const data = [
@@ -49,7 +51,7 @@ export default function Dashboard({ members, actives, books, categories, book_id
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
-            <Navbar />
+            <Navbar name={name} email={email} />
             <section className="flex justify-between mt-12">
               <div className="shadow-md rounded-md w-[23%] h-[100px] py-2 px-5">
                 <p className='text-[14px]'>{t('admin1')}</p>

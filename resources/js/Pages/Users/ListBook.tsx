@@ -17,7 +17,7 @@ interface Book {
   categories: string[]
 }
 
-export default function Dashboard({ books }: PageProps<{ books: Book[] }>) {
+export default function Dashboard({ books, name, email }: PageProps<{ books: Book[], name: string, email: string }>) {
   const appName = "List Book"
   const [isBorrowModalOpen, setIsBorrowModalOpen] = useState(false)
   const [selectedBook, setSelectedBook] = useState<Book | null>(null)
@@ -43,7 +43,7 @@ export default function Dashboard({ books }: PageProps<{ books: Book[] }>) {
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
-            <Navbar />
+            <Navbar name={name} email={email} />
             <section className="">
               <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t('user_book')}</h1>
               {books.length === 0 ? (

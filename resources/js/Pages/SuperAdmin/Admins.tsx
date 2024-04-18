@@ -15,7 +15,7 @@ interface Admins {
   phone_number: string
 }
 
-export default function Admins({ admins }: PageProps<{ admins: Admins[] }>) {
+export default function Admins({ admins, name, email }: PageProps<{ admins: Admins[], name: string, email: string }>) {
   const appName = "Admins"
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false)
   const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
@@ -43,7 +43,7 @@ export default function Admins({ admins }: PageProps<{ admins: Admins[] }>) {
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
-            <Navbar />
+            <Navbar name={name} email={email} />
             <section className="">
               <div className="flex justify-between">
                 <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t('super_admin1')}</h1>

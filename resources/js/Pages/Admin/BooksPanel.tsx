@@ -25,7 +25,7 @@ interface Book {
   categories: string[]
 }
 
-export default function BooksPanel({ categories, books }: PageProps<{ categories: Category[], books: Book[] }>) {
+export default function BooksPanel({ categories, books, name, email }: PageProps<{ categories: Category[], books: Book[], name: string, email: string }>) {
   const appName = "Books Panel"
   const [isBookModalOpen, setIsBookModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
@@ -67,7 +67,7 @@ export default function BooksPanel({ categories, books }: PageProps<{ categories
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
-            <Navbar />
+            <Navbar name={name} email={email} />
             <section className="">
               <div className="flex justify-between">
                 <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t('admin32')}</h1>

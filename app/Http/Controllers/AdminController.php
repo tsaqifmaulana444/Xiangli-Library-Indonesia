@@ -36,6 +36,8 @@ class AdminController extends Controller
             'categories' => $categories,
             'book_id' => 1,
             'amount' => 1,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email,
         ]);
     }
 
@@ -64,6 +66,8 @@ class AdminController extends Controller
         
         return Inertia::render('Admin/Borrowers', [
             'borrows' => $borrows,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email,
         ]);
     }
 
@@ -129,7 +133,9 @@ class AdminController extends Controller
     {
         $members = User::where('role', '1')->latest()->get();
         return Inertia::render('Admin/Members', [
-            'members' => $members
+            'members' => $members,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email,
         ]);
     }
 
@@ -151,7 +157,9 @@ class AdminController extends Controller
         $books = Book::with('categories')->latest()->get();
         return Inertia::render('Admin/BooksPanel', [
             'categories' => $categories,
-            'books' => $books
+            'books' => $books,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
         ]);
     }
 
@@ -226,6 +234,8 @@ class AdminController extends Controller
 
         return Inertia::render('Admin/Categories', [
             'categories' => $categories,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
         ]);
     }
 

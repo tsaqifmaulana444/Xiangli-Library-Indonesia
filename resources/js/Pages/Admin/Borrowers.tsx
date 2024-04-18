@@ -20,7 +20,7 @@ interface Borrow {
   book_quality: string
 }
 
-export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>) {
+export default function Borrowers({ borrows, name, email }: PageProps<{ borrows: Borrow[], name: string, email: string }>) {
   const appName = "List Of Borrowers"
   const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
 
@@ -63,7 +63,7 @@ export default function Borrowers({ borrows }: PageProps<{ borrows: Borrow[] }>)
         <Sidebar />
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
-            <Navbar />
+            <Navbar name={name} email={email} />
             <section className="">
               <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t('admin10')}</h1>
               <div className="relative overflow-x-auto">
