@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\BookUser;
 use App\Models\Category;
+use App\Models\Rating;
 use App\Models\User;
 use App\Models\UserBook;
 use Inertia\Inertia;
@@ -194,5 +195,17 @@ class UsersController extends Controller
         } else {
             return redirect()->route('user.bookmark')->with('error', 'Data not found!');
         }
+    }
+
+    public function add_rating(Request $request)
+    {
+        Rating::create([
+            'user_id' => auth()->user()->id,
+            'book_id' => $request->book_id,
+            'star' => $request->star,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('user.dashboard')->with('success', 'Data Successfully Added!');
     }
 }

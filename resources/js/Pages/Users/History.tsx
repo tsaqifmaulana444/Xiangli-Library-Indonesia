@@ -133,7 +133,7 @@ export default function History({ borrows, name, email }: PageProps<{ borrows: B
                       borrows.map((borrow, index) => (
                         <tr key={borrow.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                           <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{index + 1}</td>
-                          <td className="px-6 py-4 text-center">{borrow.book_id}</td>
+                          <td className="px-6 py-4 text-center">{borrow.book.name}</td>
                           <td className="px-6 py-4 text-center">{borrow.amount}</td>
                           <td className="px-6 py-4 text-center">{borrow.borrow_in}</td>
                           <td className="px-6 py-4 text-center">{borrow.borrow_out}</td>
