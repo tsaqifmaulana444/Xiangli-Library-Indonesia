@@ -24,6 +24,7 @@ Route::prefix('')->group(function(){
     Route::post('/borrow-book', [UsersController::class, 'store_borrow'])->name('user.borrow');
     Route::post('/add-bookmark', [UsersController::class, 'add_bookmark'])->name('user.add-bookmark');
     Route::delete('/delete-bookmark/{id}', [UsersController::class, 'delete_bookmark'])->name('user.delete-bookmark');
+    Route::delete('/delete-bookmark2/{id}', [UsersController::class, 'delete_bookmark2'])->name('user.delete-bookmark2');
     Route::delete('/borrow-book/{id}', [UsersController::class, 'delete_borrow'])->name('user.delete_borrow');
     
     Route::get('/history', [UsersController::class, 'history'])->name('user.history');

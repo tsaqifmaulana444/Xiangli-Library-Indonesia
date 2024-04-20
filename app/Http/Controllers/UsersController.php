@@ -150,6 +150,18 @@ class UsersController extends Controller
         return redirect()->route('user.history')->with('success', 'Data Successfully Updated!');
     }
 
+    public function bookmark()
+    {
+        $books = Book::with('categories')->latest()->get();
+        $bookmarks = UserBook::where('user_id', '=', auth()->user()->id)->get();
+        return Inertia::render('Users/Bookmark', [
+            'books' => $books,
+            'bookmarks' => $bookmarks,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
+        ]);
+    }
+
     public function add_bookmark(Request $request)
     {
         UserBook::create([
@@ -162,13 +174,25 @@ class UsersController extends Controller
 
     public function delete_bookmark($id)
     {
-        $bookmark = UserBook::find($id);
+        $bookmark = UserBook::where("book_id", "=", $id)->where("user_id", "=", auth()->user()->id)->first();
 
         if ($bookmark) {
             $bookmark->delete();
             return redirect()->route('user.list_book')->with('success', 'Data Successfully Deleted!');
         } else {
             return redirect()->route('user.list_book')->with('error', 'Data not found!');
+        }
+    }
+
+    public function delete_bookmark2($id)
+    {
+        $bookmark = UserBook::where("book_id", "=", $id)->where("user_id", "=", auth()->user()->id)->first();
+
+        if ($bookmark) {
+            $bookmark->delete();
+            return redirect()->route('user.bookmark')->with('success', 'Data Successfully Deleted!');
+        } else {
+            return redirect()->route('user.bookmark')->with('error', 'Data not found!');
         }
     }
 }
