@@ -21,6 +21,7 @@ Route::prefix('')->group(function(){
     Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/list-book', [UsersController::class, 'list_book'])->name('user.list_book');
     Route::post('/borrow-book', [UsersController::class, 'store_borrow'])->name('user.borrow');
+    Route::post('/add-bookmark', [UsersController::class, 'add_bookmark'])->name('user.add-bookmark');
     Route::delete('/borrow-book/{id}', [UsersController::class, 'delete_borrow'])->name('user.delete_borrow');
     
     Route::get('/history', [UsersController::class, 'history'])->name('user.history');
@@ -29,7 +30,7 @@ Route::prefix('')->group(function(){
     Route::put('/pay-fine/{id}', [UsersController::class, 'pay_fine'])->name('user.pay_fine');
 });
 
-Route::prefix('/admin')->middleware(['admin'])->group(function(){
+Route::prefix('/admin')->group(function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/book_export', [AdminController::class, 'book_export'])->name('admin.book_export');
     Route::get('/borrow_export', [AdminController::class, 'borrow_export'])->name('admin.borrow_export');

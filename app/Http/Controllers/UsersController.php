@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\BookUser;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\UserBook;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
@@ -147,4 +148,13 @@ class UsersController extends Controller
         return redirect()->route('user.history')->with('success', 'Data Successfully Updated!');
     }
 
+    public function add_bookmark(Request $request)
+    {
+        UserBook::create([
+            'user_id' => auth()->user()->id,
+            'book_id' => $request->book_id,
+        ]);
+
+        return redirect()->route('user.list_book')->with('success', 'Data Successfully Added!');
+    }
 }
