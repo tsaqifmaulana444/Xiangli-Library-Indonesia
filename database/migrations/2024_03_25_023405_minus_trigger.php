@@ -22,7 +22,6 @@ return new class extends Migration
             EXECUTE FUNCTION reduce_stock();
         ');
 
-        // Trigger for increasing stock when a book is returned
         DB::unprepared('
             CREATE OR REPLACE FUNCTION increase_stock() RETURNS TRIGGER AS $$
             BEGIN

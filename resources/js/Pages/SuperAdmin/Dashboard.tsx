@@ -87,10 +87,6 @@ export default function Dashboard({ members, actives, books, categories, book_id
                   <p className="font-bold">{t('admin7')}</p>
                   <a href="/super-admin/book_export" className='hover:underline'>{t('admin9')}</a>
                 </div>
-                <div className="flex justify-between mt-5">
-                  <p className="font-bold">{t('admin8')}</p>
-                  <a href="/super-admin/borrow_export" className='hover:underline'>{t('admin9')}</a>
-                </div>
               </div>
             </section>
           </div>
