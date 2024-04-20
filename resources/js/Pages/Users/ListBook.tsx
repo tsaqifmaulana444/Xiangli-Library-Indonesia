@@ -19,7 +19,13 @@ interface Book {
   categories: string[]
 }
 
-export default function Dashboard({ books, name, email }: PageProps<{ books: Book[], name: string, email: string }>) {
+interface Bookmark {
+  id?: string
+  user_id: string
+  book_id: string
+}
+
+export default function Dashboard({ books, name, email, bookmarks }: PageProps<{ books: Book[], name: string, email: string, bookmarks: Bookmark[] }>) {
   const appName = "List Book"
   const [isBorrowModalOpen, setIsBorrowModalOpen] = useState(false)
   const [selectedBook, setSelectedBook] = useState<Book | null>(null)
@@ -35,6 +41,10 @@ export default function Dashboard({ books, name, email }: PageProps<{ books: Boo
     setIsBorrowModalOpen(false)
   }
 
+  const isBookmarked = (bookId: string | undefined) => {
+    return bookmarks.some((bookmark) => bookmark.book_id === bookId)
+  }
+
   const handleBookmark = async (id: string | undefined) => {
     if (id) {
       Inertia.post(`/add-bookmark`, {
@@ -43,7 +53,17 @@ export default function Dashboard({ books, name, email }: PageProps<{ books: Boo
       })
       toast.success('Added To Bookmark!')
     }
-  }  
+  }
+
+  const deleteBookmark = async (id: string | undefined) => {
+    if (id) {
+      Inertia.delete(`/delete-bookmark/${id}`, {
+        user_id: 0,
+        book_id: id
+      })
+      toast.success('Bookmark Deleted!')
+    }
+  }
 
   return (
     <>
@@ -81,12 +101,24 @@ export default function Dashboard({ books, name, email }: PageProps<{ books: Boo
                       </div>
                       <div className='flex justify-between'>
                         <>
-                          {/* {book.categories.map((category, index) => (
+                          {book.categories.map((category, index) => (
                             <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">{typeof category === 'string' ? category : category.name}</span>
-                          ))} */}
+                          ))}
                         </>
-                        <div onClick={() => handleBookmark(book.id)}>
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="w-4" fill="#141414"><path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z" /></svg>
+                        <div className='flex'>
+                          {isBookmarked(book.id) ? (
+                            <div onClick={() => deleteBookmark(book.id)}>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="w-4" fill="#141414">
+                                <path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z" />
+                              </svg>
+                            </div>
+                          ) : (
+                            <div onClick={() => handleBookmark(book.id)}>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="w-4" fill="#141414">
+                                <path d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z" />
+                              </svg>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

@@ -39,8 +39,10 @@ class UsersController extends Controller
     public function list_book(): Response
     {
         $books = Book::with('categories')->latest()->get();
+        $bookmarks = UserBook::where('user_id', '=', auth()->user()->id)->get();
         return Inertia::render('Users/ListBook', [
             'books' => $books,
+            'bookmarks' => $bookmarks,
             'name' => auth()->user()->name,
             'email' => auth()->user()->email
         ]);
@@ -156,5 +158,17 @@ class UsersController extends Controller
         ]);
 
         return redirect()->route('user.list_book')->with('success', 'Data Successfully Added!');
+    }
+
+    public function delete_bookmark($id)
+    {
+        $bookmark = UserBook::find($id);
+
+        if ($bookmark) {
+            $bookmark->delete();
+            return redirect()->route('user.list_book')->with('success', 'Data Successfully Deleted!');
+        } else {
+            return redirect()->route('user.list_book')->with('error', 'Data not found!');
+        }
     }
 }

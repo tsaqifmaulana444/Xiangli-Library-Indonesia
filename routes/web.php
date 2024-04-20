@@ -20,8 +20,10 @@ Route::prefix('')->group(function(){
 
     Route::get('/dashboard', [UsersController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/list-book', [UsersController::class, 'list_book'])->name('user.list_book');
+    Route::get('/bookmark', [UsersController::class, 'bookmark'])->name('user.bookmark');
     Route::post('/borrow-book', [UsersController::class, 'store_borrow'])->name('user.borrow');
     Route::post('/add-bookmark', [UsersController::class, 'add_bookmark'])->name('user.add-bookmark');
+    Route::delete('/delete-bookmark/{id}', [UsersController::class, 'delete_bookmark'])->name('user.delete-bookmark');
     Route::delete('/borrow-book/{id}', [UsersController::class, 'delete_borrow'])->name('user.delete_borrow');
     
     Route::get('/history', [UsersController::class, 'history'])->name('user.history');
