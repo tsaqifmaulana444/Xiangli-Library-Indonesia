@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('late_alerts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('admin');
             $table->string('message');
             $table->boolean('status')->default(true);
             $table->timestamps();

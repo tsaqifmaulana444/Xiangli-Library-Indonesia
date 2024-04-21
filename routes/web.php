@@ -27,13 +27,15 @@ Route::prefix('')->group(function(){
     Route::post('/add-bookmark', [UsersController::class, 'add_bookmark'])->name('user.add-bookmark');
     Route::delete('/delete-bookmark/{id}', [UsersController::class, 'delete_bookmark'])->name('user.delete-bookmark');
     Route::delete('/delete-bookmark2/{id}', [UsersController::class, 'delete_bookmark2'])->name('user.delete-bookmark2');
-
+    
     Route::post('/add-rating', [UsersController::class, 'add_rating'])->name('user.add-rating');
     
     Route::get('/history', [UsersController::class, 'history'])->name('user.history');
     Route::put('/borrow-book/{id}', [UsersController::class, 'amend_borrow'])->name('user.amend_borrow');
     Route::put('/done-borrow-book/{id}', [UsersController::class, 'done_borrow'])->name('user.done_borrow');
     Route::put('/pay-fine/{id}', [UsersController::class, 'pay_fine'])->name('user.pay_fine');
+
+    Route::get('/alert-panel', [UsersController::class, 'alert_panel'])->name('admin.alert-panel');
 });
 
 Route::prefix('/admin')->group(function(){
@@ -44,9 +46,10 @@ Route::prefix('/admin')->group(function(){
     Route::get('/borrow_export_page', [AdminController::class, 'borrow_excel'])->name('admin.borrow_excel');
 
     Route::get('/borrowers', [AdminController::class, 'borrowers'])->name('admin.borrowers');
-    Route::post('/late-alert', [AdminController::class, 'late_alert'])->name('admin.late-alert');
     Route::delete('/borrowers/{id}', [AdminController::class, 'delete_borrowers'])->name('admin.delete_borrowers');
     Route::put('/borrowers/{id}', [AdminController::class, 'approve_borrowers'])->name('admin.approve_borrowers');
+
+    Route::post('/late-alert', [AdminController::class, 'late_alert'])->name('admin.late-alert');
 
     Route::put('/book-okay/{id}', [AdminController::class, 'book_okay'])->name('admin.book_okay');
     Route::put('/book-broken/{id}', [AdminController::class, 'book_broken'])->name('admin.book_broken');

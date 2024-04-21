@@ -7,6 +7,7 @@ use App\Models\BookUser;
 use App\Models\Category;
 use App\Models\Rating;
 use App\Models\User;
+use App\Models\LateAlert;
 use App\Models\UserBook;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -228,5 +229,15 @@ class UsersController extends Controller
         ]);
 
         return redirect()->route('user.dashboard')->with('success', 'Data Successfully Added!');
+    }
+
+    public function alert_panel(): Response
+    {
+        $alerts = LateAlert::where('user_id', '=', auth()->user()->id)->get();
+        return Inertia::render('Users/AlertPanel', [
+            'alerts' => $alerts,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
+        ]);
     }
 }
