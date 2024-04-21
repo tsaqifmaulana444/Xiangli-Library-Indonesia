@@ -176,5 +176,10 @@
     "super_admin10": "Ipasa",
     "super_admin11": "Password",
     "empty_table": "Walang laman ang data",
-    "empty_cat": "Walang laman ang mga Kategorya, Paki Punan Una ang Field ng Kategorya!"
+    "empty_cat": "Walang laman ang mga Kategorya, Paki Punan Una ang Field ng Kategorya!",
+
+    "borrow_val1": "Hindi ka maaaring manghiram ng higit sa 10 araw!",
+    "borrow_val2": "Ang petsa ng paghiram ay hindi maaaring bago kaysa sa petsa ngayon! \n\n Ngayon ay ",
+    "borrow_val3": "Ang petsa ng pagbalik ay hindi maaaring bago kaysa sa petsa ng paghiram!",
+    "borrow_val4": "Hindi ka maaaring manghiram ng higit sa mga available na stock!"
 }

@@ -48,13 +48,13 @@ export default function BorrowBookModal({ closeModal, book, user_id }: BorrowBoo
         returnDate.setDate(returnDate.getDate() + 10)
 
         if (borrowOutDate > returnDate) {
-            toast.error("You can't borrow more than 10 days!")
+            toast.error(t('borrow_val1'))
         } else if (borrowInDate < currentDate) {
-            toast.error(`Borrow date cannot be before today's date! \n\n Today is ${currentDate}`)
+            toast.error(t('borrow_val2') + currentDate)
         } else if (borrowOutDate < borrowInDate) {
-            toast.error("Return date cannot be before borrow date!")
+            toast.error(t('borrow_val3'))
         } else if (borrowQty > book.stock) {
-            toast.error("You can't borrow more than available stock!")
+            toast.error(t('borrow_val4'))
         } else {
             Inertia.post('/borrow-book', {
                 user_id: user_id,

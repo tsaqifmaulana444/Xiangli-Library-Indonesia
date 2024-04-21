@@ -176,5 +176,10 @@
     "super_admin10": "提交",
     "super_admin11": "密码",
     "empty_table": "数据仍为空",
-    "empty_cat": "类别为空，请先填写类别字段！"
+    "empty_cat": "类别为空，请先填写类别字段！",
+
+    "borrow_val1": "您不能借阅超过10天!",
+    "borrow_val2": "借阅日期不能早于今天的日期！\n\n 今天是 ",
+    "borrow_val3": "归还日期不能早于借阅日期！",
+    "borrow_val4": "您不能借阅超过可用库存！"
 }

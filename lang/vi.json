@@ -176,5 +176,10 @@
     "super_admin10": "Gửi",
     "super_admin11": "Mật Khẩu",
     "empty_table": "Dữ liệu vẫn trống",
-    "empty_cat": "Danh mục trống, vui lòng điền vào trường danh mục trước!"
+    "empty_cat": "Danh mục trống, vui lòng điền vào trường danh mục trước!",
+
+    "borrow_val1": "Bạn không thể mượn quá 10 ngày!",
+    "borrow_val2": "Ngày mượn không thể trước ngày hôm nay! \n\n Hôm nay là ",
+    "borrow_val3": "Ngày trả sách không thể trước ngày mượn!",
+    "borrow_val4": "Bạn không thể mượn quá số lượng tồn kho có sẵn!"
 }

@@ -176,5 +176,10 @@
     "super_admin10": "Kirim",
     "super_admin11": "Sandi",
     "empty_table": "Datane Kosong",
-    "empty_cat": "Kategori Kosong, Monggo Diisi Kategorine!"
+    "empty_cat": "Kategori Kosong, Monggo Diisi Kategorine!",
+
+    "borrow_val1": "Sampeyan ora bisa ngombe sajroning 10 dina!",
+    "borrow_val2": "Tanggal pinjam ora bisa njupuk sadurunge dina saiki! \n\n Saiki yaiku ",
+    "borrow_val3": "Tanggal mlebu ora bisa mbalik sadurunge tanggal pinjam!",
+    "borrow_val4": "Sampeyan ora bisa ngombe luwih saka stok sing ana!"
 }
