@@ -42,11 +42,15 @@ export default function BorrowBookModal({ closeModal, book, user_id }: BorrowBoo
         const borrowInDate = new Date(borrowIn)
         const borrowOutDate = new Date(borrowOut)
 
+        const currentDate = new Date()
+
         const returnDate = new Date(borrowInDate)
         returnDate.setDate(returnDate.getDate() + 10)
 
         if (borrowOutDate > returnDate) {
             toast.error("You can't borrow more than 10 days!")
+        } else if (borrowInDate < currentDate) {
+            toast.error(`Borrow date cannot be before today's date! \n\n Today is ${currentDate}`)
         } else if (borrowOutDate < borrowInDate) {
             toast.error("Return date cannot be before borrow date!")
         } else if (borrowQty > book.stock) {
