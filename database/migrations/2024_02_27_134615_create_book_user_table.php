@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('pay_fine')->default(false);
             $table->date('borrow_in');
             $table->date('borrow_out');
+            $table->string('is_giving_rating')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

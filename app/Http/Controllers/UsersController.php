@@ -41,6 +41,8 @@ class UsersController extends Controller
     {
         $books = Book::with('categories')->latest()->get();
         $bookmarks = UserBook::where('user_id', '=', auth()->user()->id)->get();
+        $ratings =  Rating::get();
+        // dd($ratings);
         return Inertia::render('Users/ListBook', [
             'books' => $books,
             'bookmarks' => $bookmarks,
@@ -204,6 +206,12 @@ class UsersController extends Controller
             'book_id' => $request->book_id,
             'star' => $request->star,
             'description' => $request->description
+        ]);
+
+        $borrow = BookUser::find($request->borrow_id);
+
+        $borrow->update([
+            'is_giving_rating' => true,
         ]);
 
         return redirect()->route('user.dashboard')->with('success', 'Data Successfully Added!');
