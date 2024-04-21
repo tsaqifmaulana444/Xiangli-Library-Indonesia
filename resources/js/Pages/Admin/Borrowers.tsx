@@ -119,7 +119,14 @@ export default function Borrowers({ borrows, name, email }: PageProps<{ borrows:
                           <td className="px-6 py-4 text-center">{borrow.book.name}</td>
                           <td className="px-6 py-4 text-center">{borrow.amount}</td>
                           <td className="px-6 py-4 text-center">{borrow.borrow_in}</td>
-                          <td className="px-6 py-4 text-center">{borrow.borrow_out}</td>
+                          {new Date(borrow.borrow_out) < new Date() && borrow.status == "On Read" ? (
+                            <td className="px-6 py-4 text-center bg-red-600 text-white rounded-md font-bold">
+                              {borrow.borrow_out}
+                              <p>Late Alarm</p>
+                            </td>
+                          ) : (
+                            <td className="px-6 py-4 text-center">{borrow.borrow_out}</td>
+                          )}
                           <td className="px-6 py-4 text-center">{borrow.status}</td>
                           <td className="px-6 py-4 text-center">{borrow.book_quality}</td>
                           <td className="px-6 py-4 text-center">
