@@ -39,14 +39,28 @@ export default function BorrowBookModal({ closeModal, book, user_id }: BorrowBoo
             return
         }
 
-        Inertia.post('/borrow-book', {
-            user_id: user_id,
-            book_id: book.id,
-            amount: borrowQty,
-            borrow_in: borrowIn,
-            borrow_out: borrowOut,
-        })
-        toast.success('Success!')
+        const borrowInDate = new Date(borrowIn)
+        const borrowOutDate = new Date(borrowOut)
+
+        const returnDate = new Date(borrowInDate)
+        returnDate.setDate(returnDate.getDate() + 10)
+
+        if (borrowOutDate > returnDate) {
+            toast.error("You can't borrow more than 10 days!")
+        } else if (borrowOutDate < borrowInDate) {
+            toast.error("Return date cannot be before borrow date!")
+        } else if (borrowQty > book.stock) {
+            toast.error("You can't borrow more than available stock!")
+        } else {
+            Inertia.post('/borrow-book', {
+                user_id: user_id,
+                book_id: book.id,
+                amount: borrowQty,
+                borrow_in: borrowIn,
+                borrow_out: borrowOut,
+            })
+            toast.success('Success!')
+        }
     }
 
     return (

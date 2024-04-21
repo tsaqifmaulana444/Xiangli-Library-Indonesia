@@ -113,7 +113,7 @@ export default function Dashboard({ books, name, email, bookmarks, user_id }: Pa
                             {book.rating !== null ? (
                               <p className='ml-2'>{book.rating}</p>
                             ):(
-                              <p className='ml-2'>0</p>
+                              <p className='ml-2'>-</p>
                             )}
                           </div>
                           <p>
