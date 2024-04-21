@@ -17,9 +17,10 @@ interface Book {
 interface BorrowBookModalProps {
     closeModal: () => void
     book: Book
+    user_id: string
 }
 
-export default function BorrowBookModal({ closeModal, book }: BorrowBookModalProps) {
+export default function BorrowBookModal({ closeModal, book, user_id }: BorrowBookModalProps) {
     const [name, setName] = useState(book.name || '')
     const [date, setDate] = useState(book.date || '')
     const [author, setAuthor] = useState(book.author || '')
@@ -39,7 +40,7 @@ export default function BorrowBookModal({ closeModal, book }: BorrowBookModalPro
         }
 
         Inertia.post('/borrow-book', {
-            user_id: 1,
+            user_id: user_id,
             book_id: book.id,
             amount: borrowQty,
             borrow_in: borrowIn,

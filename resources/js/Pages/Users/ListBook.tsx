@@ -27,7 +27,7 @@ interface Bookmark {
   book_id: string
 }
 
-export default function Dashboard({ books, name, email, bookmarks }: PageProps<{ books: Book[], name: string, email: string, bookmarks: Bookmark[] }>) {
+export default function Dashboard({ books, name, email, bookmarks, user_id }: PageProps<{ books: Book[], name: string, email: string, bookmarks: Bookmark[], user_id: string }>) {
   const appName = "List Book"
   const [isBorrowModalOpen, setIsBorrowModalOpen] = useState(false)
   const [selectedBook, setSelectedBook] = useState<Book | null>(null)
@@ -68,7 +68,7 @@ export default function Dashboard({ books, name, email, bookmarks }: PageProps<{
 
   return (
     <>
-      {isBorrowModalOpen && selectedBook && <BorrowBookModal closeModal={closeBorrowModal} book={selectedBook} />}
+      {isBorrowModalOpen && selectedBook && <BorrowBookModal closeModal={closeBorrowModal} book={selectedBook} user_id={user_id}/>}
       <Head>
         <title>{appName}</title>
       </Head>

@@ -42,7 +42,6 @@ class UsersController extends Controller
         $books = Book::with('categories')->latest()->get();
         $bookmarks = UserBook::where('user_id', '=', auth()->user()->id)->get();
         $ratings = Rating::whereIn('book_id', $books->pluck('id'))->get();
-
         $ratingsCount = Rating::whereIn('book_id', $books->pluck('id'))
         ->select('book_id', DB::raw('count(*) as total'))
         ->groupBy('book_id')
@@ -61,6 +60,7 @@ class UsersController extends Controller
             'bookmarks' => $bookmarks,
             'name' => auth()->user()->name,
             'email' => auth()->user()->email,
+            'user_id' => auth()->user()->id
         ]);
     }
 
