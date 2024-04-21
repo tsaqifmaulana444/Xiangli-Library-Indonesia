@@ -7,6 +7,7 @@ use App\Exports\BorrowExport;
 use App\Models\Book;
 use App\Models\BookUser;
 use App\Models\Category;
+use App\Models\LateAlert;
 use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -63,7 +64,7 @@ class AdminController extends Controller
             $names = Book::find($value->book_id);
             $borrows[$key]->book = $names;
         }
-        
+
         return Inertia::render('Admin/Borrowers', [
             'borrows' => $borrows,
             'name' => auth()->user()->name,
@@ -283,8 +284,21 @@ class AdminController extends Controller
             $names = Book::find($value->book_id);
             $borrows[$key]->book = $names;
         }
-        
+
         return view('table_borrow', compact('borrows'));
     }
-    
+
+    public function late_alert(Request $request)
+    {
+        $student = User::where('id', '=', $request->borrow['user_id'])->first();
+        $book = Book::where('id', '=', $request->borrow['book_id'])->first();
+        $message = 'Dear Student ' . $student->name . ', Please Return The Book'. $book->name .' To The Library, Thanks';
+
+        LateAlert::create([
+            'user_id' => $request->borrow['user_id'],
+            'message' => $message,
+        ]);
+
+        return redirect()->route('admin.borrowers')->with('success', 'Data Successfully Added!');
+    }
 }

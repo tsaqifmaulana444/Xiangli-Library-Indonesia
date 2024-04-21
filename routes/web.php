@@ -44,6 +44,7 @@ Route::prefix('/admin')->group(function(){
     Route::get('/borrow_export_page', [AdminController::class, 'borrow_excel'])->name('admin.borrow_excel');
 
     Route::get('/borrowers', [AdminController::class, 'borrowers'])->name('admin.borrowers');
+    Route::post('/late-alert', [AdminController::class, 'late_alert'])->name('admin.late-alert');
     Route::delete('/borrowers/{id}', [AdminController::class, 'delete_borrowers'])->name('admin.delete_borrowers');
     Route::put('/borrowers/{id}', [AdminController::class, 'approve_borrowers'])->name('admin.approve_borrowers');
 

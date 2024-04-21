@@ -3,9 +3,9 @@ import { PageProps } from '@/types'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import { Inertia } from '@inertiajs/inertia'
-import { FormEvent } from 'react'
 import { useLaravelReactI18n } from 'laravel-react-i18n'
 import toast, { Toaster } from 'react-hot-toast'
+import { FormEvent, useState } from 'react'
 
 interface Borrow {
   book: any
@@ -23,6 +23,16 @@ interface Borrow {
 export default function Borrowers({ borrows, name, email }: PageProps<{ borrows: Borrow[], name: string, email: string }>) {
   const appName = "List Of Borrowers"
   const { t, tChoice, currentLocale, setLocale, getLocales, isLocale, loading } = useLaravelReactI18n()
+  const [user, setUser] = useState('')
+  const [book, setBook] = useState('')
+
+  const storeLateAlert = async (e: FormEvent<HTMLFormElement>, borrow: Borrow) => {
+    e.preventDefault()
+    Inertia.post('/admin/late-alert', {
+      borrow: borrow,
+    })
+    toast.success('Alert Successfully Added!')
+  }
 
   const approveBorrow = async (id: string | undefined) => {
     Inertia.put(`/admin/borrowers/${id}`, {
@@ -121,8 +131,13 @@ export default function Borrowers({ borrows, name, email }: PageProps<{ borrows:
                           <td className="px-6 py-4 text-center">{borrow.borrow_in}</td>
                           {new Date(borrow.borrow_out) < new Date() && borrow.status == "On Read" ? (
                             <td className="px-6 py-4 text-center bg-red-600 text-white rounded-md font-bold">
-                              {borrow.borrow_out}
-                              <p>Late Alarm</p>
+                              <form onSubmit={(e) => storeLateAlert(e, borrow)}>
+                                <button type='submit'>
+                                  {borrow.borrow_out}
+                                  <br />
+                                  Late Alarm
+                                </button>
+                              </form>
                             </td>
                           ) : (
                             <td className="px-6 py-4 text-center">{borrow.borrow_out}</td>

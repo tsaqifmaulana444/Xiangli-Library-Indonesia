@@ -44,4 +44,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Book::class);
     }
+
+    public function messages()
+    {
+        return $this->hasMany(LateAlert::class);
+    }
 }
