@@ -35,8 +35,8 @@ Route::prefix('')->group(function(){
     Route::put('/done-borrow-book/{id}', [UsersController::class, 'done_borrow'])->name('user.done_borrow');
     Route::put('/pay-fine/{id}', [UsersController::class, 'pay_fine'])->name('user.pay_fine');
 
-    Route::get('/alert-panel', [UsersController::class, 'alert_panel'])->name('admin.alert-panel');
-    Route::put('/dismiss-alert/{id}', [UsersController::class, 'dismiss_alert'])->name('admin.dismiss-alert');
+    Route::get('/alert-panel', [UsersController::class, 'alert_panel'])->name('user.alert-panel');
+    Route::put('/dismiss-alert/{id}', [UsersController::class, 'dismiss_alert'])->name('user.dismiss-alert');
 });
 
 Route::prefix('/admin')->group(function(){

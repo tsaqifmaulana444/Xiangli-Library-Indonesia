@@ -37,7 +37,7 @@ export default function Dashboard({ alerts, name, email }: DashboardProps) {
     Inertia.put(`/dismiss-alert/${id}`, {
       id: id,
     })
-    toast.success("Don't Forget To Return It Ya!")
+    toast.success("Successfully Dismissed!")
   }
 
   return (

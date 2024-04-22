@@ -102,8 +102,17 @@ class AdminController extends Controller
         return redirect()->route('admin.borrowers')->with('success', 'Success!');
     }
 
-    public function book_broken($id)
+    public function book_broken($id, Request $request)
     {
+        $student = User::where('id', '=', $request->borrow['user_id'])->first();
+        $message = 'Dear Student ' . $student->name . ', You are suspected to violate our book borrowing rules, for payment and more detail you must visit the library and meet the employee there, sincerely thanks';
+
+        LateAlert::create([
+            'user_id' => $request->borrow['user_id'],
+            'message' => $message,
+            'admin' => auth()->user()->name,
+        ]);
+
         $data = BookUser::find($id);
 
         if (!$data) {

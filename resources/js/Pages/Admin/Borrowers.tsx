@@ -48,9 +48,10 @@ export default function Borrowers({ borrows, name, email }: PageProps<{ borrows:
     toast.success('Success!')
   }
 
-  const bookBroken = async (id: string | undefined) => {
+  const bookBroken = async (id: string | undefined, borrow: Borrow) => {
     Inertia.put(`/admin/book-broken/${id}`, {
       book_quality: "Broken",
+      borrow: borrow
     })
     toast.success('Success!')
   }
@@ -154,7 +155,7 @@ export default function Borrowers({ borrows, name, email }: PageProps<{ borrows:
                             {borrow.status === 'Done' && borrow.book_quality === '-' ? (
                               <>
                                 <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => bookOkay(borrow.id)}>{t('admin22')}</button>
-                                <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => bookBroken(borrow.id)}>{t('admin23')}</button>
+                                <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => bookBroken(borrow.id, borrow)}>{t('admin23')}</button>
                               </>
                             ) : <p></p>}
                           </td>
