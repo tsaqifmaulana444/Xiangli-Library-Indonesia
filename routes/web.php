@@ -36,6 +36,7 @@ Route::prefix('')->group(function(){
     Route::put('/pay-fine/{id}', [UsersController::class, 'pay_fine'])->name('user.pay_fine');
 
     Route::get('/alert-panel', [UsersController::class, 'alert_panel'])->name('admin.alert-panel');
+    Route::put('/dismiss-alert/{id}', [UsersController::class, 'dismiss_alert'])->name('admin.dismiss-alert');
 });
 
 Route::prefix('/admin')->group(function(){

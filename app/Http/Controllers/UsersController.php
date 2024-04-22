@@ -240,4 +240,15 @@ class UsersController extends Controller
             'email' => auth()->user()->email
         ]);
     }
+
+    public function dismiss_alert($id)
+    {
+        $data = LateAlert::find($id);
+
+        $data->update([
+            'status' => false,
+        ]);
+
+        return redirect()->route('user.alert-panel')->with('success', 'Approved!');
+    }
 }

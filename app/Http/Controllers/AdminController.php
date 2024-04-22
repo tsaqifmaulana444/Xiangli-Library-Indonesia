@@ -297,6 +297,7 @@ class AdminController extends Controller
         LateAlert::create([
             'user_id' => $request->borrow['user_id'],
             'message' => $message,
+            'admin' => auth()->user()->name,
         ]);
 
         return redirect()->route('admin.borrowers')->with('success', 'Data Successfully Added!');
