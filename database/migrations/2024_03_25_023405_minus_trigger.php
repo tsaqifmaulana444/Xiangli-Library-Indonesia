@@ -23,6 +23,18 @@ return new class extends Migration
         ');
 
         DB::unprepared('
+            CREATE OR REPLACE FUNCTION return_stock() RETURNS TRIGGER AS $$
+            BEGIN
+                UPDATE books SET stock = stock + NEW.amount WHERE id = NEW.book_id;
+                RETURN NEW;
+            END;
+            $$ LANGUAGE plpgsql;
+            
+            CREATE TRIGGER tr_return AFTER DELETE ON book_user FOR EACH ROW
+            EXECUTE FUNCTION return_stock();
+        ');
+
+        DB::unprepared('
             CREATE OR REPLACE FUNCTION increase_stock() RETURNS TRIGGER AS $$
             BEGIN
                 UPDATE books SET stock = stock + NEW.amount WHERE id = NEW.book_id;
@@ -40,6 +52,9 @@ return new class extends Migration
     {
         DB::unprepared('DROP TRIGGER IF EXISTS tr_minus ON book_user;');
         DB::unprepared('DROP FUNCTION IF EXISTS reduce_stock();');
+
+        DB::unprepared('DROP TRIGGER IF EXISTS tr_return ON book_user;');
+        DB::unprepared('DROP FUNCTION IF EXISTS return_stock();');
 
         DB::unprepared('DROP TRIGGER IF EXISTS tr_plus ON book_user;');
         DB::unprepared('DROP FUNCTION IF EXISTS increase_stock();');

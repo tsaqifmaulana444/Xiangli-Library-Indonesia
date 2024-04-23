@@ -54,7 +54,7 @@ class UsersController extends Controller
             $book->rating = $ratings->where('book_id', $book->id)->avg('star');
             $book->ratings_count = $ratingsCount->has($book->id) ? $ratingsCount[$book->id]->total : 0;
             return $book;
-        });        
+        });
 
         return Inertia::render('Users/ListBook', [
             'books' => $booksWithRatings,
@@ -171,8 +171,21 @@ class UsersController extends Controller
     {
         $books = Book::with('categories')->latest()->get();
         $bookmarks = UserBook::where('user_id', '=', auth()->user()->id)->get();
+        $ratings = Rating::whereIn('book_id', $books->pluck('id'))->get();
+        $ratingsCount = Rating::whereIn('book_id', $books->pluck('id'))
+        ->select('book_id', DB::raw('count(*) as total'))
+        ->groupBy('book_id')
+        ->get()
+        ->keyBy('book_id');
+
+
+        $booksWithRatings = $books->map(function ($book) use ($ratings, $ratingsCount) {
+            $book->rating = $ratings->where('book_id', $book->id)->avg('star');
+            $book->ratings_count = $ratingsCount->has($book->id) ? $ratingsCount[$book->id]->total : 0;
+            return $book;
+        });
         return Inertia::render('Users/Bookmark', [
-            'books' => $books,
+            'books' => $booksWithRatings,
             'bookmarks' => $bookmarks,
             'name' => auth()->user()->name,
             'email' => auth()->user()->email,

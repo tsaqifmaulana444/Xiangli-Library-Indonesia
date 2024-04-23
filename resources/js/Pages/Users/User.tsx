@@ -66,7 +66,7 @@ export default function Dashboard({ actives, books, categories, recommended, rec
                   recommended2.map((recommend, index) => (
                     <Link href="/list-book">
                       <div key={index} className='mt-2'>
-                        <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[210px]' />
+                        <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[230px]' />
                         <p className='font-bold text-lg mt-2'>{recommend.name}</p>
                         <p className='opacity-70 text-xs'>{recommend.author}</p>
                         <p>{`${recommend.description.substring(0, 100)}...`}</p>
@@ -87,7 +87,7 @@ export default function Dashboard({ actives, books, categories, recommended, rec
                   recommended.map((recommend, index) => (
                     <Link href="/list-book">
                       <div key={index} className='mt-2'>
-                        <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[210px]' />
+                        <img src={`/storage/book/${recommend.image.substring(recommend.image.lastIndexOf('/'))}`} alt="image" className='w-full h-[230px]' />
                         <p className='font-bold text-lg mt-2'>{recommend.name}</p>
                         <p className='opacity-70 text-xs'>{recommend.author}</p>
                         <p>{`${recommend.description.substring(0, 120)}...`}</p>

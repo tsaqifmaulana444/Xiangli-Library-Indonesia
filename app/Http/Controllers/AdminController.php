@@ -130,6 +130,17 @@ class AdminController extends Controller
     public function delete_borrowers($id)
     {
         $borrower = BookUser::find($id);
+        $transaction = BookUser::where("id", "=", $id)->get();
+        // dd($transaction);
+        $student = User::where('id', '=', $transaction[0]->user_id)->first();
+        $book = Book::where('id', '=', $transaction[0]->book_id)->first();
+        $message = 'Dear Student ' . $student->name . ', Your book request '. $book->name .' was declined, for more detail you must visit the library and meet the employee there, sincerely thanks';
+
+        LateAlert::create([
+            'user_id' => $transaction[0]->user_id,
+            'message' => $message,
+            'admin' => auth()->user()->name,
+        ]);
 
         if ($borrower) {
             $borrower->delete();
