@@ -97,7 +97,7 @@ export default function Dashboard({ books, name, email, bookmarks, user_id }: Pa
                       <div onClick={() => openBorrowModal(book)}>
                         <img src={`/storage/book/${book.image.substring(book.image.lastIndexOf('/'))}`} alt="" className='w-full h-[210px] rounded-sm' />
                         <h3 className='text-[18px] font-bold mt-2 truncate'>{book.name}</h3>
-                        <p className='text-[11px] my-1'>{book.date}</p>
+                        <p className='text-[11px] my-1'>{book.author}</p>
                         <p className='text-[13px] mb-2 truncate'>{`${book.description.substring(0, 120)}`}</p>
                         <div className='text-[13px] mb-4 mt-3 flex justify-between'>
                           <div className='flex'>

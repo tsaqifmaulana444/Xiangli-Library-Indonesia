@@ -21,8 +21,7 @@ interface AmendBookModalProps {
 
 export default function AmendBookModal({ closeModal, borrow }: AmendBookModalProps) {
     const [id, setId] = useState(borrow.id || '')
-    const [userId, setUserId] = useState(borrow.user_id || '')
-    const [bookId, setBookId] = useState(borrow.book_id || '')
+    const [bookId, setBookId] = useState(borrow.book.name || '')
     const [amount, setAmount] = useState(borrow.amount || '')
     const [borrowIn, setBorrowIn] = useState(borrow.borrow_in || '')
     const [borrowOut, setBorrowOut] = useState(borrow.borrow_out || '')
@@ -50,10 +49,6 @@ export default function AmendBookModal({ closeModal, borrow }: AmendBookModalPro
                     <div className="w-full py-7 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 100px)' }}>
                         <h1 className='font-bold text-xl mb-5'>{t('user_book1')}</h1>
                         <form onSubmit={updateBook}>
-                            <div className="mb-4">
-                                <h3 className='font-bold text-[16px]'>{t('user_book12')}</h3>
-                                <p className='text-[13px]'>{userId}</p>
-                            </div>
                             <div className="mb-4">
                                 <h3 className='font-bold text-[16px]'>{t('user_book2')}</h3>
                                 <p className='text-[13px]'>{bookId}</p>
