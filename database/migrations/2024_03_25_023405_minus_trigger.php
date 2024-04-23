@@ -25,8 +25,8 @@ return new class extends Migration
         DB::unprepared('
             CREATE OR REPLACE FUNCTION return_stock() RETURNS TRIGGER AS $$
             BEGIN
-                UPDATE books SET stock = stock + NEW.amount WHERE id = NEW.book_id;
-                RETURN NEW;
+                UPDATE books SET stock = stock + OLD.amount WHERE id = OLD.book_id;
+                RETURN OLD;
             END;
             $$ LANGUAGE plpgsql;
             
