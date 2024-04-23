@@ -37,7 +37,7 @@ export default function Dashboard({ alerts, name, email }: DashboardProps) {
     Inertia.put(`/dismiss-alert/${id}`, {
       id: id,
     })
-    toast.success("Successfully Dismissed!")
+    toast.success(t('add1'))
   }
 
   return (
@@ -54,7 +54,7 @@ export default function Dashboard({ alerts, name, email }: DashboardProps) {
         <main className='flex-1 bg-white'>
           <div className="w-[92%] mx-auto">
             <Navbar name={name} email={email} />
-            <h1 className='mt-4 mb-8 font-bold text-[22px]'>Alert Of Violation</h1>
+            <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t("add2")}</h1>
             {alerts.length === 0 ? (
               <tr>
                 <td colSpan={8} className="px-6 py-4 text-center">
@@ -72,12 +72,12 @@ export default function Dashboard({ alerts, name, email }: DashboardProps) {
                 ) : (
                   alerts.filter(data => data.status === true).map((data) => (
                     <div key={data.id} className='shadow-lg rounded-md p-4'>
-                      <p className='font-bold text-[19px]'>From: {data.admin}</p>
+                      <p className='font-bold text-[19px]'>{t("add3")} {data.admin}</p>
                       <p>{data.message}</p>
                       <p>{data.status}</p>
                       <p>{formatDate(data.created_at)}</p>
                       <button onClick={() => dismissAlert(data.id)} className='bg-red-500 text-white rounded-md px-3 py-1 mt-2'>
-                        Dismiss
+                        {t("add4")}
                       </button>
                     </div>
                   ))

@@ -181,5 +181,21 @@
     "borrow_val1": "Bạn không thể mượn quá 10 ngày!",
     "borrow_val2": "Ngày mượn không thể trước ngày hôm nay! \n\n Hôm nay là ",
     "borrow_val3": "Ngày trả sách không thể trước ngày mượn!",
-    "borrow_val4": "Bạn không thể mượn quá số lượng tồn kho có sẵn!"
+    "borrow_val4": "Bạn không thể mượn quá số lượng tồn kho có sẵn!",
+
+    "add1": "Đã Hủy Thành Công!",
+    "add2": "Cảnh Báo Vi Phạm",
+    "add3": "Từ:",
+    "add4": "Bỏ Qua",
+    "add5": "Dấu Trang",
+    "add6": "Bảng Cảnh Báo",
+    "add7": "Đã Xóa Dấu Trang!",
+    "add8": "Dấu Trang Của Bạn",
+    "add9": "Đánh Giá Sách",
+    "add10": "Hoàn Thành Đọc Trước",
+    "add11": "Hoàn Tất",
+    "add12": "đánh giá",
+    "add13": "Đánh Giá Đã Được Thêm Thành Công!",
+    "add14": "Đánh Giá Sách",
+    "add15": "Vui Lòng Nhập Đánh Giá"
 }

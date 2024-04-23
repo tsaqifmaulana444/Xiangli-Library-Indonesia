@@ -181,5 +181,21 @@
     "borrow_val1": "Sampeyan ora bisa ngombe sajroning 10 dina!",
     "borrow_val2": "Tanggal pinjam ora bisa njupuk sadurunge dina saiki! \n\n Saiki yaiku ",
     "borrow_val3": "Tanggal mlebu ora bisa mbalik sadurunge tanggal pinjam!",
-    "borrow_val4": "Sampeyan ora bisa ngombe luwih saka stok sing ana!"
+    "borrow_val4": "Sampeyan ora bisa ngombe luwih saka stok sing ana!",
+
+    "add1": "Sukses Ditolak!",
+    "add2": "Waspada Pelanggaran",
+    "add3": "Saka:",
+    "add4": "Tutup",
+    "add5": "Tandhané",
+    "add6": "Papan Waspada",
+    "add7": "Tandhané Tuhu dibusek!",
+    "add8": "Tandhané Sampeyan",
+    "add9": "Rate Buku",
+    "add10": "Tumrapaake Waca Wrontèng",
+    "add11": "Wes Selese",
+    "add12": "rate",
+    "add13": "Rate Sukses Ditambahke!",
+    "add14": "Rate Buku",
+    "add15": "Monggo Masukkan Rate"
 }

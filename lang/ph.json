@@ -181,5 +181,21 @@
     "borrow_val1": "Hindi ka maaaring manghiram ng higit sa 10 araw!",
     "borrow_val2": "Ang petsa ng paghiram ay hindi maaaring bago kaysa sa petsa ngayon! \n\n Ngayon ay ",
     "borrow_val3": "Ang petsa ng pagbalik ay hindi maaaring bago kaysa sa petsa ng paghiram!",
-    "borrow_val4": "Hindi ka maaaring manghiram ng higit sa mga available na stock!"
+    "borrow_val4": "Hindi ka maaaring manghiram ng higit sa mga available na stock!",
+
+    "add1": "Matagumpay na Tinanggal!",
+    "add2": "Alerto ng Paglabag",
+    "add3": "Mula sa:",
+    "add4": "Tanggihan",
+    "add5": "Talahanayan",
+    "add6": "Panel ng Alerto",
+    "add7": "Binura ang Talahanayan!",
+    "add8": "Ang Iyong Talahanayan",
+    "add9": "Rate ang Aklat",
+    "add10": "Tapusin ang Pagbabasa Una",
+    "add11": "Tapos na",
+    "add12": "mga rate",
+    "add13": "Matagumpay na Idinagdag ang Rate!",
+    "add14": "Rate ang Aklat",
+    "add15": "Mangyaring Ipasok ang Rate"
 }

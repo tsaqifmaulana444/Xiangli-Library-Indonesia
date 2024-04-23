@@ -43,16 +43,23 @@ export default function BorrowBookModal({ closeModal, book, user_id }: BorrowBoo
         const borrowOutDate = new Date(borrowOut)
 
         const currentDate = new Date()
-
         const returnDate = new Date(borrowInDate)
         returnDate.setDate(returnDate.getDate() + 10)
 
+        let currentDateWithoutTime = new Date()
+        currentDateWithoutTime.setHours(0, 0, 0, 0)
+
+        let borrowInDateWithoutTime = new Date(borrowInDate)
+        borrowInDateWithoutTime.setHours(0, 0, 0, 0)
+
         if (borrowOutDate > returnDate) {
             toast.error(t('borrow_val1'))
-        } else if (borrowInDate < currentDate) {
-            toast.error(t('borrow_val2') + currentDate)
+        } else if (borrowInDateWithoutTime < currentDateWithoutTime) {
+            toast.error(t('borrow_val2') + currentDate.toLocaleDateString())
         } else if (borrowOutDate < borrowInDate) {
             toast.error(t('borrow_val3'))
+        } else if (parseInt(borrowQty) <= 0) {
+            toast.error("Book can't be less or equal to zero")
         } else if (borrowQty > book.stock) {
             toast.error(t('borrow_val4'))
         } else {

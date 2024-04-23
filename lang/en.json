@@ -181,5 +181,21 @@
     "borrow_val1": "You can't borrow more than 10 days!",
     "borrow_val2": "Borrow date cannot be before today's date! \n\n Today is ",
     "borrow_val3": "Return date cannot be before borrow date!",
-    "borrow_val4": "You can't borrow more than available stock!"
+    "borrow_val4": "You can't borrow more than available stock!",
+
+    "add1": "Successfully Dismissed!",
+    "add2": "Alert Of Violation",
+    "add3": "From:",
+    "add4": "Dismiss",
+    "add5": "Bookmark",
+    "add6": "Alert Panel",
+    "add7": "Bookmark Deleted!",
+    "add8": "Your Bookmark",
+    "add9": "Rate The Book",
+    "add10": "Finish Reading First",
+    "add11": "Done",
+    "add12": "rates",
+    "add13": "Rating Successfully Added!",
+    "add14": "Rate The Book",
+    "add15": "Please Enter The Rating"
 }

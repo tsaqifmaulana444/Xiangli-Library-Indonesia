@@ -36,7 +36,7 @@ export default function BookRatingModal({ borrow, closeModal }: modalProps) {
             description: rate,
             borrow_id: borrow.id
         })
-        toast.success('Rating Successfully Added!')
+        toast.success(t("add13"))
     }
 
     return (
@@ -48,12 +48,12 @@ export default function BookRatingModal({ borrow, closeModal }: modalProps) {
             <div className='fixed w-[100%] h-[100vh] bg-[#1414147c] z-[99] flex justify-center items-center'>
                 <div className='bg-white w-[50%] rounded-lg z-[999] px-6 flex items-center'>
                     <div className="w-full py-7">
-                        <h1 className='font-bold text-[20px]'>Rate The Book</h1>
+                        <h1 className='font-bold text-[20px]'>{t("add14")}</h1>
                         <form className="mx-auto mt-5" onSubmit={storeRating}>
                             <div className="mb-5">
                                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Star</label>
                                 <select name="" id="" className='rounded-md border border-gray-300 bg-gray-50' value={star} onChange={(e) => setStar(e.target.value)}>
-                                    <option value="">Please Enter The Rating</option>
+                                    <option value="">{t("add15")}</option>
                                     <option value="5">5</option>
                                     <option value="4">4</option>
                                     <option value="3">3</option>

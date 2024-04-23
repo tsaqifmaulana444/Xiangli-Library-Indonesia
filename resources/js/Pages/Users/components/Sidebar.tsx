@@ -18,8 +18,8 @@ export default function Sidebar() {
                         <Link href="/dashboard" className={component === 'Users/User' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>{t('sidebar1')}</Link>
                         <Link href="/list-book" className={component === 'Users/ListBook' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>{t('sidebar2')}</Link>
                         <Link href="/history" className={component === 'Users/History' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>{t('sidebar3')}</Link>
-                        <Link href="/bookmark" className={component === 'Users/Bookmark' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Bookmark</Link>
-                        <Link href="/alert-panel" className={component === 'Users/AlertPanel' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>Alert Panel</Link>
+                        <Link href="/bookmark" className={component === 'Users/Bookmark' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>{t("add5")}</Link>
+                        <Link href="/alert-panel" className={component === 'Users/AlertPanel' ? 'text-white text-[16px] font-semibold mt-6' : 'text-gray-400 text-[16px] font-semibold mt-6'}>{t("add6")}</Link>
                     </div>
                     <div className="">
                         <Link href='/sign-out' as='button' className='cursor-pointer text-gray-400 text-[16px] font-semibold mt-6' method="post">{t('sign_out')}</Link>

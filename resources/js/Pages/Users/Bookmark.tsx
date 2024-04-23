@@ -25,7 +25,7 @@ interface Bookmark {
   book_id: string
 }
 
-export default function Bookmark({ books, name, email, bookmarks }: PageProps<{ books: Book[], name: string, email: string, bookmarks: Bookmark[] }>) {
+export default function Bookmark({ books, name, email, bookmarks, user_id }: PageProps<{ books: Book[], user_id: string, name: string, email: string, bookmarks: Bookmark[] }>) {
   const appName = "List Book";
   const [isBorrowModalOpen, setIsBorrowModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
@@ -50,7 +50,7 @@ export default function Bookmark({ books, name, email, bookmarks }: PageProps<{ 
       Inertia.delete(`/delete-bookmark2/${id}`, {
         data: { user_id: 0, book_id: id },
       })
-      toast.success('Bookmark Deleted!')
+      toast.success(t("add7"))
     }
   } 
 
@@ -59,7 +59,7 @@ export default function Bookmark({ books, name, email, bookmarks }: PageProps<{ 
 
   return (
     <>
-      {isBorrowModalOpen && selectedBook && <BorrowBookModal closeModal={closeBorrowModal} book={selectedBook} />}
+      {isBorrowModalOpen && selectedBook && <BorrowBookModal closeModal={closeBorrowModal} book={selectedBook} user_id={user_id} />}
       <Head>
         <title>{appName}</title>
       </Head>
@@ -73,7 +73,7 @@ export default function Bookmark({ books, name, email, bookmarks }: PageProps<{ 
           <div className="w-[92%] mx-auto">
             <Navbar name={name} email={email} />
             <section className="">
-              <h1 className='mt-4 mb-8 font-bold text-[22px]'>Your Bookmark</h1>
+              <h1 className='mt-4 mb-8 font-bold text-[22px]'>{t("add8")}</h1>
               {bookmarkedBooks.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="px-6 py-4 text-center">

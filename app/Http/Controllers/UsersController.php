@@ -175,7 +175,8 @@ class UsersController extends Controller
             'books' => $books,
             'bookmarks' => $bookmarks,
             'name' => auth()->user()->name,
-            'email' => auth()->user()->email
+            'email' => auth()->user()->email,
+            'user_id' => auth()->user()->id
         ]);
     }
 
